@@ -1,0 +1,110 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dust Skills API — Skills
+  description: 'Dust Skills API — Skills. 2 operations. Lead operation: List Skills. Self-contained Naftiko capability covering
+    one Dust business surface.'
+  tags:
+  - Dust
+  - Skills
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    DUST_API_KEY: DUST_API_KEY
+    DUST_WORKSPACE_ID: DUST_WORKSPACE_ID
+capability:
+  consumes:
+  - type: http
+    namespace: skills-skills
+    baseUri: https://dust.tt
+    description: Dust Skills API — Skills business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-w-wid-skills
+      path: /api/v1/w/{wId}/skills
+      operations:
+      - name: get-api-v1-w-skills
+        method: GET
+        description: List Skills
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+      - name: post-api-v1-w-skills
+        method: POST
+        description: Import Skills from Uploaded Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.DUST_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: skills-skills-rest
+    port: 8080
+    description: REST adapter for Dust Skills API — Skills. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/w/{wId}/skills
+      name: api-v1-w-wid-skills
+      description: REST surface for /api/v1/w/{wId}/skills.
+      operations:
+      - method: GET
+        name: get-api-v1-w-skills
+        description: List Skills
+        call: skills-skills.get-api-v1-w-skills
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post-api-v1-w-skills
+        description: Import Skills from Uploaded Files
+        call: skills-skills.post-api-v1-w-skills
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: skills-skills-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dust Skills API — Skills. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: dust-get-api-v1-w-skills
+      description: List Skills
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: skills-skills.get-api-v1-w-skills
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-skills
+      description: Import Skills from Uploaded Files
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: skills-skills.post-api-v1-w-skills
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

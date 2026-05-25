@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dust-tt/main/json-schema/dust-agent-configuration-schema.json",
+  "title": "Dust Agent Configuration",
+  "description": "A Dust agent \u2014 its identity, model, instructions, and toolset.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "example": 12345
+    },
+    "sId": {
+      "type": "string",
+      "description": "Unique string identifier for the agent configuration",
+      "example": "7f3a9c2b1e"
+    },
+    "version": {
+      "type": "integer",
+      "example": 2
+    },
+    "versionCreatedAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "Timestamp of when the version was created",
+      "example": "2023-06-15T14:30:00Z"
+    },
+    "versionAuthorId": {
+      "type": "string",
+      "nullable": true,
+      "description": "ID of the user who created this version",
+      "example": "0ec9852c2f"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the agent configuration",
+      "example": "Customer Support Agent"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the agent configuration",
+      "example": "An AI agent designed to handle customer support inquiries"
+    },
+    "instructions": {
+      "type": "string",
+      "nullable": true,
+      "description": "Instructions for the agent",
+      "example": "Always greet the customer politely and try to resolve their issue efficiently."
+    },
+    "pictureUrl": {
+      "type": "string",
+      "description": "URL of the agent's picture",
+      "example": "https://example.com/agent-images/support-agent.png"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the agent configuration",
+      "example": "active"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Scope of the agent configuration",
+      "example": "workspace"
+    },
+    "userFavorite": {
+      "type": "boolean",
+      "description": "Status of the user favorite for this configuration",
+      "example": true
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "description": "ID of the model provider",
+          "example": "openai"
+        },
+        "modelId": {
+          "type": "string",
+          "description": "ID of the specific model",
+          "example": "gpt-4"
+        },
+        "temperature": {
+          "type": "number",
+          "example": 0.7
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "example": []
+    },
+    "maxStepsPerRun": {
+      "type": "integer",
+      "example": 10
+    },
+    "templateId": {
+      "type": "string",
+      "nullable": true,
+      "description": "ID of the template used for this configuration",
+      "example": "b4e2f1a9c7"
+    }
+  }
+}

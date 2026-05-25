@@ -1,0 +1,97 @@
+aid: dust:finops
+url: https://dust.tt/pricing
+specificationVersion: api-commons-finops-0.1
+focusVersion: 1.2
+provider:
+  name: Dust
+  url: https://dust.tt
+modified: '2026-05-24'
+summary: |
+  Dust bills primarily on a per-active-user / per-month seat basis. Programmatic API
+  usage (model tokens consumed via agents) is bundled with credits on Pro and is
+  separately metered on Enterprise. Underlying LLM provider token consumption is
+  passed through. Below maps Dust's billing surface onto the FinOps FOCUS data spec
+  for downstream cost analytics.
+billingSurface:
+  primaryMetric: ActiveUser
+  secondaryMetrics:
+    - ModelTokensConsumed
+    - DataStorageGB
+    - WorkspaceCount
+  billingCurrency: EUR
+  billingFrequency: Monthly
+  invoiceDelivery:
+    - Email
+    - SEPA (enterprise)
+    - Credit card
+focusMapping:
+  - focusField: BilledCost
+    dustSource: Monthly invoice — seat + usage + storage
+  - focusField: BillingPeriodStart / BillingPeriodEnd
+    dustSource: Invoice header
+  - focusField: ChargeCategory
+    values:
+      - Usage  # active-user seats, model tokens
+      - Purchase  # storage add-ons
+  - focusField: ChargeDescription
+    dustSource: Invoice line item ("Active user — Pro", "Programmatic credits", etc.)
+  - focusField: ConsumedQuantity
+    dustSource: |
+      - Active users for seat charges
+      - Tokens for programmatic / model charges
+      - GB-months for storage
+  - focusField: PricingUnit
+    values:
+      - user
+      - 1k_tokens
+      - GB-month
+  - focusField: PricingCategory
+    values:
+      - Subscription  # seats
+      - Usage         # tokens
+  - focusField: ServiceCategory
+    value: AI Platform
+  - focusField: ServiceName
+    values:
+      - Dust Pro
+      - Dust Enterprise
+      - Dust Programmatic API
+  - focusField: ProviderName
+    value: Dust
+  - focusField: PublisherName
+    value: Dust
+  - focusField: BillingAccountId
+    dustSource: Dust workspace id (`wId`)
+  - focusField: SubAccountId
+    dustSource: Dust space id (`spaceId`)
+  - focusField: Region
+    values:
+      - us-central1
+      - europe-west1
+  - focusField: Tags
+    dustSource: Workspace metadata (custom fields, enterprise only)
+chargeTypes:
+  - id: seat
+    name: Active User Seat
+    metric: user
+    unit: month
+    pricingTier: Pro=29 EUR; Enterprise=custom
+  - id: tokens
+    name: Programmatic API Tokens
+    metric: tokens
+    unit: 1k
+    pricingTier: Bundled on Pro; metered on Enterprise
+  - id: storage
+    name: Data Source Storage
+    metric: bytes
+    unit: GB-month
+    pricingTier: 1 GB / user included on Pro; expanded on Enterprise
+costAllocation:
+  recommendations:
+    - Tag spaces with cost-center metadata to allocate per business unit
+    - Pull workspace analytics via /api/v1/w/{wId}/analytics/export for chargeback
+    - Use /api/v1/w/{wId}/workspace-usage (deprecated) or its successor for monthly trend reporting
+observability:
+  endpoints:
+    - GET /api/v1/w/{wId}/analytics/export
+    - GET /api/v1/w/{wId}/workspace-usage

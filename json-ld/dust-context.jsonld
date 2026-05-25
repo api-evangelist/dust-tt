@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dust": "https://dust.tt/ns/",
+    "mcp": "https://modelcontextprotocol.io/ns/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "dateCreated": "schema:dateCreated",
+    "dateModified": "schema:dateModified",
+
+    "Workspace": {
+      "@id": "dust:Workspace",
+      "@type": "schema:Organization"
+    },
+    "Space": {
+      "@id": "dust:Space",
+      "@type": "schema:CreativeWork"
+    },
+    "Agent": {
+      "@id": "dust:Agent",
+      "@type": "schema:SoftwareApplication"
+    },
+    "Conversation": {
+      "@id": "dust:Conversation",
+      "@type": "schema:Conversation"
+    },
+    "Message": {
+      "@id": "dust:Message",
+      "@type": "schema:Message"
+    },
+    "ContentFragment": {
+      "@id": "dust:ContentFragment",
+      "@type": "schema:DigitalDocument"
+    },
+    "DataSource": {
+      "@id": "dust:DataSource",
+      "@type": "schema:Dataset"
+    },
+    "DataSourceView": {
+      "@id": "dust:DataSourceView",
+      "@type": "schema:Dataset"
+    },
+    "Document": {
+      "@id": "dust:Document",
+      "@type": "schema:DigitalDocument"
+    },
+    "Table": {
+      "@id": "dust:Table",
+      "@type": "schema:Dataset"
+    },
+    "App": {
+      "@id": "dust:App",
+      "@type": "schema:SoftwareApplication"
+    },
+    "Run": {
+      "@id": "dust:Run",
+      "@type": "schema:Action"
+    },
+    "Skill": {
+      "@id": "dust:Skill",
+      "@type": "schema:HowTo"
+    },
+    "MCPServerView": {
+      "@id": "dust:MCPServerView",
+      "@type": "mcp:Server"
+    },
+    "Trigger": {
+      "@id": "dust:Trigger",
+      "@type": "schema:Event"
+    },
+    "Feedback": {
+      "@id": "dust:Feedback",
+      "@type": "schema:Review"
+    },
+    "Mention": {
+      "@id": "dust:Mention",
+      "@type": "schema:Mention"
+    },
+
+    "sId": "schema:identifier",
+    "wId": "dust:workspaceId",
+    "spaceId": "dust:spaceId",
+    "model": "dust:model",
+    "instructions": "dust:instructions",
+    "tools": "dust:tools",
+    "messages": "dust:messages",
+    "fragments": "dust:contentFragments",
+    "connector": "dust:connector",
+    "provider": "dust:provider",
+    "ranking": "dust:ranking"
+  }
+}

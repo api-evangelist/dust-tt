@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dust-tt/main/json-schema/dust-skill-schema.json",
+  "title": "Dust Skill",
+  "description": "A reusable Skill bundle that can be imported into a Dust workspace and called by agents.",
+  "type": "object",
+  "properties": {
+    "sId": {
+      "type": "string",
+      "description": "Unique string identifier for the skill",
+      "example": "skill_abc123"
+    },
+    "createdAt": {
+      "type": "number",
+      "nullable": true,
+      "description": "Timestamp of when the skill was created"
+    },
+    "updatedAt": {
+      "type": "number",
+      "nullable": true,
+      "description": "Timestamp of when the skill was last updated"
+    },
+    "editedBy": {
+      "type": "integer",
+      "nullable": true,
+      "description": "Numeric identifier of the last editor"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived",
+        "suggested"
+      ],
+      "description": "Current status of the skill",
+      "example": "active"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the skill",
+      "example": "Customer Support"
+    },
+    "agentFacingDescription": {
+      "type": "string",
+      "description": "Description shown to agents when selecting or using the skill",
+      "example": "Use this skill to answer customer support questions."
+    },
+    "userFacingDescription": {
+      "type": "string",
+      "description": "Description shown to workspace users",
+      "example": "Answers support questions with the right workspace context."
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true,
+      "description": "Icon identifier for the skill",
+      "example": "ActionRobotIcon"
+    },
+    "source": {
+      "type": "string",
+      "nullable": true,
+      "enum": [
+        "web_app",
+        "github",
+        "api",
+        "local_file"
+      ],
+      "description": "Source used to create or import the skill"
+    },
+    "sourceMetadata": {
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/$defs/SkillSourceMetadata"
+        }
+      ]
+    },
+    "reinforcement": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "on",
+        "off"
+      ],
+      "description": "Reinforcement setting for the skill"
+    },
+    "lastReinforcementAnalysisAt": {
+      "type": "string",
+      "nullable": true,
+      "description": "Timestamp of the last reinforcement analysis, when available"
+    },
+    "requestedSpaceIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Space identifiers the skill needs access to"
+    },
+    "fileAttachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "description": "Unique string identifier for the attached file"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Name of the attached file"
+          }
+        }
+      }
+    },
+    "canWrite": {
+      "type": "boolean",
+      "description": "Whether the authenticated actor can edit the skill"
+    },
+    "isExtendable": {
+      "type": "boolean",
+      "description": "Whether this skill can be extended by another skill"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "Whether this skill is enabled by default"
+    },
+    "extendedSkillId": {
+      "type": "string",
+      "nullable": true,
+      "description": "Identifier of the extended skill, when applicable"
+    },
+    "instructions": {
+      "type": "string",
+      "nullable": true,
+      "description": "Instructions used by the agent when running the skill"
+    },
+    "instructionsHtml": {
+      "type": "string",
+      "nullable": true,
+      "description": "HTML representation of the skill instructions"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MCPServerView"
+      }
+    }
+  },
+  "$defs": {
+    "MCPServerView": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the MCP server view",
+          "example": 123
+        },
+        "sId": {
+          "type": "string",
+          "description": "Unique string identifier for the MCP server view",
+          "example": "mcp_sv_abc123"
+        },
+        "name": {
+          "type": "string",
+          "nullable": true,
+          "description": "Custom name for the MCP server view (null if not set)",
+          "example": "My Custom MCP Server"
+        },
+        "description": {
+          "type": "string",
+          "nullable": true,
+          "description": "Custom description for the MCP server view (null if not set)",
+          "example": "This MCP server handles customer data operations"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Unix timestamp of when the MCP server view was created",
+          "example": 1625097600
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Unix timestamp of when the MCP server view was last updated",
+          "example": 1625184000
+        },
+        "spaceId": {
+          "type": "string",
+          "description": "ID of the space containing the MCP server view",
+          "example": "spc_xyz789"
+        },
+        "serverType": {
+          "type": "string",
+          "enum": [
+            "remote",
+            "internal"
+          ],
+          "description": "Type of the MCP server",
+          "example": "remote"
+        },
+        "server": {
+          "type": "object",
+          "properties": {
+            "sId": {
+              "type": "string",
+              "description": "Unique string identifier for the MCP server",
+              "example": "mcp_srv_def456"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the MCP server",
+              "example": "Customer Data Server"
+            },
+            "version": {
+              "type": "string",
+              "description": "Version of the MCP server",
+              "example": "1.0.0"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the MCP server",
+              "example": "Handles customer data operations and queries"
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon identifier for the MCP server",
+              "example": "database"
+            },
+            "authorization": {
+              "type": "object",
+              "nullable": true,
+              "properties": {
+                "provider": {
+                  "type": "string",
+                  "description": "OAuth provider for authorization",
+                  "example": "github"
+                },
+                "supported_use_cases": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "platform_actions",
+                      "personal_actions"
+                    ]
+                  },
+                  "description": "Supported use cases for the authorization",
+                  "example": [
+                    "platform_actions"
+                  ]
+                },
+                "scope": {
+                  "type": "string",
+                  "description": "OAuth scope required",
+                  "example": "repo:read"
+                }
+              }
+            },
+            "tools": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the tool",
+                    "example": "query_customers"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of what the tool does",
+                    "example": "Query customer database for information"
+                  },
+                  "inputSchema": {
+                    "type": "object",
+                    "description": "JSON Schema for the tool's input parameters",
+                    "example": {
+                      "type": "object",
+                      "properties": {
+                        "customerId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "availability": {
+              "type": "string",
+              "description": "Availability status of the MCP server",
+              "example": "production"
+            },
+            "allowMultipleInstances": {
+              "type": "boolean",
+              "description": "Whether multiple instances of this server can be created",
+              "example": false
+            },
+            "documentationUrl": {
+              "type": "string",
+              "nullable": true,
+              "description": "URL to the server's documentation",
+              "example": "https://docs.example.com/mcp-server"
+            }
+          }
+        },
+        "oAuthUseCase": {
+          "type": "string",
+          "nullable": true,
+          "enum": [
+            "platform_actions",
+            "personal_actions"
+          ],
+          "description": "OAuth use case for the MCP server view",
+          "example": "platform_actions"
+        },
+        "editedByUser": {
+          "type": "object",
+          "nullable": true,
+          "description": "Information about the user who last edited the MCP server view",
+          "properties": {
+            "editedAt": {
+              "type": "number",
+              "nullable": true,
+              "description": "Unix timestamp of when the edit occurred",
+              "example": 1625184000
+            },
+            "fullName": {
+              "type": "string",
+              "nullable": true,
+              "description": "Full name of the editor",
+              "example": "John Doe"
+            },
+            "imageUrl": {
+              "type": "string",
+              "nullable": true,
+              "description": "Profile image URL of the editor",
+              "example": "https://example.com/profile/johndoe.jpg"
+            }
+          }
+        }
+      }
+    },
+    "SkillSourceMetadata": {
+      "type": "object",
+      "properties": {
+        "repoUrl": {
+          "type": "string",
+          "description": "URL of the source repository, when applicable",
+          "example": "https://github.com/dust-tt/skills"
+        },
+        "filePath": {
+          "type": "string",
+          "description": "Path to the source skill file",
+          "example": "support/SKILL.md"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+aid: dust:plans
+url: https://dust.tt/pricing
+specificationVersion: api-commons-plans-0.1
+provider:
+  name: Dust
+  url: https://dust.tt
+modified: '2026-05-24'
+currency: EUR
+disclaimer: |
+  Pricing reflects published list pricing at https://dust.tt/pricing on 2026-05-24
+  and is for indicative profiling only. Programmatic API usage, enterprise terms, and
+  EU residency add-ons may change the effective price. Always confirm with Dust.
+plans:
+  - id: pro
+    name: Pro
+    description: For small teams adopting Dust. Per-seat, billed monthly (excl. tax).
+    audience: Small teams
+    pricing:
+      - geo: EU
+        label: Per user
+        unit: 1
+        metric: user
+        timeFrame: month
+        price: 29
+        currency: EUR
+        description: 29 EUR per user per month, billed monthly, excluding tax.
+    features:
+      - Access to advanced models (GPT-5, Claude, Gemini, Mistral)
+      - Custom agents with tool/action execution
+      - Native integrations (GitHub, Google Drive, Notion, Slack, Zendesk)
+      - Chrome Extension and Raycast Extension
+      - SOC 2 Type II and zero model-training on customer data
+      - Unrestricted messaging under fair-use
+      - Programmatic API usage credits included
+      - 1 GB data per user
+      - 1 private workspace
+    limits:
+      - name: Data storage
+        value: 1 GB per user
+      - name: Private workspaces
+        value: 1
+      - name: Minimum seats
+        value: 1
+  - id: enterprise
+    name: Enterprise
+    description: Custom pricing for organizations of 100+ members.
+    audience: Mid-market & enterprise
+    pricing:
+      - geo: Global
+        label: Custom
+        unit: 1
+        metric: user
+        timeFrame: month
+        price: Custom
+        currency: EUR
+        description: Custom pricing based on active users; quoted by Dust sales.
+    features:
+      - Everything in Pro
+      - SSO via Okta, Entra ID, JumpCloud (SAML/OIDC)
+      - SCIM user provisioning
+      - Expanded storage and file-size allowances
+      - Custom programmatic-API pricing
+      - Multiple payment methods (SEPA, credit card, invoicing)
+      - Multiple workspaces per organization
+      - Data residency in US or EU (GDPR)
+      - Dedicated account manager and priority support
+      - Early access to new features
+      - Salesforce integration
+    limits:
+      - name: Minimum seats
+        value: 100
+      - name: Workspaces
+        value: Multiple
+      - name: Data residency
+        value: US or EU

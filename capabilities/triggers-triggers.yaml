@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dust Triggers API — Triggers
+  description: 'Dust Triggers API — Triggers. 1 operations. Lead operation: Receive External Webhook to Trigger Flows. Self-contained
+    Naftiko capability covering one Dust business surface.'
+  tags:
+  - Dust
+  - Triggers
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    DUST_API_KEY: DUST_API_KEY
+    DUST_WORKSPACE_ID: DUST_WORKSPACE_ID
+capability:
+  consumes:
+  - type: http
+    namespace: triggers-triggers
+    baseUri: https://dust.tt
+    description: Dust Triggers API — Triggers business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-w-wid-triggers-hooks-webhooksourceid
+      path: /api/v1/w/{wId}/triggers/hooks/{webhookSourceId}
+      operations:
+      - name: post-api-v1-w-triggers-hooks
+        method: POST
+        description: Receive External Webhook to Trigger Flows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.DUST_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: triggers-triggers-rest
+    port: 8080
+    description: REST adapter for Dust Triggers API — Triggers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/w/{wId}/triggers/hooks/{webhookSourceId}
+      name: api-v1-w-wid-triggers-hooks-webhooksourceid
+      description: REST surface for /api/v1/w/{wId}/triggers/hooks/{webhookSourceId}.
+      operations:
+      - method: POST
+        name: post-api-v1-w-triggers-hooks
+        description: Receive External Webhook to Trigger Flows
+        call: triggers-triggers.post-api-v1-w-triggers-hooks
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: triggers-triggers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dust Triggers API — Triggers. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: dust-post-api-v1-w-triggers-hooks
+      description: Receive External Webhook to Trigger Flows
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: triggers-triggers.post-api-v1-w-triggers-hooks
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

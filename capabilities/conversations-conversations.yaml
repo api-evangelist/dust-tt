@@ -1,0 +1,768 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dust Conversations API — Conversations
+  description: 'Dust Conversations API — Conversations. 19 operations. Lead operation: Cancel Message Generation in a Conversation.
+    Self-contained Naftiko capability covering one Dust business surface.'
+  tags:
+  - Dust
+  - Conversations
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    DUST_API_KEY: DUST_API_KEY
+    DUST_WORKSPACE_ID: DUST_WORKSPACE_ID
+capability:
+  consumes:
+  - type: http
+    namespace: conversations-conversations
+    baseUri: https://dust.tt
+    description: Dust Conversations API — Conversations business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-w-wid-assistant-conversations-cid-cancel
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/cancel
+      operations:
+      - name: post-api-v1-w-assistant-conversations-cancel
+        method: POST
+        description: Cancel Message Generation in a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-content-fragments
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/content_fragments
+      operations:
+      - name: post-api-v1-w-assistant-conversations-content-fragments
+        method: POST
+        description: Create a Content Fragment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-events
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/events
+      operations:
+      - name: get-api-v1-w-assistant-conversations-events
+        method: GET
+        description: Get the Events for a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid-feedbacks
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks
+      operations:
+      - name: get-api-v1-w-assistant-conversations-feedbacks
+        method: GET
+        description: Get Feedbacks for a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid-files-rel
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/files/{rel}
+      operations:
+      - name: get-api-v1-w-assistant-conversations-files
+        method: GET
+        description: Download a Conversation-Scoped File by Path
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}
+      operations:
+      - name: get-api-v1-w-assistant-conversations
+        method: GET
+        description: Get a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+      - name: patch-api-v1-w-assistant-conversations
+        method: PATCH
+        description: Update Conversation Read Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-mentions-suggestion
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions
+      operations:
+      - name: get-api-v1-w-assistant-conversations-mentions-suggestions
+        method: GET
+        description: Get Mention Suggestions for a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid-messages-mid-answer
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/answer-question
+      operations:
+      - name: post-api-v1-w-assistant-conversations-messages-answer-question
+        method: POST
+        description: Answer a User Question in a Conversation Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-messages-mid-edit
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/edit
+      operations:
+      - name: post-api-v1-w-assistant-conversations-messages-edit
+        method: POST
+        description: Edit an Existing Message in a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-messages-mid-events
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/events
+      operations:
+      - name: get-api-v1-w-assistant-conversations-messages-events
+        method: GET
+        description: Get Events for a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid-messages-mid-feedba
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
+      operations:
+      - name: post-api-v1-w-assistant-conversations-messages-feedbacks
+        method: POST
+        description: Submit Feedback for a Specific Message in a Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: delete-api-v1-w-assistant-conversations-messages-feedbacks
+        method: DELETE
+        description: Delete Feedback for a Specific Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-assistant-conversations-cid-messages-mid-valida
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/validate-action
+      operations:
+      - name: post-api-v1-w-assistant-conversations-messages-validate-action
+        method: POST
+        description: Validate an Action in a Conversation Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations-cid-messages
+      path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages
+      operations:
+      - name: post-api-v1-w-assistant-conversations-messages
+        method: POST
+        description: Create a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-conversations
+      path: /api/v1/w/{wId}/assistant/conversations
+      operations:
+      - name: post-api-v1-w-assistant-conversations
+        method: POST
+        description: Create a New Conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-mentions-parse
+      path: /api/v1/w/{wId}/assistant/mentions/parse
+      operations:
+      - name: post-api-v1-w-assistant-mentions-parse
+        method: POST
+        description: Parse Mentions in Markdown Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-w-wid-assistant-mentions-suggestions
+      path: /api/v1/w/{wId}/assistant/mentions/suggestions
+      operations:
+      - name: get-api-v1-w-assistant-mentions-suggestions
+        method: GET
+        description: Get Mention Suggestions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: api-v1-w-wid-files
+      path: /api/v1/w/{wId}/files
+      operations:
+      - name: post-api-v1-w-files
+        method: POST
+        description: Create a File Upload URL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.DUST_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: conversations-conversations-rest
+    port: 8080
+    description: REST adapter for Dust Conversations API — Conversations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/cancel
+      name: api-v1-w-wid-assistant-conversations-cid-cancel
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/cancel.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-cancel
+        description: Cancel Message Generation in a Conversation
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-cancel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/content_fragments
+      name: api-v1-w-wid-assistant-conversations-cid-content-fragments
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/content_fragments.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-content-fragments
+        description: Create a Content Fragment
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-content-fragments
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/events
+      name: api-v1-w-wid-assistant-conversations-cid-events
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/events.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations-events
+        description: Get the Events for a Conversation
+        call: conversations-conversations.get-api-v1-w-assistant-conversations-events
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks
+      name: api-v1-w-wid-assistant-conversations-cid-feedbacks
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations-feedbacks
+        description: Get Feedbacks for a Conversation
+        call: conversations-conversations.get-api-v1-w-assistant-conversations-feedbacks
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/files/{rel}
+      name: api-v1-w-wid-assistant-conversations-cid-files-rel
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/files/{rel}.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations-files
+        description: Download a Conversation-Scoped File by Path
+        call: conversations-conversations.get-api-v1-w-assistant-conversations-files
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}
+      name: api-v1-w-wid-assistant-conversations-cid
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations
+        description: Get a Conversation
+        call: conversations-conversations.get-api-v1-w-assistant-conversations
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch-api-v1-w-assistant-conversations
+        description: Update Conversation Read Status
+        call: conversations-conversations.patch-api-v1-w-assistant-conversations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions
+      name: api-v1-w-wid-assistant-conversations-cid-mentions-suggestion
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations-mentions-suggestions
+        description: Get Mention Suggestions for a Conversation
+        call: conversations-conversations.get-api-v1-w-assistant-conversations-mentions-suggestions
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/answer-question
+      name: api-v1-w-wid-assistant-conversations-cid-messages-mid-answer
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/answer-question.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-messages-answer-question
+        description: Answer a User Question in a Conversation Message
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-answer-question
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/edit
+      name: api-v1-w-wid-assistant-conversations-cid-messages-mid-edit
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/edit.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-messages-edit
+        description: Edit an Existing Message in a Conversation
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-edit
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/events
+      name: api-v1-w-wid-assistant-conversations-cid-messages-mid-events
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/events.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-conversations-messages-events
+        description: Get Events for a Message
+        call: conversations-conversations.get-api-v1-w-assistant-conversations-messages-events
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
+      name: api-v1-w-wid-assistant-conversations-cid-messages-mid-feedba
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-messages-feedbacks
+        description: Submit Feedback for a Specific Message in a Conversation
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-feedbacks
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-api-v1-w-assistant-conversations-messages-feedbacks
+        description: Delete Feedback for a Specific Message
+        call: conversations-conversations.delete-api-v1-w-assistant-conversations-messages-feedbacks
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/validate-action
+      name: api-v1-w-wid-assistant-conversations-cid-messages-mid-valida
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/validate-action.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-messages-validate-action
+        description: Validate an Action in a Conversation Message
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-validate-action
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations/{cId}/messages
+      name: api-v1-w-wid-assistant-conversations-cid-messages
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations/{cId}/messages.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations-messages
+        description: Create a Message
+        call: conversations-conversations.post-api-v1-w-assistant-conversations-messages
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/conversations
+      name: api-v1-w-wid-assistant-conversations
+      description: REST surface for /api/v1/w/{wId}/assistant/conversations.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-conversations
+        description: Create a New Conversation
+        call: conversations-conversations.post-api-v1-w-assistant-conversations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/mentions/parse
+      name: api-v1-w-wid-assistant-mentions-parse
+      description: REST surface for /api/v1/w/{wId}/assistant/mentions/parse.
+      operations:
+      - method: POST
+        name: post-api-v1-w-assistant-mentions-parse
+        description: Parse Mentions in Markdown Text
+        call: conversations-conversations.post-api-v1-w-assistant-mentions-parse
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/assistant/mentions/suggestions
+      name: api-v1-w-wid-assistant-mentions-suggestions
+      description: REST surface for /api/v1/w/{wId}/assistant/mentions/suggestions.
+      operations:
+      - method: GET
+        name: get-api-v1-w-assistant-mentions-suggestions
+        description: Get Mention Suggestions
+        call: conversations-conversations.get-api-v1-w-assistant-mentions-suggestions
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/w/{wId}/files
+      name: api-v1-w-wid-files
+      description: REST surface for /api/v1/w/{wId}/files.
+      operations:
+      - method: POST
+        name: post-api-v1-w-files
+        description: Create a File Upload URL
+        call: conversations-conversations.post-api-v1-w-files
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conversations-conversations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dust Conversations API — Conversations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: dust-post-api-v1-w-assistant-conversations-cancel
+      description: Cancel Message Generation in a Conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-cancel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-content-fragments
+      description: Create a Content Fragment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-content-fragments
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations-events
+      description: Get the Events for a Conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations-events
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations-feedbacks
+      description: Get Feedbacks for a Conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations-feedbacks
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations-files
+      description: Download a Conversation-Scoped File by Path
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations-files
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations
+      description: Get a Conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-patch-api-v1-w-assistant-conversations
+      description: Update Conversation Read Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.patch-api-v1-w-assistant-conversations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations-mentions-suggestions
+      description: Get Mention Suggestions for a Conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations-mentions-suggestions
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-messages-answer-question
+      description: Answer a User Question in a Conversation Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-answer-question
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-messages-edit
+      description: Edit an Existing Message in a Conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-edit
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-conversations-messages-events
+      description: Get Events for a Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-conversations-messages-events
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-messages-feedbacks
+      description: Submit Feedback for a Specific Message in a Conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-feedbacks
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-delete-api-v1-w-assistant-conversations-messages-feedbacks
+      description: Delete Feedback for a Specific Message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: conversations-conversations.delete-api-v1-w-assistant-conversations-messages-feedbacks
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-messages-validate-action
+      description: Validate an Action in a Conversation Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-messages-validate-action
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations-messages
+      description: Create a Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations-messages
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-conversations
+      description: Create a New Conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-conversations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-assistant-mentions-parse
+      description: Parse Mentions in Markdown Text
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-assistant-mentions-parse
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-get-api-v1-w-assistant-mentions-suggestions
+      description: Get Mention Suggestions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.get-api-v1-w-assistant-mentions-suggestions
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dust-post-api-v1-w-files
+      description: Create a File Upload URL
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.post-api-v1-w-files
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,59 @@
+aid: dust:rate-limits
+url: https://docs.dust.tt
+specificationVersion: api-commons-rate-limits-0.1
+provider:
+  name: Dust
+  url: https://dust.tt
+modified: '2026-05-24'
+authoritativeSources:
+  - https://docs.dust.tt/docs/programmatic-usage
+  - https://docs.dust.tt/reference
+note: |
+  Dust does not publish a single canonical rate-limit table at the API reference level.
+  The following limits are profiled from the public docs (programmatic-usage,
+  data-source upsert queues, and conversation streaming pages) and from common-property
+  observation. Confirm exact thresholds with Dust support for enterprise tenancies.
+limits:
+  - scope: workspace
+    target: Programmatic API (all /api/v1/ endpoints)
+    type: request-rate
+    description: |
+      Programmatic API usage on the Pro plan is included with fair-use guidance.
+      Enterprise tenants negotiate custom programmatic-usage quotas.
+    metric: requests
+    timeWindow: indeterminate
+    enforcement: soft (fair use)
+  - scope: workspace
+    target: Data Source — Upsert Queue
+    type: concurrency
+    description: |
+      Document and table upserts (`POST /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}`)
+      are queued. Workspaces can check queue depth via `GET .../check_upsert_queue`.
+    metric: queued upserts
+    enforcement: queue
+  - scope: conversation
+    target: Conversation event stream (SSE)
+    type: connection
+    description: |
+      Each conversation supports a single live SSE stream over
+      `GET /api/v1/w/{wId}/assistant/conversations/{cId}/events` and
+      per-message event streams.
+    enforcement: stream
+  - scope: tenant
+    target: Model invocations
+    type: quota
+    description: |
+      Underlying model providers (OpenAI, Anthropic, Google, Mistral) apply
+      provider-side TPM and RPM limits that propagate through the Conversations
+      API. Heavy usage may need an Enterprise tier.
+    enforcement: upstream-provider
+headers:
+  observed:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  note: |
+    Header names follow common conventions. Treat as advisory until documented;
+    handle HTTP 429 with exponential backoff regardless.
+status:
+  page: https://status.dust.tt

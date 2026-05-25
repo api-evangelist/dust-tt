@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dust-tt/main/json-schema/dust-datasource-schema.json",
+  "title": "Dust Data Source",
+  "description": "A Dust data source \u2014 a corpus of documents, tables, and folders connected via a connector (Notion, Drive, Slack, GitHub, etc.) or filled programmatically.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the datasource",
+      "example": 12345
+    },
+    "createdAt": {
+      "type": "integer",
+      "description": "Timestamp of when the datasource was created",
+      "example": 1625097600
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the datasource",
+      "example": "Customer Knowledge Base"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the datasource",
+      "example": "Contains all customer-related information and FAQs"
+    },
+    "dustAPIProjectId": {
+      "type": "string",
+      "description": "ID of the associated Dust API project",
+      "example": "5e9d8c7b6a"
+    },
+    "connectorId": {
+      "type": "string",
+      "description": "ID of the connector used for this datasource",
+      "example": "1f3e5d7c9b"
+    },
+    "connectorProvider": {
+      "type": "string",
+      "description": "Provider of the connector (e.g., 'webcrawler')",
+      "example": "webcrawler"
+    },
+    "assistantDefaultSelected": {
+      "type": "boolean",
+      "description": "Whether this datasource is selected by default for agents",
+      "example": true
+    }
+  }
+}
