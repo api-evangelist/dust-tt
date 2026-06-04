@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: Dust Message an Agent and Submit Feedback
+  summary: Post a message into a conversation, wait for the agent reply, then submit thumbs feedback on it.
+  description: >-
+    Closes the quality loop on an agent answer. The workflow posts a human
+    message mentioning an agent into an existing conversation, polls until the
+    agent's reply is completed, captures the agent message id, and submits a
+    thumbs up or down feedback for that message. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: message-and-submit-feedback
+  summary: Post a message, poll for the agent reply, and submit feedback on it.
+  description: >-
+    Creates a message that mentions an agent, polls the conversation until the
+    agent reply completes, and submits thumbs feedback on the agent message.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - cId
+    - agentConfigurationId
+    - content
+    - thumbDirection
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      cId:
+        type: string
+        description: The identifier of the existing conversation.
+      agentConfigurationId:
+        type: string
+        description: The sId of the agent configuration to mention.
+      content:
+        type: string
+        description: The text of the human message.
+      thumbDirection:
+        type: string
+        description: Direction of the feedback, either up or down.
+        enum:
+        - up
+        - down
+      feedbackContent:
+        type: string
+        description: Optional free-text feedback comment.
+  steps:
+  - stepId: createMessage
+    description: >-
+      Post a human message that mentions the agent so a reply is generated.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    requestBody:
+      contentType: application/json
+      payload:
+        content: $inputs.content
+        mentions:
+        - configurationId: $inputs.agentConfigurationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      messageId: $response.body#/sId
+  - stepId: pollConversation
+    description: >-
+      Fetch the conversation and capture the agent message id once a completed
+      agent message is present.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      agentMessageId: $response.body#/conversation/content/0/0/sId
+    onSuccess:
+    - name: agentAnswered
+      type: goto
+      stepId: submitFeedback
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status == 'completed'
+        type: jsonpath
+    - name: stillGenerating
+      type: goto
+      stepId: pollConversation
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status != 'completed'
+        type: jsonpath
+  - stepId: submitFeedback
+    description: >-
+      Submit thumbs feedback for the agent message.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages~1{mId}~1feedbacks/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    - name: mId
+      in: path
+      value: $steps.pollConversation.outputs.agentMessageId
+    requestBody:
+      contentType: application/json
+      payload:
+        thumbDirection: $inputs.thumbDirection
+        feedbackContent: $inputs.feedbackContent
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/success
+  outputs:
+    messageId: $steps.createMessage.outputs.messageId
+    success: $steps.submitFeedback.outputs.success

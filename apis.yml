@@ -213,6 +213,45 @@ kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/dust-tt-approve-agent-action-workflow.yml
+    name: Dust Approve a Pending Agent Tool Action
+    summary: Start a conversation, wait for the agent to request a tool action, then approve or reject it.
+  - url: arazzo/dust-tt-attach-file-and-ask-workflow.yml
+    name: Dust Attach a File and Ask an Agent
+    summary: Reserve a file upload URL, attach the file as a content fragment, then ask an agent about it.
+  - url: arazzo/dust-tt-converse-with-agent-workflow.yml
+    name: Dust Converse with an Agent
+    summary: Start a conversation, mention an agent, and poll the conversation until the agent answers.
+  - url: arazzo/dust-tt-create-table-and-upsert-rows-workflow.yml
+    name: Dust Create a Table and Upsert Rows
+    summary: Upsert a structured table into a data source, then load rows into it and read one back.
+  - url: arazzo/dust-tt-discover-spaces-and-data-sources-workflow.yml
+    name: Dust Discover Spaces and Data Sources
+    summary: List the workspace's accessible spaces, then enumerate the data sources within a chosen space.
+  - url: arazzo/dust-tt-find-agent-and-start-conversation-workflow.yml
+    name: Dust Find Agent and Start a Conversation
+    summary: Search for an agent by name, resolve its full configuration, then open a conversation mentioning it.
+  - url: arazzo/dust-tt-import-agent-and-converse-workflow.yml
+    name: Dust Import an Agent and Start a Conversation
+    summary: Create a new agent configuration from a JSON definition, then open a conversation that mentions it.
+  - url: arazzo/dust-tt-message-and-submit-feedback-workflow.yml
+    name: Dust Message an Agent and Submit Feedback
+    summary: Post a message into a conversation, wait for the agent reply, then submit thumbs feedback on it.
+  - url: arazzo/dust-tt-post-message-and-poll-workflow.yml
+    name: Dust Post Follow-up Message and Poll
+    summary: Post a follow-up message into an existing conversation and poll the conversation for the agent reply.
+  - url: arazzo/dust-tt-run-app-and-poll-workflow.yml
+    name: Dust Run an App and Poll for Completion
+    summary: Trigger a non-blocking Dust app run and poll the run until its status succeeds or errors.
+  - url: arazzo/dust-tt-suggest-mention-and-converse-workflow.yml
+    name: Dust Suggest a Mention and Start a Conversation
+    summary: Resolve a mention query into an agent suggestion, then open a conversation that mentions it.
+  - url: arazzo/dust-tt-upsert-document-and-search-workflow.yml
+    name: Dust Upsert a Document and Search the Data Source
+    summary: Upsert a document into a data source, wait for the upsert queue to drain, then search for it.
 - type: Portal
   url: https://dust.tt
 - type: Documentation

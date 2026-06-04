@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Dust Discover Spaces and Data Sources
+  summary: List the workspace's accessible spaces, then enumerate the data sources within a chosen space.
+  description: >-
+    Bootstraps any data-source automation by resolving the identifiers it needs.
+    The workflow lists the spaces the API key can access, branches when none are
+    available, otherwise selects the first space and lists its data sources so a
+    caller can target a data source by id. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datasourcesApi
+  url: ../openapi/dust-datasources-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: discover-spaces-and-data-sources
+  summary: List accessible spaces and the data sources within the first one.
+  description: >-
+    Retrieves the accessible spaces for the workspace and, when at least one
+    exists, lists the data sources contained in the first space.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+  steps:
+  - stepId: listSpaces
+    description: >-
+      List the spaces accessible to the authenticated workspace and capture the
+      first space id.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstSpaceId: $response.body#/spaces/0/sId
+    onSuccess:
+    - name: hasSpaces
+      type: goto
+      stepId: listDataSources
+      criteria:
+      - context: $response.body
+        condition: $.spaces.length > 0
+        type: jsonpath
+    - name: noSpaces
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.spaces.length == 0
+        type: jsonpath
+  - stepId: listDataSources
+    description: >-
+      List the data sources within the first accessible space.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $steps.listSpaces.outputs.firstSpaceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      dataSources: $response.body#/data_sources
+  outputs:
+    firstSpaceId: $steps.listSpaces.outputs.firstSpaceId
+    dataSources: $steps.listDataSources.outputs.dataSources

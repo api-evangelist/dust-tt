@@ -1,0 +1,137 @@
+arazzo: 1.0.1
+info:
+  title: Dust Run an App and Poll for Completion
+  summary: Trigger a non-blocking Dust app run and poll the run until its status succeeds or errors.
+  description: >-
+    Executes a Dust app (a chained LLM/code pipeline from the Builder) and waits
+    for the result. The workflow creates a non-blocking app run with a pinned
+    specification hash and inputs, then polls the run resource until the run
+    status leaves the running state, branching to end on success or error. Each
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: appsApi
+  url: ../openapi/dust-apps-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-app-and-poll
+  summary: Create an app run and poll the run until it completes.
+  description: >-
+    Creates a non-blocking app run in the given space and repeatedly fetches the
+    run until the run status is no longer running, branching on success versus
+    error.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - spaceId
+    - aId
+    - specificationHash
+    - inputs
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      spaceId:
+        type: string
+        description: The space identifier containing the app.
+      aId:
+        type: string
+        description: The app identifier.
+      specificationHash:
+        type: string
+        description: Hash of the app specification to run against.
+      config:
+        type: object
+        description: Configuration object for the app run (e.g. model settings).
+      inputs:
+        type: array
+        description: Array of input objects passed to the app.
+        items:
+          type: object
+  steps:
+  - stepId: createRun
+    description: >-
+      Create a non-blocking app run with the pinned specification hash and
+      supplied inputs.
+    operationPath: '{$sourceDescriptions.appsApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1apps~1{aId}~1runs/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: aId
+      in: path
+      value: $inputs.aId
+    requestBody:
+      contentType: application/json
+      payload:
+        specification_hash: $inputs.specificationHash
+        config: $inputs.config
+        inputs: $inputs.inputs
+        blocking: false
+        stream: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runId: $response.body#/run/run_id
+  - stepId: pollRun
+    description: >-
+      Fetch the run and inspect its status. Continue polling while the run is
+      still running, then branch on the terminal status.
+    operationPath: '{$sourceDescriptions.appsApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1apps~1{aId}~1runs~1{runId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: aId
+      in: path
+      value: $inputs.aId
+    - name: runId
+      in: path
+      value: $steps.createRun.outputs.runId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runStatus: $response.body#/run/status/run
+      results: $response.body#/run/results
+    onSuccess:
+    - name: succeeded
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.run.status.run == 'succeeded'
+        type: jsonpath
+    - name: errored
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.run.status.run == 'errored'
+        type: jsonpath
+    - name: stillRunning
+      type: goto
+      stepId: pollRun
+      criteria:
+      - context: $response.body
+        condition: $.run.status.run == 'running'
+        type: jsonpath
+  outputs:
+    runId: $steps.createRun.outputs.runId
+    runStatus: $steps.pollRun.outputs.runStatus
+    results: $steps.pollRun.outputs.results

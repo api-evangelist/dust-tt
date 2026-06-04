@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: Dust Post Follow-up Message and Poll
+  summary: Post a follow-up message into an existing conversation and poll the conversation for the agent reply.
+  description: >-
+    Continues an existing Dust conversation. The workflow posts a new human
+    message that mentions an agent into a known conversation, then polls the
+    conversation resource until a completed agent message is present. Each step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: post-message-and-poll
+  summary: Add a message to a conversation and poll until the agent answers.
+  description: >-
+    Creates a message in an existing conversation that mentions the supplied
+    agent, then repeatedly fetches the conversation until the agent's reply is
+    completed.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - cId
+    - agentConfigurationId
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      cId:
+        type: string
+        description: The identifier of the existing conversation.
+      agentConfigurationId:
+        type: string
+        description: The sId of the agent configuration to mention.
+      content:
+        type: string
+        description: The text of the follow-up human message.
+      username:
+        type: string
+        description: Username to attach to the message context.
+      timezone:
+        type: string
+        description: IANA timezone for the message context.
+  steps:
+  - stepId: createMessage
+    description: >-
+      Post a new human message into the conversation, mentioning the agent so a
+      reply is generated.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    requestBody:
+      contentType: application/json
+      payload:
+        content: $inputs.content
+        mentions:
+        - configurationId: $inputs.agentConfigurationId
+        context:
+          username: $inputs.username
+          timezone: $inputs.timezone
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      messageId: $response.body#/sId
+  - stepId: pollConversation
+    description: >-
+      Fetch the conversation and check whether a completed agent message is
+      present. Repeat until the agent has answered.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversation: $response.body#/conversation
+    onSuccess:
+    - name: agentAnswered
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status == 'completed'
+        type: jsonpath
+    - name: stillGenerating
+      type: goto
+      stepId: pollConversation
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status != 'completed'
+        type: jsonpath
+  outputs:
+    messageId: $steps.createMessage.outputs.messageId
+    conversation: $steps.pollConversation.outputs.conversation

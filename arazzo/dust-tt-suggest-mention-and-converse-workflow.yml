@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Dust Suggest a Mention and Start a Conversation
+  summary: Resolve a mention query into an agent suggestion, then open a conversation that mentions it.
+  description: >-
+    Turns a free-text mention query into a working conversation. The workflow
+    fetches mention suggestions filtered to agents for a query string, branches
+    when nothing matches, otherwise opens a new conversation seeded with a
+    message that mentions the first suggested agent. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: suggest-mention-and-converse
+  summary: Get an agent mention suggestion and open a conversation mentioning it.
+  description: >-
+    Requests mention suggestions limited to agents, and when at least one is
+    returned, creates a conversation that mentions the first suggested agent.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - query
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      query:
+        type: string
+        description: Mention query string used to filter agent suggestions.
+      content:
+        type: string
+        description: The text of the first human message in the conversation.
+      title:
+        type: string
+        description: Optional title for the new conversation.
+  steps:
+  - stepId: getSuggestions
+    description: >-
+      Fetch mention suggestions limited to agents for the supplied query and
+      capture the id of the first suggested agent.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1mentions~1suggestions/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: query
+      in: query
+      value: $inputs.query
+    - name: select
+      in: query
+      value:
+      - agents
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      suggestedAgentId: $response.body#/suggestions/0/id
+    onSuccess:
+    - name: hasSuggestion
+      type: goto
+      stepId: createConversation
+      criteria:
+      - context: $response.body
+        condition: $.suggestions.length > 0
+        type: jsonpath
+    - name: noSuggestion
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.suggestions.length == 0
+        type: jsonpath
+  - stepId: createConversation
+    description: >-
+      Open a conversation seeded with a message that mentions the first
+      suggested agent.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        blocking: false
+        message:
+          content: $inputs.content
+          mentions:
+          - configurationId: $steps.getSuggestions.outputs.suggestedAgentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversationId: $response.body#/conversation/sId
+  outputs:
+    suggestedAgentId: $steps.getSuggestions.outputs.suggestedAgentId
+    conversationId: $steps.createConversation.outputs.conversationId

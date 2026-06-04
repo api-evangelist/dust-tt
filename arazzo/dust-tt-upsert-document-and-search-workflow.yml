@@ -1,0 +1,166 @@
+arazzo: 1.0.1
+info:
+  title: Dust Upsert a Document and Search the Data Source
+  summary: Upsert a document into a data source, wait for the upsert queue to drain, then search for it.
+  description: >-
+    Loads knowledge into a Dust data source and confirms it is retrievable. The
+    workflow upserts a document into a folder data source, polls the upsert
+    queue status until no upsert workflows are running, then runs a semantic
+    search against the data source. Each step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datasourcesApi
+  url: ../openapi/dust-datasources-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-document-and-search
+  summary: Upsert a document, wait for indexing, and search the data source.
+  description: >-
+    Upserts a single text document into a data source, polls the upsert queue
+    until it is empty, and then issues a search query against the data source.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - spaceId
+    - dsId
+    - documentId
+    - title
+    - text
+    - query
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      spaceId:
+        type: string
+        description: The space identifier containing the data source.
+      dsId:
+        type: string
+        description: The data source identifier.
+      documentId:
+        type: string
+        description: The document identifier to upsert.
+      title:
+        type: string
+        description: Title of the document.
+      text:
+        type: string
+        description: Plain text content of the document.
+      query:
+        type: string
+        description: The search query to run after indexing.
+      topK:
+        type: number
+        description: Number of search results to return (defaults to 5).
+        default: 5
+  steps:
+  - stepId: upsertDocument
+    description: >-
+      Upsert the document into the data source synchronously so it is queued for
+      indexing.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1documents~1{documentId}/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    - name: documentId
+      in: path
+      value: $inputs.documentId
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        mime_type: text/plain
+        text: $inputs.text
+        light_document_output: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      documentId: $response.body#/document/document_id
+  - stepId: checkQueue
+    description: >-
+      Check how many upsert workflows are still running for this data source.
+      Continue polling while any are running, otherwise proceed to search.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1check_upsert_queue/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningCount: $response.body#/running_count
+    onSuccess:
+    - name: queueDrained
+      type: goto
+      stepId: searchDataSource
+      criteria:
+      - context: $response.body
+        condition: $.running_count == 0
+        type: jsonpath
+    - name: stillIndexing
+      type: goto
+      stepId: checkQueue
+      criteria:
+      - context: $response.body
+        condition: $.running_count > 0
+        type: jsonpath
+  - stepId: searchDataSource
+    description: >-
+      Run a semantic search against the data source to confirm the upserted
+      document is retrievable.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1search/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    - name: query
+      in: query
+      value: $inputs.query
+    - name: top_k
+      in: query
+      value: $inputs.topK
+    - name: full_text
+      in: query
+      value: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      documents: $response.body#/documents
+  outputs:
+    documentId: $steps.upsertDocument.outputs.documentId
+    documents: $steps.searchDataSource.outputs.documents

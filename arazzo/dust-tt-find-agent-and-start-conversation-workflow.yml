@@ -1,0 +1,134 @@
+arazzo: 1.0.1
+info:
+  title: Dust Find Agent and Start a Conversation
+  summary: Search for an agent by name, resolve its full configuration, then open a conversation mentioning it.
+  description: >-
+    Resolves a human-friendly agent name into a usable conversation. The
+    workflow searches agent configurations by name, branches when no agent is
+    found, otherwise retrieves the full configuration of the first match and
+    opens a new conversation that mentions that agent. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: agentsApi
+  url: ../openapi/dust-agents-api-openapi.yml
+  type: openapi
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-agent-and-start-conversation
+  summary: Search an agent by name and open a conversation that mentions it.
+  description: >-
+    Searches for an agent configuration matching the supplied name, fetches its
+    full configuration, and creates a conversation seeded with a message that
+    mentions the matched agent.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - agentName
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      agentName:
+        type: string
+        description: Name (or partial name) of the agent to search for.
+      content:
+        type: string
+        description: The text of the first human message in the conversation.
+      title:
+        type: string
+        description: Optional title for the new conversation.
+  steps:
+  - stepId: searchAgents
+    description: >-
+      Search agent configurations by name and capture the sId of the first
+      match.
+    operationPath: '{$sourceDescriptions.agentsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1agent_configurations~1search/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: q
+      in: query
+      value: $inputs.agentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedAgentId: $response.body#/agentConfigurations/0/sId
+    onSuccess:
+    - name: agentFound
+      type: goto
+      stepId: getAgent
+      criteria:
+      - context: $response.body
+        condition: $.agentConfigurations.length > 0
+        type: jsonpath
+    - name: noAgent
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.agentConfigurations.length == 0
+        type: jsonpath
+  - stepId: getAgent
+    description: >-
+      Retrieve the full configuration of the matched agent so its identity and
+      tools are confirmed before use.
+    operationPath: '{$sourceDescriptions.agentsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1agent_configurations~1{sId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: sId
+      in: path
+      value: $steps.searchAgents.outputs.matchedAgentId
+    - name: variant
+      in: query
+      value: full
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      agentId: $response.body#/agentConfiguration/sId
+      agentName: $response.body#/agentConfiguration/name
+  - stepId: createConversation
+    description: >-
+      Open a new conversation seeded with a human message that mentions the
+      resolved agent.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        blocking: false
+        message:
+          content: $inputs.content
+          mentions:
+          - configurationId: $steps.getAgent.outputs.agentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversationId: $response.body#/conversation/sId
+  outputs:
+    matchedAgentId: $steps.searchAgents.outputs.matchedAgentId
+    conversationId: $steps.createConversation.outputs.conversationId

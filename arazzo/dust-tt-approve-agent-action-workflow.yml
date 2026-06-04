@@ -1,0 +1,140 @@
+arazzo: 1.0.1
+info:
+  title: Dust Approve a Pending Agent Tool Action
+  summary: Start a conversation, wait for the agent to request a tool action, then approve or reject it.
+  description: >-
+    Implements the human-in-the-loop tool-validation pattern. The workflow
+    opens a conversation that mentions an agent without skipping tool
+    validation, polls the conversation until a completed agent message exists,
+    and then submits an approval or rejection for the pending action on that
+    message. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: approve-agent-action
+  summary: Open a conversation, wait for an agent message, and validate its pending action.
+  description: >-
+    Creates a conversation that mentions an agent with tool validation enabled,
+    polls until a completed agent message appears, and approves or rejects the
+    pending action by id.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - agentConfigurationId
+    - content
+    - actionId
+    - approved
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      agentConfigurationId:
+        type: string
+        description: The sId of the agent configuration to mention.
+      content:
+        type: string
+        description: The text of the first human message.
+      actionId:
+        type: string
+        description: The id of the action to validate, as surfaced by the agent.
+      approved:
+        type: boolean
+        description: Whether to approve (true) or reject (false) the action.
+  steps:
+  - stepId: createConversation
+    description: >-
+      Open a conversation that mentions the agent without skipping tool
+      validation so the agent can request an action.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        blocking: false
+        skipToolsValidation: false
+        message:
+          content: $inputs.content
+          mentions:
+          - configurationId: $inputs.agentConfigurationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversationId: $response.body#/conversation/sId
+  - stepId: pollConversation
+    description: >-
+      Fetch the conversation and capture the agent message id once a completed
+      agent message is present.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $steps.createConversation.outputs.conversationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      messageId: $response.body#/conversation/content/0/0/sId
+    onSuccess:
+    - name: agentResponded
+      type: goto
+      stepId: validateAction
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status == 'completed'
+        type: jsonpath
+    - name: stillGenerating
+      type: goto
+      stepId: pollConversation
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status != 'completed'
+        type: jsonpath
+  - stepId: validateAction
+    description: >-
+      Approve or reject the pending action on the agent message.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages~1{mId}~1validate-action/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $steps.createConversation.outputs.conversationId
+    - name: mId
+      in: path
+      value: $steps.pollConversation.outputs.messageId
+    requestBody:
+      contentType: application/json
+      payload:
+        actionId: $inputs.actionId
+        approved: $inputs.approved
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/success
+  outputs:
+    conversationId: $steps.createConversation.outputs.conversationId
+    success: $steps.validateAction.outputs.success

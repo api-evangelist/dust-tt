@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Dust Import an Agent and Start a Conversation
+  summary: Create a new agent configuration from a JSON definition, then open a conversation that mentions it.
+  description: >-
+    Provisions a brand new Dust agent and immediately puts it to work. The
+    workflow imports an agent configuration from a structured JSON body,
+    captures the new agent's sId, and opens a conversation seeded with a message
+    that mentions the freshly created agent. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: agentsApi
+  url: ../openapi/dust-agents-api-openapi.yml
+  type: openapi
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: import-agent-and-converse
+  summary: Import an agent configuration and open a conversation mentioning it.
+  description: >-
+    Imports an agent configuration from a JSON definition and creates a
+    conversation that mentions the newly created agent.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - agent
+    - instructions
+    - generationSettings
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      agent:
+        type: object
+        description: Agent definition with handle, description, scope, max_steps_per_run, and visualization_enabled.
+      instructions:
+        type: string
+        description: Instructions for the agent.
+      generationSettings:
+        type: object
+        description: Model generation settings (model_id, provider_id, temperature, reasoning_effort).
+      tags:
+        type: array
+        description: Tags to attach to the agent.
+        items:
+          type: object
+      editors:
+        type: array
+        description: Editors for the agent.
+        items:
+          type: object
+      toolset:
+        type: array
+        description: Toolset (MCP tools) for the agent.
+        items:
+          type: object
+      content:
+        type: string
+        description: The text of the first human message in the conversation.
+  steps:
+  - stepId: importAgent
+    description: >-
+      Create a new agent configuration from the supplied JSON definition and
+      capture its sId.
+    operationPath: '{$sourceDescriptions.agentsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1agent_configurations~1import/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        agent: $inputs.agent
+        instructions: $inputs.instructions
+        generation_settings: $inputs.generationSettings
+        tags: $inputs.tags
+        editors: $inputs.editors
+        toolset: $inputs.toolset
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      agentId: $response.body#/agentConfiguration/sId
+      agentName: $response.body#/agentConfiguration/name
+  - stepId: createConversation
+    description: >-
+      Open a conversation seeded with a message that mentions the newly imported
+      agent.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        blocking: false
+        message:
+          content: $inputs.content
+          mentions:
+          - configurationId: $steps.importAgent.outputs.agentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversationId: $response.body#/conversation/sId
+  outputs:
+    agentId: $steps.importAgent.outputs.agentId
+    conversationId: $steps.createConversation.outputs.conversationId

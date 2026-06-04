@@ -1,0 +1,147 @@
+arazzo: 1.0.1
+info:
+  title: Dust Create a Table and Upsert Rows
+  summary: Upsert a structured table into a data source, then load rows into it and read one back.
+  description: >-
+    Builds a structured (tabular) knowledge source in Dust. The workflow upserts
+    a table definition into a folder data source, loads a batch of rows into the
+    table, and then reads the table back to confirm it exists. Each step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datasourcesApi
+  url: ../openapi/dust-datasources-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-table-and-upsert-rows
+  summary: Upsert a table, load rows, and read the table back.
+  description: >-
+    Upserts a table into a data source, upserts a batch of rows into it, and
+    fetches the table to confirm the result.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - spaceId
+    - dsId
+    - tableId
+    - title
+    - rows
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      spaceId:
+        type: string
+        description: The space identifier containing the data source.
+      dsId:
+        type: string
+        description: The data source identifier.
+      tableId:
+        type: string
+        description: The table identifier to upsert.
+      title:
+        type: string
+        description: Title of the table.
+      description:
+        type: string
+        description: Description of the table.
+      rows:
+        type: array
+        description: Array of rows, each with a row_id and a value object.
+        items:
+          type: object
+      truncate:
+        type: boolean
+        description: Whether to truncate existing rows before upserting (defaults to false).
+        default: false
+  steps:
+  - stepId: upsertTable
+    description: >-
+      Upsert the table definition into the data source so rows can be loaded
+      into it.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1tables/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    requestBody:
+      contentType: application/json
+      payload:
+        table_id: $inputs.tableId
+        title: $inputs.title
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tableId: $response.body#/table_id
+  - stepId: upsertRows
+    description: >-
+      Load the supplied rows into the table.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1tables~1{tId}~1rows/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    - name: tId
+      in: path
+      value: $steps.upsertTable.outputs.tableId
+    requestBody:
+      contentType: application/json
+      payload:
+        rows: $inputs.rows
+        truncate: $inputs.truncate
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      table: $response.body
+  - stepId: getTable
+    description: >-
+      Read the table back to confirm it was created and populated.
+    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces~1{spaceId}~1data_sources~1{dsId}~1tables~1{tId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: spaceId
+      in: path
+      value: $inputs.spaceId
+    - name: dsId
+      in: path
+      value: $inputs.dsId
+    - name: tId
+      in: path
+      value: $steps.upsertTable.outputs.tableId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tableTitle: $response.body#/title
+  outputs:
+    tableId: $steps.upsertTable.outputs.tableId
+    tableTitle: $steps.getTable.outputs.tableTitle

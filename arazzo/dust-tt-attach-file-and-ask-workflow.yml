@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Dust Attach a File and Ask an Agent
+  summary: Reserve a file upload URL, attach the file as a content fragment, then ask an agent about it.
+  description: >-
+    Grounds an agent question in an uploaded file. The workflow reserves a file
+    upload URL for the conversation use case, registers the uploaded file as a
+    content fragment on an existing conversation, and posts a message that
+    mentions an agent so it can reason over the attachment. Each step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description. The actual binary upload to the returned
+    uploadUrl happens out of band between steps and is not an API operation in
+    these specs.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: attach-file-and-ask
+  summary: Upload a file, attach it as a content fragment, and ask an agent about it.
+  description: >-
+    Creates a file upload URL for the conversation use case, attaches the file
+    to an existing conversation as a content fragment, and posts a message
+    mentioning the agent.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - cId
+    - agentConfigurationId
+    - fileName
+    - contentType
+    - fileSize
+    - fragmentTitle
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      cId:
+        type: string
+        description: The identifier of the existing conversation.
+      agentConfigurationId:
+        type: string
+        description: The sId of the agent configuration to mention.
+      fileName:
+        type: string
+        description: Name of the file being uploaded.
+      contentType:
+        type: string
+        description: MIME type of the file being uploaded.
+      fileSize:
+        type: integer
+        description: Size of the file in bytes.
+      useCaseMetadata:
+        type: string
+        description: Use case metadata; for conversations a stringified dictionary containing conversationId.
+      fragmentTitle:
+        type: string
+        description: Title for the content fragment.
+      content:
+        type: string
+        description: The text of the message asking the agent about the attached file.
+  steps:
+  - stepId: createFileUpload
+    description: >-
+      Reserve a file upload URL for the conversation use case and capture the
+      file identifier to reference in the content fragment.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1files/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        contentType: $inputs.contentType
+        fileName: $inputs.fileName
+        fileSize: $inputs.fileSize
+        useCase: conversation
+        useCaseMetadata: $inputs.useCaseMetadata
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fileId: $response.body#/file/sId
+      uploadUrl: $response.body#/file/uploadUrl
+  - stepId: createContentFragment
+    description: >-
+      Attach the uploaded file to the conversation as a content fragment so the
+      agent can read it.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1content_fragments/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.fragmentTitle
+        fileId: $steps.createFileUpload.outputs.fileId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fragmentTitle: $response.body#/title
+  - stepId: askAgent
+    description: >-
+      Post a message mentioning the agent so it reasons over the attached
+      content fragment.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $inputs.cId
+    requestBody:
+      contentType: application/json
+      payload:
+        content: $inputs.content
+        mentions:
+        - configurationId: $inputs.agentConfigurationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      messageId: $response.body#/sId
+  outputs:
+    fileId: $steps.createFileUpload.outputs.fileId
+    messageId: $steps.askAgent.outputs.messageId

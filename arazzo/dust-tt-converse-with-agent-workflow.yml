@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: Dust Converse with an Agent
+  summary: Start a conversation, mention an agent, and poll the conversation until the agent answers.
+  description: >-
+    Drives the core Dust assistant chat loop. The workflow creates a new
+    conversation seeded with a first user message that mentions a chosen agent
+    configuration, then polls the conversation resource until the agent message
+    reaches a completed status, returning the agent's answer. Each step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: conversationsApi
+  url: ../openapi/dust-conversations-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: converse-with-agent
+  summary: Create a conversation that mentions an agent and poll for the agent's answer.
+  description: >-
+    Creates a conversation in the workspace with an initial human message that
+    mentions the supplied agent configuration, then repeatedly fetches the
+    conversation until the agent's reply is completed.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - wId
+    - agentConfigurationId
+    - content
+    properties:
+      apiToken:
+        type: string
+        description: Dust API key used as the Bearer token.
+      wId:
+        type: string
+        description: The workspace identifier.
+      agentConfigurationId:
+        type: string
+        description: The sId of the agent configuration to mention in the message.
+      content:
+        type: string
+        description: The text of the first human message in the conversation.
+      title:
+        type: string
+        description: Optional title for the new conversation.
+      username:
+        type: string
+        description: Username to attach to the message context.
+      timezone:
+        type: string
+        description: IANA timezone for the message context (e.g. America/New_York).
+  steps:
+  - stepId: createConversation
+    description: >-
+      Create a new conversation seeded with a human message that mentions the
+      target agent so the agent begins generating a reply.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations/post'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    requestBody:
+      contentType: application/json
+      payload:
+        title: $inputs.title
+        blocking: false
+        message:
+          content: $inputs.content
+          mentions:
+          - configurationId: $inputs.agentConfigurationId
+          context:
+            username: $inputs.username
+            timezone: $inputs.timezone
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversationId: $response.body#/conversation/sId
+  - stepId: pollConversation
+    description: >-
+      Fetch the conversation and check whether the latest agent message has
+      reached a completed status. Repeat until the agent has answered.
+    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}/get'
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.apiToken
+    - name: wId
+      in: path
+      value: $inputs.wId
+    - name: cId
+      in: path
+      value: $steps.createConversation.outputs.conversationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      conversation: $response.body#/conversation
+    onSuccess:
+    - name: agentAnswered
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status == 'completed'
+        type: jsonpath
+    - name: stillGenerating
+      type: goto
+      stepId: pollConversation
+      criteria:
+      - context: $response.body
+        condition: $.conversation.content[*][*].status != 'completed'
+        type: jsonpath
+  outputs:
+    conversationId: $steps.createConversation.outputs.conversationId
+    conversation: $steps.pollConversation.outputs.conversation
