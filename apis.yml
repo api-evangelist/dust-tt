@@ -1,434 +1,418 @@
 aid: dust-tt
 url: https://raw.githubusercontent.com/api-evangelist/dust-tt/refs/heads/main/apis.yml
 apis:
-- aid: dust-tt:dust-agents-api
-  name: Dust Agents API
-  tags:
+  - aid: dust-tt:dust-agents-api
+    name: Dust Agents API
+    tags:
+      - Agents
+      - AI
+      - Artificial Intelligence
+      - Dust
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-agents-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/dust-agent-configuration-schema.json
+        type: JSONSchema
+      - url: json-ld/dust-context.jsonld
+        type: JSONLD
+    description: |
+      Create, list, retrieve, update, archive, search, import, and export Dust agent configurations. An agent in Dust is
+      a named, versioned configuration of an LLM (OpenAI, Anthropic, Google, Mistral) plus instructions, tools, and
+      data-source bindings that can be invoked from conversations, Slack, the Chrome extension, or programmatically.
+  - aid: dust-tt:dust-conversations-api
+    name: Dust Conversations API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Conversations
+      - Dust
+      - Messages
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-conversations-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/dust-conversation-schema.json
+        type: JSONSchema
+    description: |
+      Drive multi-turn conversations with Dust agents. Create conversations, post user messages, stream agent events
+      over SSE, attach content fragments (file/page/snippet attachments), retrieve and download conversation-scoped
+      files, submit and delete message feedback, and resolve @mention suggestions for agent routing.
+  - aid: dust-tt:dust-datasources-api
+    name: Dust Data Sources API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Data Sources
+      - Dust
+      - RAG
+      - Search
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-datasources-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/dust-datasource-schema.json
+        type: JSONSchema
+      - url: json-schema/dust-document-schema.json
+        type: JSONSchema
+    description: |
+      Manage Dust data sources, data source views, spaces, documents, tables, and folders. Upsert documents and table
+      rows programmatically, search semantically, manage hierarchies and parents, and check the asynchronous upsert
+      queue. Data sources are the retrieval layer behind every Dust agent.
+  - aid: dust-tt:dust-mcp-api
+    name: Dust MCP API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Dust
+      - MCP
+      - Tools
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-mcp-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Register a client-side Model Context Protocol server with a Dust workspace, stream MCP tool-call requests over
+      SSE, return tool execution results back to Dust agents, and keep the server's heartbeat alive. Also lists the
+      MCP server views available in a space.
+  - aid: dust-tt:dust-apps-api
+    name: Dust Apps API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Apps
+      - Dust
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-apps-api-openapi.yml
+        type: OpenAPI
+    description: |
+      List Dust Apps in a space and create or retrieve App runs. Dust Apps are chained-block LLM/code pipelines
+      defined in the Dust Builder and executable as parameterized "functions" from agents, code, or webhooks.
+  - aid: dust-tt:dust-search-api
+    name: Dust Search API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Dust
+      - Search
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-search-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Search nodes (documents, tables, folders, conversations) across an entire Dust workspace. Streaming SSE
+      variant for incremental result delivery, plus a tool-file upload endpoint backing search-related tool calls.
+  - aid: dust-tt:dust-skills-api
+    name: Dust Skills API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Dust
+      - Skills
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-skills-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/dust-skill-schema.json
+        type: JSONSchema
+    description: |
+      List the skill bundles installed in a Dust workspace and import new skills from uploaded files. Skills are
+      reusable instruction + tool packs that agents can attach to.
+  - aid: dust-tt:dust-triggers-api
+    name: Dust Triggers API
+    tags:
+      - AI
+      - Artificial Intelligence
+      - Dust
+      - Triggers
+      - Webhooks
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-triggers-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Receive an external webhook on a registered Dust webhook source and fan it out to trigger agent workflows
+      (e.g. run an agent when a GitHub issue opens or a Notion page changes).
+  - aid: dust-tt:dust-workspace-api
+    name: Dust Workspace API
+    tags:
+      - Administration
+      - AI
+      - Analytics
+      - Artificial Intelligence
+      - Dust
+      - FinOps
+    humanURL: https://docs.dust.tt/reference
+    baseURL: https://dust.tt/api/v1
+    properties:
+      - url: https://docs.dust.tt/reference
+        type: Documentation
+      - url: openapi/dust-workspace-api-openapi.yml
+        type: OpenAPI
+    description: |
+      Export workspace analytics and pull aggregated workspace usage data for chargeback, capacity planning, and
+      FinOps reporting against Dust seat and programmatic-API consumption.
+name: Dust
+tags:
   - Agents
   - AI
   - Artificial Intelligence
-  - Dust
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-agents-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/dust-agent-configuration-schema.json
-    type: JSONSchema
-  - url: json-ld/dust-context.jsonld
-    type: JSONLD
-  - type: NaftikoCapability
-    url: capabilities/agents-agents.yaml
-  description: |
-    Create, list, retrieve, update, archive, search, import, and export Dust agent configurations. An agent in Dust is
-    a named, versioned configuration of an LLM (OpenAI, Anthropic, Google, Mistral) plus instructions, tools, and
-    data-source bindings that can be invoked from conversations, Slack, the Chrome extension, or programmatically.
-- aid: dust-tt:dust-conversations-api
-  name: Dust Conversations API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Conversations
-  - Dust
-  - Messages
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-conversations-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/dust-conversation-schema.json
-    type: JSONSchema
-  - type: NaftikoCapability
-    url: capabilities/conversations-conversations.yaml
-  description: |
-    Drive multi-turn conversations with Dust agents. Create conversations, post user messages, stream agent events
-    over SSE, attach content fragments (file/page/snippet attachments), retrieve and download conversation-scoped
-    files, submit and delete message feedback, and resolve @mention suggestions for agent routing.
-- aid: dust-tt:dust-datasources-api
-  name: Dust Data Sources API
-  tags:
-  - AI
-  - Artificial Intelligence
+  - Custom Workflows
   - Data Sources
   - Dust
-  - RAG
-  - Search
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-datasources-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/dust-datasource-schema.json
-    type: JSONSchema
-  - url: json-schema/dust-document-schema.json
-    type: JSONSchema
-  - type: NaftikoCapability
-    url: capabilities/datasources-datasources.yaml
-  description: |
-    Manage Dust data sources, data source views, spaces, documents, tables, and folders. Upsert documents and table
-    rows programmatically, search semantically, manage hierarchies and parents, and check the asynchronous upsert
-    queue. Data sources are the retrieval layer behind every Dust agent.
-- aid: dust-tt:dust-mcp-api
-  name: Dust MCP API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Dust
+  - Enterprise AI
+  - Knowledge Management
+  - LLM
   - MCP
-  - Tools
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-mcp-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/mcp-mcp.yaml
-  description: |
-    Register a client-side Model Context Protocol server with a Dust workspace, stream MCP tool-call requests over
-    SSE, return tool execution results back to Dust agents, and keep the server's heartbeat alive. Also lists the
-    MCP server views available in a space.
-- aid: dust-tt:dust-apps-api
-  name: Dust Apps API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Apps
-  - Dust
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-apps-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/apps-apps.yaml
-  description: |
-    List Dust Apps in a space and create or retrieve App runs. Dust Apps are chained-block LLM/code pipelines
-    defined in the Dust Builder and executable as parameterized "functions" from agents, code, or webhooks.
-- aid: dust-tt:dust-search-api
-  name: Dust Search API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Dust
-  - Search
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-search-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/search-search.yaml
-  description: |
-    Search nodes (documents, tables, folders, conversations) across an entire Dust workspace. Streaming SSE
-    variant for incremental result delivery, plus a tool-file upload endpoint backing search-related tool calls.
-- aid: dust-tt:dust-skills-api
-  name: Dust Skills API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Dust
-  - Skills
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-skills-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/dust-skill-schema.json
-    type: JSONSchema
-  - type: NaftikoCapability
-    url: capabilities/skills-skills.yaml
-  description: |
-    List the skill bundles installed in a Dust workspace and import new skills from uploaded files. Skills are
-    reusable instruction + tool packs that agents can attach to.
-- aid: dust-tt:dust-triggers-api
-  name: Dust Triggers API
-  tags:
-  - AI
-  - Artificial Intelligence
-  - Dust
-  - Triggers
-  - Webhooks
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-triggers-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/triggers-triggers.yaml
-  description: |
-    Receive an external webhook on a registered Dust webhook source and fan it out to trigger agent workflows
-    (e.g. run an agent when a GitHub issue opens or a Notion page changes).
-- aid: dust-tt:dust-workspace-api
-  name: Dust Workspace API
-  tags:
-  - Administration
-  - AI
-  - Analytics
-  - Artificial Intelligence
-  - Dust
-  - FinOps
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  properties:
-  - url: https://docs.dust.tt/reference
-    type: Documentation
-  - url: openapi/dust-workspace-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/workspace-workspace.yaml
-  description: |
-    Export workspace analytics and pull aggregated workspace usage data for chargeback, capacity planning, and
-    FinOps reporting against Dust seat and programmatic-API consumption.
-name: Dust
-tags:
-- Agents
-- AI
-- Artificial Intelligence
-- Custom Workflows
-- Data Sources
-- Dust
-- Enterprise AI
-- Knowledge Management
-- LLM
-- MCP
-- Multi-Model
-- RAG
+  - Multi-Model
+  - RAG
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/dust-tt-approve-agent-action-workflow.yml
-    name: Dust Approve a Pending Agent Tool Action
-    summary: Start a conversation, wait for the agent to request a tool action, then approve or reject it.
-  - url: arazzo/dust-tt-attach-file-and-ask-workflow.yml
-    name: Dust Attach a File and Ask an Agent
-    summary: Reserve a file upload URL, attach the file as a content fragment, then ask an agent about it.
-  - url: arazzo/dust-tt-converse-with-agent-workflow.yml
-    name: Dust Converse with an Agent
-    summary: Start a conversation, mention an agent, and poll the conversation until the agent answers.
-  - url: arazzo/dust-tt-create-table-and-upsert-rows-workflow.yml
-    name: Dust Create a Table and Upsert Rows
-    summary: Upsert a structured table into a data source, then load rows into it and read one back.
-  - url: arazzo/dust-tt-discover-spaces-and-data-sources-workflow.yml
-    name: Dust Discover Spaces and Data Sources
-    summary: List the workspace's accessible spaces, then enumerate the data sources within a chosen space.
-  - url: arazzo/dust-tt-find-agent-and-start-conversation-workflow.yml
-    name: Dust Find Agent and Start a Conversation
-    summary: Search for an agent by name, resolve its full configuration, then open a conversation mentioning it.
-  - url: arazzo/dust-tt-import-agent-and-converse-workflow.yml
-    name: Dust Import an Agent and Start a Conversation
-    summary: Create a new agent configuration from a JSON definition, then open a conversation that mentions it.
-  - url: arazzo/dust-tt-message-and-submit-feedback-workflow.yml
-    name: Dust Message an Agent and Submit Feedback
-    summary: Post a message into a conversation, wait for the agent reply, then submit thumbs feedback on it.
-  - url: arazzo/dust-tt-post-message-and-poll-workflow.yml
-    name: Dust Post Follow-up Message and Poll
-    summary: Post a follow-up message into an existing conversation and poll the conversation for the agent reply.
-  - url: arazzo/dust-tt-run-app-and-poll-workflow.yml
-    name: Dust Run an App and Poll for Completion
-    summary: Trigger a non-blocking Dust app run and poll the run until its status succeeds or errors.
-  - url: arazzo/dust-tt-suggest-mention-and-converse-workflow.yml
-    name: Dust Suggest a Mention and Start a Conversation
-    summary: Resolve a mention query into an agent suggestion, then open a conversation that mentions it.
-  - url: arazzo/dust-tt-upsert-document-and-search-workflow.yml
-    name: Dust Upsert a Document and Search the Data Source
-    summary: Upsert a document into a data source, wait for the upsert queue to drain, then search for it.
-- type: Portal
-  url: https://dust.tt
-- type: Documentation
-  url: https://docs.dust.tt
-- type: APIReference
-  url: https://docs.dust.tt/reference
-  name: Dust API Reference
-- type: GettingStarted
-  url: https://docs.dust.tt/docs/intro
-- type: GettingStarted
-  url: https://docs.dust.tt/docs/programmatic-usage
-  name: Programmatic Usage Guide
-- type: Pricing
-  url: https://dust.tt/pricing
-- type: GitHubOrganization
-  url: https://github.com/dust-tt
-- type: SourceCode
-  url: https://github.com/dust-tt/dust
-  name: dust (core open-source platform, MIT)
-- type: License
-  url: https://github.com/dust-tt/dust/blob/main/LICENSE
-  name: MIT License
-- type: ChangeLog
-  url: https://docs.dust.tt/changelog
-  name: Dust Latest Updates
-- type: SignUp
-  url: https://dust.tt/sign-up
-- type: ContactSales
-  url: https://dust.tt/home/contact
-- type: Security
-  url: https://dust.tt/home/security
-- type: TrustCenter
-  url: https://trust.dust.tt
-- type: TermsOfService
-  url: https://dust.tt/terms
-- type: PrivacyPolicy
-  url: https://dust.tt/website-privacy
-- type: Compliance
-  url: https://dust.tt/home/security
-  name: SOC 2 Type II, GDPR, HIPAA-ready
-- type: SDK
-  url: https://github.com/dust-tt/dust-sdk-js
-  name: Dust JavaScript / TypeScript SDK
-- type: SDK
-  url: https://docs.dust.tt/reference/javascript-sdk
-  name: JavaScript SDK reference
-- type: CLI
-  url: https://docs.dust.tt/reference/cli
-  name: Dust CLI
-- type: Tools
-  url: https://github.com/dust-tt/dust-labs
-  name: dust-labs (experimental Dust API scripts)
-- type: Tools
-  url: https://github.com/dust-tt/dust-github-action
-  name: dust-github-action (push data to Dust from CI)
-- type: Tools
-  url: https://github.com/dust-tt/dust-n8n-node
-  name: Dust n8n node
-- type: Tools
-  url: https://github.com/dust-tt/raycast-extension
-  name: Dust Raycast extension
-- type: Tools
-  url: https://github.com/dust-tt/browse
-  name: browse (agentic browser-use CLI)
-- type: Tools
-  url: https://github.com/dust-tt/srchd
-  name: srchd (research agents harness)
-- type: BrowserExtension
-  url: https://dust.tt/home/chrome-extension
-  name: Dust Chrome Extension
-- type: Postman
-  url: https://app.getpostman.com/run-collection/34241185-c7e0fdbe-b2c5-47d5-a923-8244d45cd95e
-  name: Dust Postman collection
-- type: OpenAPI
-  url: https://dust.tt/swagger.json
-  name: Dust master OpenAPI 3.0 definition
-- type: AcademyMode
-  url: https://dust.tt/academy
-  name: Dust Academy
-- type: Blog
-  url: https://blog.dust.tt
-- type: Forum
-  url: https://dust-community.tightknit.community/join
-  name: Dust Community (Slack)
-- type: StatusPage
-  url: https://status.dust.tt
-- type: Integrations
-  url: https://dust.tt/integrations
-  name: Dust integrations directory
-- type: Integrations
-  url: https://docs.dust.tt/docs/slack
-  name: Slack
-- type: Integrations
-  url: https://docs.dust.tt/docs/notion-mcp
-  name: Notion (MCP)
-- type: Integrations
-  url: https://docs.dust.tt/docs/github-connection
-  name: GitHub
-- type: Integrations
-  url: https://docs.dust.tt/docs/google-drive-connection
-  name: Google Drive
-- type: Integrations
-  url: https://docs.dust.tt/docs/confluence-connection
-  name: Confluence
-- type: Integrations
-  url: https://docs.dust.tt/docs/salesforce
-  name: Salesforce
-- type: Integrations
-  url: https://docs.dust.tt/docs/hubspot
-  name: HubSpot
-- type: Integrations
-  url: https://docs.dust.tt/docs/zendesk
-  name: Zendesk
-- type: Integrations
-  url: https://docs.dust.tt/docs/jira
-  name: Jira
-- type: Integrations
-  url: https://docs.dust.tt/docs/bigquery
-  name: BigQuery
-- type: Solutions
-  url: https://dust.tt/home/solutions/sales
-  name: Sales
-- type: Solutions
-  url: https://dust.tt/home/solutions/customer-support
-  name: Customer Support
-- type: Solutions
-  url: https://dust.tt/home/solutions/marketing
-  name: Marketing
-- type: Solutions
-  url: https://dust.tt/home/solutions/engineering
-  name: Engineering
-- type: Solutions
-  url: https://dust.tt/home/solutions/data-analytics
-  name: Data & Analytics
-- type: Solutions
-  url: https://dust.tt/home/solutions/knowledge
-  name: Knowledge
-- type: Solutions
-  url: https://dust.tt/home/solutions/it
-  name: IT
-- type: Solutions
-  url: https://dust.tt/home/solutions/legal
-  name: Legal
-- type: Solutions
-  url: https://dust.tt/home/solutions/recruiting-people
-  name: Recruiting & People
-- type: Industry
-  url: https://dust.tt/home/industry/b2b-saas
-  name: B2B SaaS
-- type: Industry
-  url: https://dust.tt/home/industry/financial-services
-  name: Financial Services
-- type: Industry
-  url: https://dust.tt/home/industry/consulting
-  name: Consulting
-- type: Industry
-  url: https://dust.tt/home/industry/insurance
-  name: Insurance
-- type: Industry
-  url: https://dust.tt/home/industry/marketplace
-  name: Marketplace
-- type: Industry
-  url: https://dust.tt/home/industry/retail-ecommerce
-  name: Retail & E-commerce
-- type: LinkedIn
-  url: https://www.linkedin.com/company/dust-tt
-- type: Twitter
-  url: https://twitter.com/dust4ai
-- type: Plans
-  url: plans/dust-plans-pricing.yml
-  name: Plans (API Commons)
-- type: RateLimits
-  url: rate-limits/dust-rate-limits.yml
-  name: Rate Limits (API Commons)
-- type: FinOps
-  url: finops/dust-finops.yml
-  name: FinOps (FOCUS mapping)
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/dust/overview
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+      - url: arazzo/dust-tt-approve-agent-action-workflow.yml
+        name: Dust Approve a Pending Agent Tool Action
+        summary: Start a conversation, wait for the agent to request a tool action, then approve or reject it.
+      - url: arazzo/dust-tt-attach-file-and-ask-workflow.yml
+        name: Dust Attach a File and Ask an Agent
+        summary: Reserve a file upload URL, attach the file as a content fragment, then ask an agent about it.
+      - url: arazzo/dust-tt-converse-with-agent-workflow.yml
+        name: Dust Converse with an Agent
+        summary: Start a conversation, mention an agent, and poll the conversation until the agent answers.
+      - url: arazzo/dust-tt-create-table-and-upsert-rows-workflow.yml
+        name: Dust Create a Table and Upsert Rows
+        summary: Upsert a structured table into a data source, then load rows into it and read one back.
+      - url: arazzo/dust-tt-discover-spaces-and-data-sources-workflow.yml
+        name: Dust Discover Spaces and Data Sources
+        summary: List the workspace's accessible spaces, then enumerate the data sources within a chosen space.
+      - url: arazzo/dust-tt-find-agent-and-start-conversation-workflow.yml
+        name: Dust Find Agent and Start a Conversation
+        summary: Search for an agent by name, resolve its full configuration, then open a conversation mentioning it.
+      - url: arazzo/dust-tt-import-agent-and-converse-workflow.yml
+        name: Dust Import an Agent and Start a Conversation
+        summary: Create a new agent configuration from a JSON definition, then open a conversation that mentions it.
+      - url: arazzo/dust-tt-message-and-submit-feedback-workflow.yml
+        name: Dust Message an Agent and Submit Feedback
+        summary: Post a message into a conversation, wait for the agent reply, then submit thumbs feedback on it.
+      - url: arazzo/dust-tt-post-message-and-poll-workflow.yml
+        name: Dust Post Follow-up Message and Poll
+        summary: Post a follow-up message into an existing conversation and poll the conversation for the agent reply.
+      - url: arazzo/dust-tt-run-app-and-poll-workflow.yml
+        name: Dust Run an App and Poll for Completion
+        summary: Trigger a non-blocking Dust app run and poll the run until its status succeeds or errors.
+      - url: arazzo/dust-tt-suggest-mention-and-converse-workflow.yml
+        name: Dust Suggest a Mention and Start a Conversation
+        summary: Resolve a mention query into an agent suggestion, then open a conversation that mentions it.
+      - url: arazzo/dust-tt-upsert-document-and-search-workflow.yml
+        name: Dust Upsert a Document and Search the Data Source
+        summary: Upsert a document into a data source, wait for the upsert queue to drain, then search for it.
+  - type: Portal
+    url: https://dust.tt
+  - type: Documentation
+    url: https://docs.dust.tt
+  - type: APIReference
+    url: https://docs.dust.tt/reference
+    name: Dust API Reference
+  - type: GettingStarted
+    url: https://docs.dust.tt/docs/intro
+  - type: GettingStarted
+    url: https://docs.dust.tt/docs/programmatic-usage
+    name: Programmatic Usage Guide
+  - type: Pricing
+    url: https://dust.tt/pricing
+  - type: GitHubOrganization
+    url: https://github.com/dust-tt
+  - type: SourceCode
+    url: https://github.com/dust-tt/dust
+    name: dust (core open-source platform, MIT)
+  - type: License
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    name: MIT License
+  - type: ChangeLog
+    url: https://docs.dust.tt/changelog
+    name: Dust Latest Updates
+  - type: SignUp
+    url: https://dust.tt/sign-up
+  - type: ContactSales
+    url: https://dust.tt/home/contact
+  - type: Security
+    url: https://dust.tt/home/security
+  - type: TrustCenter
+    url: https://trust.dust.tt
+  - type: TermsOfService
+    url: https://dust.tt/terms
+  - type: PrivacyPolicy
+    url: https://dust.tt/website-privacy
+  - type: Compliance
+    url: https://dust.tt/home/security
+    name: SOC 2 Type II, GDPR, HIPAA-ready
+  - type: SDK
+    url: https://github.com/dust-tt/dust-sdk-js
+    name: Dust JavaScript / TypeScript SDK
+  - type: SDK
+    url: https://docs.dust.tt/reference/javascript-sdk
+    name: JavaScript SDK reference
+  - type: CLI
+    url: https://docs.dust.tt/reference/cli
+    name: Dust CLI
+  - type: Tools
+    url: https://github.com/dust-tt/dust-labs
+    name: dust-labs (experimental Dust API scripts)
+  - type: Tools
+    url: https://github.com/dust-tt/dust-github-action
+    name: dust-github-action (push data to Dust from CI)
+  - type: Tools
+    url: https://github.com/dust-tt/dust-n8n-node
+    name: Dust n8n node
+  - type: Tools
+    url: https://github.com/dust-tt/raycast-extension
+    name: Dust Raycast extension
+  - type: Tools
+    url: https://github.com/dust-tt/browse
+    name: browse (agentic browser-use CLI)
+  - type: Tools
+    url: https://github.com/dust-tt/srchd
+    name: srchd (research agents harness)
+  - type: BrowserExtension
+    url: https://dust.tt/home/chrome-extension
+    name: Dust Chrome Extension
+  - type: Postman
+    url: https://app.getpostman.com/run-collection/34241185-c7e0fdbe-b2c5-47d5-a923-8244d45cd95e
+    name: Dust Postman collection
+  - type: OpenAPI
+    url: https://dust.tt/swagger.json
+    name: Dust master OpenAPI 3.0 definition
+  - type: AcademyMode
+    url: https://dust.tt/academy
+    name: Dust Academy
+  - type: Blog
+    url: https://blog.dust.tt
+  - type: Forum
+    url: https://dust-community.tightknit.community/join
+    name: Dust Community (Slack)
+  - type: StatusPage
+    url: https://status.dust.tt
+  - type: Integrations
+    url: https://dust.tt/integrations
+    name: Dust integrations directory
+  - type: Integrations
+    url: https://docs.dust.tt/docs/slack
+    name: Slack
+  - type: Integrations
+    url: https://docs.dust.tt/docs/notion-mcp
+    name: Notion (MCP)
+  - type: Integrations
+    url: https://docs.dust.tt/docs/github-connection
+    name: GitHub
+  - type: Integrations
+    url: https://docs.dust.tt/docs/google-drive-connection
+    name: Google Drive
+  - type: Integrations
+    url: https://docs.dust.tt/docs/confluence-connection
+    name: Confluence
+  - type: Integrations
+    url: https://docs.dust.tt/docs/salesforce
+    name: Salesforce
+  - type: Integrations
+    url: https://docs.dust.tt/docs/hubspot
+    name: HubSpot
+  - type: Integrations
+    url: https://docs.dust.tt/docs/zendesk
+    name: Zendesk
+  - type: Integrations
+    url: https://docs.dust.tt/docs/jira
+    name: Jira
+  - type: Integrations
+    url: https://docs.dust.tt/docs/bigquery
+    name: BigQuery
+  - type: Solutions
+    url: https://dust.tt/home/solutions/sales
+    name: Sales
+  - type: Solutions
+    url: https://dust.tt/home/solutions/customer-support
+    name: Customer Support
+  - type: Solutions
+    url: https://dust.tt/home/solutions/marketing
+    name: Marketing
+  - type: Solutions
+    url: https://dust.tt/home/solutions/engineering
+    name: Engineering
+  - type: Solutions
+    url: https://dust.tt/home/solutions/data-analytics
+    name: Data & Analytics
+  - type: Solutions
+    url: https://dust.tt/home/solutions/knowledge
+    name: Knowledge
+  - type: Solutions
+    url: https://dust.tt/home/solutions/it
+    name: IT
+  - type: Solutions
+    url: https://dust.tt/home/solutions/legal
+    name: Legal
+  - type: Solutions
+    url: https://dust.tt/home/solutions/recruiting-people
+    name: Recruiting & People
+  - type: Industry
+    url: https://dust.tt/home/industry/b2b-saas
+    name: B2B SaaS
+  - type: Industry
+    url: https://dust.tt/home/industry/financial-services
+    name: Financial Services
+  - type: Industry
+    url: https://dust.tt/home/industry/consulting
+    name: Consulting
+  - type: Industry
+    url: https://dust.tt/home/industry/insurance
+    name: Insurance
+  - type: Industry
+    url: https://dust.tt/home/industry/marketplace
+    name: Marketplace
+  - type: Industry
+    url: https://dust.tt/home/industry/retail-ecommerce
+    name: Retail & E-commerce
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dust-tt
+  - type: Twitter
+    url: https://twitter.com/dust4ai
+  - type: Plans
+    url: plans/dust-plans-pricing.yml
+    name: Plans (API Commons)
+  - type: RateLimits
+    url: rate-limits/dust-rate-limits.yml
+    name: Rate Limits (API Commons)
+  - type: FinOps
+    url: finops/dust-finops.yml
+    name: FinOps (FOCUS mapping)
 created: '2026-05-24'
 modified: '2026-05-24'
 description: |
@@ -445,6 +429,6 @@ description: |
   available on a per-seat Pro plan (29 EUR / user / month) and a custom Enterprise tier (100+ seats) with SSO,
   SCIM, dedicated environments, EU residency, and SOC 2 Type II / GDPR / HIPAA-ready compliance.
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
 specificationVersion: '0.20'
