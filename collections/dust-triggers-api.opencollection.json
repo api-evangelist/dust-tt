@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Triggers API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Receive External Webhook to Trigger Flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "webhookSourceId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook source ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Skeleton endpoint that verifies workspace and webhook source and logs receipt."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

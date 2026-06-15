@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Agents API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query",
+                "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n"
+              },
+              {
+                "name": "withAuthors",
+                "value": "",
+                "type": "query",
+                "description": "When set to 'true', includes recent authors information for each agent"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the agent configurations for the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Export Agent Configuration as YAML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "sId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the agent configuration"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download the agent configuration identified by {sId} as a YAML file."
+        },
+        {
+          "info": {
+            "name": "Get Agent Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/:sId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "sId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the agent configuration"
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query",
+                "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the agent configuration identified by {sId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Update Agent Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/:sId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "sId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the agent configuration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the agent configuration identified by {sId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Archive Agent Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/:sId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "sId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the agent configuration"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled."
+        },
+        {
+          "info": {
+            "name": "Import Agent Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/import",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new agent configuration from a JSON body matching the agent config schema."
+        },
+        {
+          "info": {
+            "name": "Search Agents by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/agent_configurations/search",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query for agent configuration names"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for agent configurations by name in the workspace identified by {wId}."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,874 @@
+{
+  "item": [
+    {
+      "id": "c6e3204e-d1a3-45bb-bbd0-4fd970bb5829",
+      "name": "Skills",
+      "description": {
+        "content": "Skills",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6b85b5c-aec3-4938-841f-0e83abad3ed7",
+          "name": "List Skills",
+          "request": {
+            "name": "List Skills",
+            "description": {
+              "content": "Retrieves the custom skills in the workspace. Active skills are returned by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "skills"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter skills by status. Defaults to active."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) Unique string identifier for the workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0084deb6-876d-4bdd-9576-ed3f2b14bc06",
+              "name": "Skills available in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"skills\": [\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 7672.161750015479,\n      \"updatedAt\": 1741.882150846209,\n      \"editedBy\": 5187,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"github\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"on\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": false,\n      \"isExtendable\": true,\n      \"isDefault\": true,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 7751.986795036714,\n      \"updatedAt\": 126.78378294358028,\n      \"editedBy\": 2563,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"web_app\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"on\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": false,\n      \"isExtendable\": true,\n      \"isDefault\": true,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d740b6e9-de6b-4850-90e4-c71dadb6e79c",
+              "name": "Bad Request. Missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4156206b-239a-4ea5-8860-ea50a465d45c",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df7e6be3-6a02-4dce-ac75-954b97ba20b6",
+              "name": "Workspace not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5900cd8-f48b-4ce7-9b76-70f8a3f7a50d",
+              "name": "Method not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27e12ade-056b-4d80-9f15-662cc3d7f3ac",
+          "name": "Import Skills from Uploaded Files",
+          "request": {
+            "name": "Import Skills from Uploaded Files",
+            "description": {
+              "content": "Imports skills from uploaded files or ZIP archives into the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "skills"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) Unique string identifier for the workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": "(Required) Skill files or ZIP archives to import."
+                },
+                {
+                  "key": "names",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "Optional skill names to import from the uploaded files."
+                },
+                {
+                  "key": "onConflict",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "24884263-107f-49c2-9463-b66ec4b41417",
+              "name": "Skills import result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Skill files or ZIP archives to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional skill names to import from the uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "names",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                        "type": "text/plain"
+                      },
+                      "key": "onConflict",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"imported\": [\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 9014.67129095443,\n      \"updatedAt\": 5441.730088598992,\n      \"editedBy\": 105,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"api\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"off\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": false,\n      \"isExtendable\": true,\n      \"isDefault\": false,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 706.7513017140936,\n      \"updatedAt\": 6285.716988342266,\n      \"editedBy\": 4324,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"api\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"auto\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": true,\n      \"isExtendable\": false,\n      \"isDefault\": false,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    }\n  ],\n  \"updated\": [\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 6606.609694416169,\n      \"updatedAt\": 1657.0414661820155,\n      \"editedBy\": 3045,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"web_app\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"auto\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": true,\n      \"isExtendable\": false,\n      \"isDefault\": false,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"skill_abc123\",\n      \"createdAt\": 323.92319343622967,\n      \"updatedAt\": 8322.784537684725,\n      \"editedBy\": 8231,\n      \"status\": \"active\",\n      \"name\": \"Customer Support\",\n      \"agentFacingDescription\": \"Use this skill to answer customer support questions.\",\n      \"userFacingDescription\": \"Answers support questions with the right workspace context.\",\n      \"icon\": \"ActionRobotIcon\",\n      \"source\": \"local_file\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"https://github.com/dust-tt/skills\",\n        \"filePath\": \"support/SKILL.md\"\n      },\n      \"reinforcement\": \"off\",\n      \"lastReinforcementAnalysisAt\": \"string\",\n      \"requestedSpaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        },\n        {\n          \"fileId\": \"string\",\n          \"fileName\": \"string\"\n        }\n      ],\n      \"canWrite\": false,\n      \"isExtendable\": false,\n      \"isDefault\": false,\n      \"extendedSkillId\": \"string\",\n      \"instructions\": \"string\",\n      \"instructionsHtml\": \"string\",\n      \"tools\": [\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        },\n        {\n          \"id\": 123,\n          \"sId\": \"mcp_sv_abc123\",\n          \"name\": \"My Custom MCP Server\",\n          \"description\": \"This MCP server handles customer data operations\",\n          \"createdAt\": 1625097600,\n          \"updatedAt\": 1625184000,\n          \"spaceId\": \"spc_xyz789\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"mcp_srv_def456\",\n            \"name\": \"Customer Data Server\",\n            \"version\": \"1.0.0\",\n            \"description\": \"Handles customer data operations and queries\",\n            \"icon\": \"database\",\n            \"authorization\": {\n              \"provider\": \"github\",\n              \"supported_use_cases\": [\n                \"platform_actions\"\n              ],\n              \"scope\": \"repo:read\"\n            },\n            \"tools\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"inputSchema\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"availability\": \"production\",\n            \"allowMultipleInstances\": false,\n            \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": 1625184000,\n            \"fullName\": \"John Doe\",\n            \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n          }\n        }\n      ]\n    }\n  ],\n  \"skipped\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bf719ae-521c-4f0e-89b4-caeadf1f60e8",
+              "name": "Bad Request. Missing or invalid uploaded files.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Skill files or ZIP archives to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional skill names to import from the uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "names",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                        "type": "text/plain"
+                      },
+                      "key": "onConflict",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "261a09ba-c704-40c3-992a-e42adc6e7a7e",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Skill files or ZIP archives to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional skill names to import from the uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "names",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                        "type": "text/plain"
+                      },
+                      "key": "onConflict",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "81e7c80a-6fe0-470c-ae36-6c0983b0b505",
+              "name": "Workspace not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Skill files or ZIP archives to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional skill names to import from the uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "names",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                        "type": "text/plain"
+                      },
+                      "key": "onConflict",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "affd8dd9-a7a2-4462-a6d4-66d4ff335e2f",
+              "name": "Method not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Skill files or ZIP archives to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional skill names to import from the uploaded files.",
+                        "type": "text/plain"
+                      },
+                      "key": "names",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                        "type": "text/plain"
+                      },
+                      "key": "onConflict",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dust.tt",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ac3ae58f-58fe-4385-84ee-35b9cdbfb82f",
+    "name": "Dust Skills API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "List and import skill bundles into a Dust workspace.\n\nContact Support:\n Name: Dust Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,917 @@
+{
+  "info": {
+    "_postman_id": "c43aa007-b718-4efc-8a5e-8667e521d085",
+    "name": "Dust Workspace API",
+    "description": "Export workspace analytics and read aggregated workspace usage data.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:31.000Z",
+    "updatedAt": "2026-06-05T15:08:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c43aa007-b718-4efc-8a5e-8667e521d085"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "analytics",
+                      "item": [
+                        {
+                          "name": "export",
+                          "item": [
+                            {
+                              "name": "Export Workspace Analytics",
+                              "id": "2b9fd305-a299-4703-988c-6ecc3c8f6c63",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/csv"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/analytics/export?table=messages&startDate=<date>&endDate=<date>&timezone=<string>&format=csv",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "analytics",
+                                    "export"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The analytics table to export:\n- \"usage_metrics\": Messages, conversations, and active users over time.\n- \"active_users\": Daily, weekly, and monthly active user counts.\n- \"source\": Message volume by context origin (web, slack, etc.).\n- \"agents\": Top agents by message count.\n- \"users\": Top users by message count.\n- \"skill_usage\": Skill executions and unique users over time.\n- \"tool_usage\": Tool executions and unique users over time.\n- \"messages\": Detailed message-level logs.\n",
+                                      "key": "table",
+                                      "value": "messages"
+                                    },
+                                    {
+                                      "description": "(Required) Start date in YYYY-MM-DD format",
+                                      "key": "startDate",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "description": "(Required) End date in YYYY-MM-DD format",
+                                      "key": "endDate",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "description": "IANA timezone name (defaults to UTC)",
+                                      "key": "timezone",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Output format (defaults to csv)",
+                                      "key": "format",
+                                      "value": "csv"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "32aa95cb-9d5b-4e34-9ff6-d3f5acecc0eb",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique string identifier for the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "Export analytics data for the workspace identified by {wId} in CSV or JSON format."
+                              },
+                              "response": [
+                                {
+                                  "id": "507cb3ae-4a40-4511-9321-d17a4585616b",
+                                  "name": "The analytics data in CSV or JSON format",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/csv"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/analytics/export?table=messages&startDate=<date>&endDate=<date>&timezone=<string>&format=csv",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "analytics",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The analytics table to export:\n- \"usage_metrics\": Messages, conversations, and active users over time.\n- \"active_users\": Daily, weekly, and monthly active user counts.\n- \"source\": Message volume by context origin (web, slack, etc.).\n- \"agents\": Top agents by message count.\n- \"users\": Top users by message count.\n- \"skill_usage\": Skill executions and unique users over time.\n- \"tool_usage\": Tool executions and unique users over time.\n- \"messages\": Detailed message-level logs.\n",
+                                          "key": "table",
+                                          "value": "messages"
+                                        },
+                                        {
+                                          "description": "(Required) Start date in YYYY-MM-DD format",
+                                          "key": "startDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "(Required) End date in YYYY-MM-DD format",
+                                          "key": "endDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "IANA timezone name (defaults to UTC)",
+                                          "key": "timezone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Output format (defaults to csv)",
+                                          "key": "format",
+                                          "value": "csv"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[]",
+                                  "createdAt": "2026-06-05T15:08:31.000Z",
+                                  "updatedAt": "2026-06-05T15:08:31.000Z",
+                                  "uid": "35240-507cb3ae-4a40-4511-9321-d17a4585616b"
+                                },
+                                {
+                                  "id": "e29ee1f7-3c7b-4487-9601-38b976209329",
+                                  "name": "Invalid request query parameters",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/analytics/export?table=messages&startDate=<date>&endDate=<date>&timezone=<string>&format=csv",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "analytics",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The analytics table to export:\n- \"usage_metrics\": Messages, conversations, and active users over time.\n- \"active_users\": Daily, weekly, and monthly active user counts.\n- \"source\": Message volume by context origin (web, slack, etc.).\n- \"agents\": Top agents by message count.\n- \"users\": Top users by message count.\n- \"skill_usage\": Skill executions and unique users over time.\n- \"tool_usage\": Tool executions and unique users over time.\n- \"messages\": Detailed message-level logs.\n",
+                                          "key": "table",
+                                          "value": "messages"
+                                        },
+                                        {
+                                          "description": "(Required) Start date in YYYY-MM-DD format",
+                                          "key": "startDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "(Required) End date in YYYY-MM-DD format",
+                                          "key": "endDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "IANA timezone name (defaults to UTC)",
+                                          "key": "timezone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Output format (defaults to csv)",
+                                          "key": "format",
+                                          "value": "csv"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:31.000Z",
+                                  "updatedAt": "2026-06-05T15:08:31.000Z",
+                                  "uid": "35240-e29ee1f7-3c7b-4487-9601-38b976209329"
+                                },
+                                {
+                                  "id": "3603944b-6bce-4fad-9b6a-77a558b86417",
+                                  "name": "Requires an API key with admin scope",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/analytics/export?table=messages&startDate=<date>&endDate=<date>&timezone=<string>&format=csv",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "analytics",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The analytics table to export:\n- \"usage_metrics\": Messages, conversations, and active users over time.\n- \"active_users\": Daily, weekly, and monthly active user counts.\n- \"source\": Message volume by context origin (web, slack, etc.).\n- \"agents\": Top agents by message count.\n- \"users\": Top users by message count.\n- \"skill_usage\": Skill executions and unique users over time.\n- \"tool_usage\": Tool executions and unique users over time.\n- \"messages\": Detailed message-level logs.\n",
+                                          "key": "table",
+                                          "value": "messages"
+                                        },
+                                        {
+                                          "description": "(Required) Start date in YYYY-MM-DD format",
+                                          "key": "startDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "(Required) End date in YYYY-MM-DD format",
+                                          "key": "endDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "IANA timezone name (defaults to UTC)",
+                                          "key": "timezone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Output format (defaults to csv)",
+                                          "key": "format",
+                                          "value": "csv"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:31.000Z",
+                                  "updatedAt": "2026-06-05T15:08:31.000Z",
+                                  "uid": "35240-3603944b-6bce-4fad-9b6a-77a558b86417"
+                                },
+                                {
+                                  "id": "350fa0b2-e3f4-4fb6-bd37-138a5e79fc95",
+                                  "name": "Method not supported",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/analytics/export?table=messages&startDate=<date>&endDate=<date>&timezone=<string>&format=csv",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "analytics",
+                                        "export"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The analytics table to export:\n- \"usage_metrics\": Messages, conversations, and active users over time.\n- \"active_users\": Daily, weekly, and monthly active user counts.\n- \"source\": Message volume by context origin (web, slack, etc.).\n- \"agents\": Top agents by message count.\n- \"users\": Top users by message count.\n- \"skill_usage\": Skill executions and unique users over time.\n- \"tool_usage\": Tool executions and unique users over time.\n- \"messages\": Detailed message-level logs.\n",
+                                          "key": "table",
+                                          "value": "messages"
+                                        },
+                                        {
+                                          "description": "(Required) Start date in YYYY-MM-DD format",
+                                          "key": "startDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "(Required) End date in YYYY-MM-DD format",
+                                          "key": "endDate",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "description": "IANA timezone name (defaults to UTC)",
+                                          "key": "timezone",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Output format (defaults to csv)",
+                                          "key": "format",
+                                          "value": "csv"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Method Not Allowed",
+                                  "code": 405,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:31.000Z",
+                                  "updatedAt": "2026-06-05T15:08:31.000Z",
+                                  "uid": "35240-350fa0b2-e3f4-4fb6-bd37-138a5e79fc95"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-2b9fd305-a299-4703-988c-6ecc3c8f6c63"
+                            }
+                          ],
+                          "id": "c3c9ecf6-33c6-4d0b-8950-930efe9bc4cf",
+                          "createdAt": "2026-06-05T15:08:31.000Z",
+                          "updatedAt": "2026-06-05T15:08:31.000Z",
+                          "uid": "35240-c3c9ecf6-33c6-4d0b-8950-930efe9bc4cf"
+                        }
+                      ],
+                      "id": "1ad8dc1a-58d3-405d-9fac-d43d78ba21b1",
+                      "createdAt": "2026-06-05T15:08:31.000Z",
+                      "updatedAt": "2026-06-05T15:08:31.000Z",
+                      "uid": "35240-1ad8dc1a-58d3-405d-9fac-d43d78ba21b1"
+                    },
+                    {
+                      "name": "workspace-usage",
+                      "item": [
+                        {
+                          "name": "Get Workspace Usage Data",
+                          "id": "dd93a19b-3481-4ea4-b6f4-14a834a61c8f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "w",
+                                ":wId",
+                                "workspace-usage"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                  "key": "start",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                  "key": "end",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) The mode of date range selection",
+                                  "key": "mode",
+                                  "value": "range"
+                                },
+                                {
+                                  "description": "The output format of the data (defaults to 'csv')",
+                                  "key": "format",
+                                  "value": "csv"
+                                },
+                                {
+                                  "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                  "key": "table",
+                                  "value": "assistants"
+                                },
+                                {
+                                  "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                  "key": "includeInactive",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "20b5adbc-553b-4da5-884a-7a0c530aa70a",
+                                  "key": "wId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique string identifier for the workspace"
+                                }
+                              ]
+                            },
+                            "description": "Deprecated: this endpoint will be removed after 2026-06-01.\nUse GET /api/v1/w/{wId}/analytics/export instead.\n\nGet usage data for the workspace identified by {wId} in CSV or JSON format.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "3f39f5da-43c5-45bc-8b1b-0e712ce45e9a",
+                              "name": "The usage data in CSV or JSON format, or a ZIP of multiple CSVs if table is equal to \"all\"",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/csv"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "workspace-usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                      "key": "end",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The mode of date range selection",
+                                      "key": "mode",
+                                      "value": "range"
+                                    },
+                                    {
+                                      "description": "The output format of the data (defaults to 'csv')",
+                                      "key": "format",
+                                      "value": "csv"
+                                    },
+                                    {
+                                      "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                      "key": "table",
+                                      "value": "assistants"
+                                    },
+                                    {
+                                      "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                      "key": "includeInactive",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-3f39f5da-43c5-45bc-8b1b-0e712ce45e9a"
+                            },
+                            {
+                              "id": "4d03daa7-87a2-4786-84f3-043784c1e229",
+                              "name": "Invalid request query",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "workspace-usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                      "key": "end",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The mode of date range selection",
+                                      "key": "mode",
+                                      "value": "range"
+                                    },
+                                    {
+                                      "description": "The output format of the data (defaults to 'csv')",
+                                      "key": "format",
+                                      "value": "csv"
+                                    },
+                                    {
+                                      "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                      "key": "table",
+                                      "value": "assistants"
+                                    },
+                                    {
+                                      "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                      "key": "includeInactive",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-4d03daa7-87a2-4786-84f3-043784c1e229"
+                            },
+                            {
+                              "id": "024e596b-b90f-4a1c-876c-9d5f098da4f7",
+                              "name": "The workspace does not have access to the usage data API",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "workspace-usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                      "key": "end",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The mode of date range selection",
+                                      "key": "mode",
+                                      "value": "range"
+                                    },
+                                    {
+                                      "description": "The output format of the data (defaults to 'csv')",
+                                      "key": "format",
+                                      "value": "csv"
+                                    },
+                                    {
+                                      "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                      "key": "table",
+                                      "value": "assistants"
+                                    },
+                                    {
+                                      "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                      "key": "includeInactive",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-024e596b-b90f-4a1c-876c-9d5f098da4f7"
+                            },
+                            {
+                              "id": "8ed4d560-1fba-49d7-bdc0-2a37ddb416e0",
+                              "name": "The workspace was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "workspace-usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                      "key": "end",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The mode of date range selection",
+                                      "key": "mode",
+                                      "value": "range"
+                                    },
+                                    {
+                                      "description": "The output format of the data (defaults to 'csv')",
+                                      "key": "format",
+                                      "value": "csv"
+                                    },
+                                    {
+                                      "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                      "key": "table",
+                                      "value": "assistants"
+                                    },
+                                    {
+                                      "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                      "key": "includeInactive",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-8ed4d560-1fba-49d7-bdc0-2a37ddb416e0"
+                            },
+                            {
+                              "id": "ad50f3a5-4555-4f6a-acad-e62b723116e7",
+                              "name": "Method not supported",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/workspace-usage?start=<string>&end=<string>&mode=range&format=csv&table=assistants&includeInactive=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "workspace-usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start date in YYYY-MM or YYYY-MM-DD format",
+                                      "key": "start",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')",
+                                      "key": "end",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) The mode of date range selection",
+                                      "key": "mode",
+                                      "value": "range"
+                                    },
+                                    {
+                                      "description": "The output format of the data (defaults to 'csv')",
+                                      "key": "format",
+                                      "value": "csv"
+                                    },
+                                    {
+                                      "description": "(Required) The name of the usage table to retrieve:\n- \"users\": The list of users categorized by their activity level.\n- \"assistant_messages\": The list of messages sent by users including the mentioned agents.\n- \"builders\": The list of builders categorized by their activity level.\n- \"assistants\": The list of workspace agents and their corresponding usage.\n- \"feedback\": The list of feedback given by users on the agent messages.\n- \"all\": A concatenation of all the above tables.\n",
+                                      "key": "table",
+                                      "value": "assistants"
+                                    },
+                                    {
+                                      "description": "Include users and assistants with zero messages in the export (defaults to false)",
+                                      "key": "includeInactive",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:31.000Z",
+                              "updatedAt": "2026-06-05T15:08:31.000Z",
+                              "uid": "35240-ad50f3a5-4555-4f6a-acad-e62b723116e7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:31.000Z",
+                          "updatedAt": "2026-06-05T15:08:31.000Z",
+                          "uid": "35240-dd93a19b-3481-4ea4-b6f4-14a834a61c8f"
+                        }
+                      ],
+                      "id": "a1fbea76-9338-43f3-b00e-d253aba38e5f",
+                      "createdAt": "2026-06-05T15:08:31.000Z",
+                      "updatedAt": "2026-06-05T15:08:31.000Z",
+                      "uid": "35240-a1fbea76-9338-43f3-b00e-d253aba38e5f"
+                    }
+                  ],
+                  "id": "73685a8a-9373-4337-9b6e-b27907b2cc36",
+                  "createdAt": "2026-06-05T15:08:31.000Z",
+                  "updatedAt": "2026-06-05T15:08:31.000Z",
+                  "uid": "35240-73685a8a-9373-4337-9b6e-b27907b2cc36"
+                }
+              ],
+              "id": "2717b35c-ba23-4c89-aef3-3fe817feda7c",
+              "createdAt": "2026-06-05T15:08:31.000Z",
+              "updatedAt": "2026-06-05T15:08:31.000Z",
+              "uid": "35240-2717b35c-ba23-4c89-aef3-3fe817feda7c"
+            }
+          ],
+          "id": "1f35d9a0-ddfc-4749-b308-de8f9bd27868",
+          "createdAt": "2026-06-05T15:08:31.000Z",
+          "updatedAt": "2026-06-05T15:08:31.000Z",
+          "uid": "35240-1f35d9a0-ddfc-4749-b308-de8f9bd27868"
+        }
+      ],
+      "id": "eedd0232-a9ef-4a75-a19b-9580bb458499",
+      "createdAt": "2026-06-05T15:08:31.000Z",
+      "updatedAt": "2026-06-05T15:08:31.000Z",
+      "uid": "35240-eedd0232-a9ef-4a75-a19b-9580bb458499"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

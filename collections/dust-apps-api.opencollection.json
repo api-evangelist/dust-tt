@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Apps API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an App Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs/:runId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "aId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the app"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the run"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a run for an app in the space identified by {spaceId}."
+        },
+        {
+          "info": {
+            "name": "Create an App Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "aId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the app"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create and execute a run for an app in the space specified by {spaceId}."
+        },
+        {
+          "info": {
+            "name": "List Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/apps",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all apps in the space identified by {spaceId}."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2894 @@
+{
+  "info": {
+    "_postman_id": "446fa55b-7c04-44f8-82b4-afd4641986a3",
+    "name": "Dust Agents API",
+    "description": "Manage Dust agent configurations \u2014 list, retrieve, update, archive, search, and export agents as YAML.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:00.000Z",
+    "updatedAt": "2026-06-05T15:08:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-446fa55b-7c04-44f8-82b4-afd4641986a3"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "assistant",
+                      "item": [
+                        {
+                          "name": "agent_configurations",
+                          "item": [
+                            {
+                              "name": "{sId}",
+                              "item": [
+                                {
+                                  "name": "export",
+                                  "item": [
+                                    {
+                                      "name": "yaml",
+                                      "item": [
+                                        {
+                                          "name": "Export Agent Configuration as YAML",
+                                          "id": "5f80b021-001b-4758-b655-c3a30d262225",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "bearer",
+                                              "bearer": [
+                                                {
+                                                  "key": "token",
+                                                  "value": "{{bearerToken}}",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "text/yaml"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "w",
+                                                ":wId",
+                                                "assistant",
+                                                "agent_configurations",
+                                                ":sId",
+                                                "export",
+                                                "yaml"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "f9cc18ff-7abd-4e3b-ae65-f12c5df619c7",
+                                                  "key": "wId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) ID of the workspace"
+                                                },
+                                                {
+                                                  "id": "35fa5ee3-371d-4244-b885-83b4970ac2a8",
+                                                  "key": "sId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) ID of the agent configuration"
+                                                }
+                                              ]
+                                            },
+                                            "description": "Download the agent configuration identified by {sId} as a YAML file."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "66612ca9-9e1b-49fa-8ac8-c2952230ffc3",
+                                              "name": "The agent configuration as a downloadable YAML file",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "text/yaml"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "text/yaml"
+                                                },
+                                                {
+                                                  "disabled": false,
+                                                  "description": {
+                                                    "content": "Attachment with suggested filename",
+                                                    "type": "text/plain"
+                                                  },
+                                                  "key": "Content-Disposition",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "<string>",
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-66612ca9-9e1b-49fa-8ac8-c2952230ffc3"
+                                            },
+                                            {
+                                              "id": "096dd166-73c6-4bfc-8ddd-0e145b950707",
+                                              "name": "Bad Request. Invalid or missing parameters.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Bad Request",
+                                              "code": 400,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-096dd166-73c6-4bfc-8ddd-0e145b950707"
+                                            },
+                                            {
+                                              "id": "8ff45c3e-f200-4daf-a819-7e7baae23845",
+                                              "name": "Unauthorized. Invalid or missing authentication token.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Unauthorized",
+                                              "code": 401,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-8ff45c3e-f200-4daf-a819-7e7baae23845"
+                                            },
+                                            {
+                                              "id": "2a202fba-0c9d-4e27-b630-f912af48f995",
+                                              "name": "Agent configuration not found.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Not Found",
+                                              "code": 404,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-2a202fba-0c9d-4e27-b630-f912af48f995"
+                                            },
+                                            {
+                                              "id": "b05ca631-aab2-4226-92ee-e4e907289258",
+                                              "name": "Method not supported. Only GET is expected.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Method Not Allowed",
+                                              "code": 405,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-b05ca631-aab2-4226-92ee-e4e907289258"
+                                            },
+                                            {
+                                              "id": "f7369fb1-ebf5-442a-a922-0ac93e8bf03d",
+                                              "name": "Internal Server Error.",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId/export/yaml",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "assistant",
+                                                    "agent_configurations",
+                                                    ":sId",
+                                                    "export",
+                                                    "yaml"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "sId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Internal Server Error",
+                                              "code": 500,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:00.000Z",
+                                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                                              "uid": "35240-f7369fb1-ebf5-442a-a922-0ac93e8bf03d"
+                                            }
+                                          ],
+                                          "createdAt": "2026-06-05T15:08:00.000Z",
+                                          "updatedAt": "2026-06-05T15:08:00.000Z",
+                                          "uid": "35240-5f80b021-001b-4758-b655-c3a30d262225"
+                                        }
+                                      ],
+                                      "id": "1bf716b9-de7d-404d-9910-d12a13367190",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-1bf716b9-de7d-404d-9910-d12a13367190"
+                                    }
+                                  ],
+                                  "id": "fcf36128-0ff2-4466-8747-eea360408cb6",
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-fcf36128-0ff2-4466-8747-eea360408cb6"
+                                },
+                                {
+                                  "name": "Get Agent Configuration",
+                                  "id": "a6b482b5-0f55-41d5-a936-f82bb42f28e9",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations",
+                                        ":sId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                          "key": "variant",
+                                          "value": "light"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "6e2fe192-eff5-48c3-b237-ff465c38c502",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        },
+                                        {
+                                          "id": "63d0213d-d6cd-413f-8236-ee85fc8a8305",
+                                          "key": "sId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the agent configuration"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve the agent configuration identified by {sId} in the workspace identified by {wId}."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "50521b37-2412-4487-bcaf-eaf3658788df",
+                                      "name": "Successfully retrieved agent configuration",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"agentConfiguration\": {\n    \"id\": \"<integer>\",\n    \"sId\": \"<string>\",\n    \"version\": \"<integer>\",\n    \"versionCreatedAt\": \"<string>\",\n    \"versionAuthorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"pictureUrl\": \"<string>\",\n    \"status\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"userFavorite\": \"<boolean>\",\n    \"model\": {\n      \"providerId\": \"<string>\",\n      \"modelId\": \"<string>\",\n      \"temperature\": \"<number>\"\n    },\n    \"actions\": \"<array>\",\n    \"maxStepsPerRun\": \"<integer>\",\n    \"templateId\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-50521b37-2412-4487-bcaf-eaf3658788df"
+                                    },
+                                    {
+                                      "id": "582c35a8-2713-4121-b111-ef8d61215afc",
+                                      "name": "Bad Request. Invalid or missing parameters.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-582c35a8-2713-4121-b111-ef8d61215afc"
+                                    },
+                                    {
+                                      "id": "a95e35fb-a34f-45f3-9842-cf1749bf80b8",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-a95e35fb-a34f-45f3-9842-cf1749bf80b8"
+                                    },
+                                    {
+                                      "id": "b59d60bf-4c6c-4f86-89b5-79999fd03d94",
+                                      "name": "Agent configuration not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-b59d60bf-4c6c-4f86-89b5-79999fd03d94"
+                                    },
+                                    {
+                                      "id": "a7794d9c-c31a-46e7-ad35-05087ef09103",
+                                      "name": "Method not supported. Only GET or PATCH is expected.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-a7794d9c-c31a-46e7-ad35-05087ef09103"
+                                    },
+                                    {
+                                      "id": "abd5170d-d172-4229-8246-d3b49eba86ef",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId?variant=light",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration",
+                                              "key": "variant",
+                                              "value": "light"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-abd5170d-d172-4229-8246-d3b49eba86ef"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-a6b482b5-0f55-41d5-a936-f82bb42f28e9"
+                                },
+                                {
+                                  "name": "Update Agent Configuration",
+                                  "id": "3103fc34-da12-469e-86a4-0cb2cb577e52",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations",
+                                        ":sId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1b23da62-a158-4a29-8c2b-a25918a2008a",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        },
+                                        {
+                                          "id": "f54c8f07-acfc-489f-9694-3a0bfb19a23a",
+                                          "key": "sId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the agent configuration"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Update the agent configuration identified by {sId} in the workspace identified by {wId}."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c710c0b3-2f06-4055-9bc8-c1d8e76ccb36",
+                                      "name": "Successfully updated agent configuration",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"agentConfiguration\": {\n    \"id\": \"<integer>\",\n    \"sId\": \"<string>\",\n    \"version\": \"<integer>\",\n    \"versionCreatedAt\": \"<string>\",\n    \"versionAuthorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"pictureUrl\": \"<string>\",\n    \"status\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"userFavorite\": \"<boolean>\",\n    \"model\": {\n      \"providerId\": \"<string>\",\n      \"modelId\": \"<string>\",\n      \"temperature\": \"<number>\"\n    },\n    \"actions\": \"<array>\",\n    \"maxStepsPerRun\": \"<integer>\",\n    \"templateId\": \"<string>\"\n  },\n  \"skippedActions\": [\n    {\n      \"name\": \"<string>\",\n      \"reason\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"reason\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-c710c0b3-2f06-4055-9bc8-c1d8e76ccb36"
+                                    },
+                                    {
+                                      "id": "84bd6c41-d941-41ec-9f0f-519340ce799b",
+                                      "name": "Bad Request. Invalid or missing parameters.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-84bd6c41-d941-41ec-9f0f-519340ce799b"
+                                    },
+                                    {
+                                      "id": "9c363f87-2eed-4e7d-9989-b061d6cb662c",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-9c363f87-2eed-4e7d-9989-b061d6cb662c"
+                                    },
+                                    {
+                                      "id": "1463c79d-ed41-4be2-9707-9d632548f66b",
+                                      "name": "Agent configuration not found.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-1463c79d-ed41-4be2-9707-9d632548f66b"
+                                    },
+                                    {
+                                      "id": "c3e9ac83-ed39-41d3-8c20-60634ed78c64",
+                                      "name": "Method not supported. Only GET or PATCH is expected.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-c3e9ac83-ed39-41d3-8c20-60634ed78c64"
+                                    },
+                                    {
+                                      "id": "9ac72356-d751-40e6-bb34-75230e55bde2",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"hidden\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-9ac72356-d751-40e6-bb34-75230e55bde2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-3103fc34-da12-469e-86a4-0cb2cb577e52"
+                                },
+                                {
+                                  "name": "Archive Agent Configuration",
+                                  "id": "1d70e269-1a9f-4aed-836e-bfdfffcb6956",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations",
+                                        ":sId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "47516267-0811-4a31-9d3a-84367e0616ab",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        },
+                                        {
+                                          "id": "fd4c8470-1020-416e-9cd4-b61d7beb94ac",
+                                          "key": "sId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the agent configuration"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "97f4ac4b-da2d-4a3c-8ea5-36eeb7317c06",
+                                      "name": "Successfully archived agent configuration",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-97f4ac4b-da2d-4a3c-8ea5-36eeb7317c06"
+                                    },
+                                    {
+                                      "id": "cf1f9d91-5dd4-4ad9-be8a-d0aab584cd5d",
+                                      "name": "Bad Request. Invalid or missing parameters.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-cf1f9d91-5dd4-4ad9-be8a-d0aab584cd5d"
+                                    },
+                                    {
+                                      "id": "86403865-14f7-4a4e-95e0-ae227a8949bc",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-86403865-14f7-4a4e-95e0-ae227a8949bc"
+                                    },
+                                    {
+                                      "id": "c0d84568-886d-4849-94b2-b3919d6440f9",
+                                      "name": "Forbidden. The caller is not allowed to archive this agent.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-c0d84568-886d-4849-94b2-b3919d6440f9"
+                                    },
+                                    {
+                                      "id": "bceb6865-ac74-4d14-8bed-dfee79792554",
+                                      "name": "Agent configuration not found.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-bceb6865-ac74-4d14-8bed-dfee79792554"
+                                    },
+                                    {
+                                      "id": "f2b175b1-8f44-4960-a393-50951b847223",
+                                      "name": "Method not supported. Only GET, PATCH or DELETE is expected.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-f2b175b1-8f44-4960-a393-50951b847223"
+                                    },
+                                    {
+                                      "id": "b8685c73-338a-48b2-9852-6d38ce087bac",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/:sId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            ":sId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "sId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-b8685c73-338a-48b2-9852-6d38ce087bac"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-1d70e269-1a9f-4aed-836e-bfdfffcb6956"
+                                }
+                              ],
+                              "id": "be7f6e4e-0467-4704-866a-288516af7e1a",
+                              "createdAt": "2026-06-05T15:08:00.000Z",
+                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                              "uid": "35240-be7f6e4e-0467-4704-866a-288516af7e1a"
+                            },
+                            {
+                              "name": "import",
+                              "item": [
+                                {
+                                  "name": "Import Agent Configuration",
+                                  "id": "bf8b4132-bba9-4d9b-bf69-029369c22a36",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations",
+                                        "import"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9413b7e6-9da5-4316-852f-5d5237be6676",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Create a new agent configuration from a JSON body matching the agent config schema."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "347eaa07-586f-4235-bf5b-796f033085e7",
+                                      "name": "Successfully created agent configuration",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"agentConfiguration\": {\n    \"id\": \"<integer>\",\n    \"sId\": \"<string>\",\n    \"version\": \"<integer>\",\n    \"versionCreatedAt\": \"<string>\",\n    \"versionAuthorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"instructions\": \"<string>\",\n    \"pictureUrl\": \"<string>\",\n    \"status\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"userFavorite\": \"<boolean>\",\n    \"model\": {\n      \"providerId\": \"<string>\",\n      \"modelId\": \"<string>\",\n      \"temperature\": \"<number>\"\n    },\n    \"actions\": \"<array>\",\n    \"maxStepsPerRun\": \"<integer>\",\n    \"templateId\": \"<string>\"\n  },\n  \"skippedActions\": [\n    {\n      \"name\": \"<string>\",\n      \"reason\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"reason\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-347eaa07-586f-4235-bf5b-796f033085e7"
+                                    },
+                                    {
+                                      "id": "b53a5eee-7bbf-4dc2-998f-d3fb9aa7696a",
+                                      "name": "Bad Request. Invalid request body.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-b53a5eee-7bbf-4dc2-998f-d3fb9aa7696a"
+                                    },
+                                    {
+                                      "id": "44a6db31-5847-40d8-9899-d6098901e944",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-44a6db31-5847-40d8-9899-d6098901e944"
+                                    },
+                                    {
+                                      "id": "616a1cd2-f283-46d4-9a63-fe86c0e54f59",
+                                      "name": "Method not supported. Only POST is expected.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-616a1cd2-f283-46d4-9a63-fe86c0e54f59"
+                                    },
+                                    {
+                                      "id": "20dc8596-eb87-4883-a0ac-a6f0c2e01df2",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"visible\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"standard\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"protected\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"MCP\",\n      \"configuration\": {}\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/import",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "import"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-20dc8596-eb87-4883-a0ac-a6f0c2e01df2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-bf8b4132-bba9-4d9b-bf69-029369c22a36"
+                                }
+                              ],
+                              "id": "9bb87d7d-7041-43f2-85c4-0d8530be19f3",
+                              "createdAt": "2026-06-05T15:08:00.000Z",
+                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                              "uid": "35240-9bb87d7d-7041-43f2-85c4-0d8530be19f3"
+                            },
+                            {
+                              "name": "search",
+                              "item": [
+                                {
+                                  "name": "Search Agents by Name",
+                                  "id": "83c5027c-d543-4c9e-a213-e9e136396b29",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations",
+                                        "search"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Search query for agent configuration names",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ca2aa0ad-02f2-4001-85b7-0cec4361cb46",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Search for agent configurations by name in the workspace identified by {wId}."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "683a8462-b651-47b6-9671-8db5e97f7389",
+                                      "name": "Successfully retrieved agent configurations",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"agentConfigurations\": [\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"versionCreatedAt\": \"<string>\",\n      \"versionAuthorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"pictureUrl\": \"<string>\",\n      \"status\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"userFavorite\": \"<boolean>\",\n      \"model\": {\n        \"providerId\": \"<string>\",\n        \"modelId\": \"<string>\",\n        \"temperature\": \"<number>\"\n      },\n      \"actions\": \"<array>\",\n      \"maxStepsPerRun\": \"<integer>\",\n      \"templateId\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"versionCreatedAt\": \"<string>\",\n      \"versionAuthorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"pictureUrl\": \"<string>\",\n      \"status\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"userFavorite\": \"<boolean>\",\n      \"model\": {\n        \"providerId\": \"<string>\",\n        \"modelId\": \"<string>\",\n        \"temperature\": \"<number>\"\n      },\n      \"actions\": \"<array>\",\n      \"maxStepsPerRun\": \"<integer>\",\n      \"templateId\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-683a8462-b651-47b6-9671-8db5e97f7389"
+                                    },
+                                    {
+                                      "id": "88fe0970-46fa-45dd-a790-146380cda53e",
+                                      "name": "Bad Request. Invalid or missing parameters.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-88fe0970-46fa-45dd-a790-146380cda53e"
+                                    },
+                                    {
+                                      "id": "33d6c1bb-4b5b-44e1-956c-1bf27859d649",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-33d6c1bb-4b5b-44e1-956c-1bf27859d649"
+                                    },
+                                    {
+                                      "id": "ffa4d22e-5fc7-4e7d-848a-92199720561b",
+                                      "name": "Workspace not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-ffa4d22e-5fc7-4e7d-848a-92199720561b"
+                                    },
+                                    {
+                                      "id": "59bbd44f-d368-400a-905e-65f15311fedc",
+                                      "name": "Method not supported. Only GET is expected.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-59bbd44f-d368-400a-905e-65f15311fedc"
+                                    },
+                                    {
+                                      "id": "e937f6b9-e46d-4e08-a686-bbee3f173404",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations/search?q=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "assistant",
+                                            "agent_configurations",
+                                            "search"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Search query for agent configuration names",
+                                              "key": "q",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:00.000Z",
+                                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                                      "uid": "35240-e937f6b9-e46d-4e08-a686-bbee3f173404"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-83c5027c-d543-4c9e-a213-e9e136396b29"
+                                }
+                              ],
+                              "id": "c1d3474a-07a9-441f-a0cf-291b6280b001",
+                              "createdAt": "2026-06-05T15:08:00.000Z",
+                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                              "uid": "35240-c1d3474a-07a9-441f-a0cf-291b6280b001"
+                            },
+                            {
+                              "name": "List Agents",
+                              "id": "69e13aae-3923-4309-b12d-5a93ce35a3fb",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "assistant",
+                                    "agent_configurations"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                      "key": "view",
+                                      "value": "workspace"
+                                    },
+                                    {
+                                      "description": "When set to 'true', includes recent authors information for each agent",
+                                      "key": "withAuthors",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "20bc2e0b-4e30-459e-a90b-1565cd8ce5a1",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) ID of the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "Get the agent configurations for the workspace identified by {wId}."
+                              },
+                              "response": [
+                                {
+                                  "id": "e1965e3a-d98a-4948-9eb8-72cc5ce723f2",
+                                  "name": "Agent configurations for the workspace",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"agentConfigurations\": [\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"versionCreatedAt\": \"<string>\",\n      \"versionAuthorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"pictureUrl\": \"<string>\",\n      \"status\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"userFavorite\": \"<boolean>\",\n      \"model\": {\n        \"providerId\": \"<string>\",\n        \"modelId\": \"<string>\",\n        \"temperature\": \"<number>\"\n      },\n      \"actions\": \"<array>\",\n      \"maxStepsPerRun\": \"<integer>\",\n      \"templateId\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"versionCreatedAt\": \"<string>\",\n      \"versionAuthorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"pictureUrl\": \"<string>\",\n      \"status\": \"<string>\",\n      \"scope\": \"<string>\",\n      \"userFavorite\": \"<boolean>\",\n      \"model\": {\n        \"providerId\": \"<string>\",\n        \"modelId\": \"<string>\",\n        \"temperature\": \"<number>\"\n      },\n      \"actions\": \"<array>\",\n      \"maxStepsPerRun\": \"<integer>\",\n      \"templateId\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-e1965e3a-d98a-4948-9eb8-72cc5ce723f2"
+                                },
+                                {
+                                  "id": "8e427eaa-a41c-4299-98c9-7830f9b7a76f",
+                                  "name": "Bad Request. Missing or invalid parameters.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-8e427eaa-a41c-4299-98c9-7830f9b7a76f"
+                                },
+                                {
+                                  "id": "f40eb03c-11c3-4776-89a3-ddc803695524",
+                                  "name": "Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without authentication.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-f40eb03c-11c3-4776-89a3-ddc803695524"
+                                },
+                                {
+                                  "id": "1a3d73fe-1d86-4acc-8ca7-8c3b461e09f2",
+                                  "name": "Workspace not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-1a3d73fe-1d86-4acc-8ca7-8c3b461e09f2"
+                                },
+                                {
+                                  "id": "e577051d-0a34-4775-8fb1-8858a84c04cd",
+                                  "name": "Method not supported. Only GET is expected.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Method Not Allowed",
+                                  "code": 405,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-e577051d-0a34-4775-8fb1-8858a84c04cd"
+                                },
+                                {
+                                  "id": "cc6d7ed7-6387-422b-a316-d6d9bf8f5791",
+                                  "name": "Internal Server Error.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/assistant/agent_configurations?view=workspace&withAuthors=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "assistant",
+                                        "agent_configurations"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n",
+                                          "key": "view",
+                                          "value": "workspace"
+                                        },
+                                        {
+                                          "description": "When set to 'true', includes recent authors information for each agent",
+                                          "key": "withAuthors",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:00.000Z",
+                                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                                  "uid": "35240-cc6d7ed7-6387-422b-a316-d6d9bf8f5791"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:00.000Z",
+                              "updatedAt": "2026-06-05T15:08:00.000Z",
+                              "uid": "35240-69e13aae-3923-4309-b12d-5a93ce35a3fb"
+                            }
+                          ],
+                          "id": "854c2468-da08-4309-b304-5dc427a47233",
+                          "createdAt": "2026-06-05T15:08:00.000Z",
+                          "updatedAt": "2026-06-05T15:08:00.000Z",
+                          "uid": "35240-854c2468-da08-4309-b304-5dc427a47233"
+                        }
+                      ],
+                      "id": "b64fc973-0859-484c-9e08-fe8cabc98713",
+                      "createdAt": "2026-06-05T15:08:00.000Z",
+                      "updatedAt": "2026-06-05T15:08:00.000Z",
+                      "uid": "35240-b64fc973-0859-484c-9e08-fe8cabc98713"
+                    }
+                  ],
+                  "id": "b990c0d9-a12b-40fa-b6b7-8690be0d3314",
+                  "createdAt": "2026-06-05T15:08:00.000Z",
+                  "updatedAt": "2026-06-05T15:08:00.000Z",
+                  "uid": "35240-b990c0d9-a12b-40fa-b6b7-8690be0d3314"
+                }
+              ],
+              "id": "d227088d-ca53-491f-bd15-c2d6d2f9d8b9",
+              "createdAt": "2026-06-05T15:08:00.000Z",
+              "updatedAt": "2026-06-05T15:08:00.000Z",
+              "uid": "35240-d227088d-ca53-491f-bd15-c2d6d2f9d8b9"
+            }
+          ],
+          "id": "0ad5421c-4856-4203-95e5-17d4bdabc91d",
+          "createdAt": "2026-06-05T15:08:00.000Z",
+          "updatedAt": "2026-06-05T15:08:00.000Z",
+          "uid": "35240-0ad5421c-4856-4203-95e5-17d4bdabc91d"
+        }
+      ],
+      "id": "f77f10cb-1b44-469b-b904-5d6080bf1997",
+      "createdAt": "2026-06-05T15:08:00.000Z",
+      "updatedAt": "2026-06-05T15:08:00.000Z",
+      "uid": "35240-f77f10cb-1b44-469b-b904-5d6080bf1997"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

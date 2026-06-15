@@ -1,0 +1,813 @@
+{
+  "info": {
+    "_postman_id": "c7ac0d1a-7872-441c-b9aa-462a271eca51",
+    "name": "Dust Skills API",
+    "description": "List and import skill bundles into a Dust workspace.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:28.000Z",
+    "updatedAt": "2026-06-05T15:08:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c7ac0d1a-7872-441c-b9aa-462a271eca51"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "skills",
+                      "item": [
+                        {
+                          "name": "List Skills",
+                          "id": "7f3ea4de-9583-43cf-9511-b96a4c0ad3ee",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "w",
+                                ":wId",
+                                "skills"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter skills by status. Defaults to active.",
+                                  "key": "status",
+                                  "value": "archived"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e5589dcc-16f6-4c8e-b870-70d8f31da300",
+                                  "key": "wId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique string identifier for the workspace"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the custom skills in the workspace. Active skills are returned by default."
+                          },
+                          "response": [
+                            {
+                              "id": "75505d59-e513-44ef-82a6-9f728de61a91",
+                              "name": "Skills available in the workspace.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter skills by status. Defaults to active.",
+                                      "key": "status",
+                                      "value": "archived"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"archived\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"github\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"off\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"platform_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"personal_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"suggested\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"web_app\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"auto\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-75505d59-e513-44ef-82a6-9f728de61a91"
+                            },
+                            {
+                              "id": "2213bd6f-f2ab-4369-be1d-f53a21e473eb",
+                              "name": "Bad Request. Missing or invalid parameters.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter skills by status. Defaults to active.",
+                                      "key": "status",
+                                      "value": "archived"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-2213bd6f-f2ab-4369-be1d-f53a21e473eb"
+                            },
+                            {
+                              "id": "1f3d29fe-d9c5-4f95-acfe-faeee5f9ac56",
+                              "name": "Unauthorized. Invalid or missing authentication token.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter skills by status. Defaults to active.",
+                                      "key": "status",
+                                      "value": "archived"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-1f3d29fe-d9c5-4f95-acfe-faeee5f9ac56"
+                            },
+                            {
+                              "id": "12e54a6e-e931-4808-b103-5e7248b56798",
+                              "name": "Workspace not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter skills by status. Defaults to active.",
+                                      "key": "status",
+                                      "value": "archived"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-12e54a6e-e931-4808-b103-5e7248b56798"
+                            },
+                            {
+                              "id": "53b6ccf5-ebde-42ab-83c5-089498aae8cd",
+                              "name": "Method not supported.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills?status=archived",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter skills by status. Defaults to active.",
+                                      "key": "status",
+                                      "value": "archived"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-53b6ccf5-ebde-42ab-83c5-089498aae8cd"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:29.000Z",
+                          "updatedAt": "2026-06-05T15:08:29.000Z",
+                          "uid": "35240-7f3ea4de-9583-43cf-9511-b96a4c0ad3ee"
+                        },
+                        {
+                          "name": "Import Skills from Uploaded Files",
+                          "id": "f6056092-92bc-48cb-bb38-2525ae6bf1df",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) Skill files or ZIP archives to import.",
+                                  "key": "files",
+                                  "value": "<binary>,<binary>",
+                                  "type": "text"
+                                },
+                                {
+                                  "description": "Optional skill names to import from the uploaded files.",
+                                  "key": "names",
+                                  "value": "<string>,<string>",
+                                  "type": "text"
+                                },
+                                {
+                                  "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                  "key": "onConflict",
+                                  "value": "skip",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "w",
+                                ":wId",
+                                "skills"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fe29c84c-c12d-44ab-8350-735e48306785",
+                                  "key": "wId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique string identifier for the workspace"
+                                }
+                              ]
+                            },
+                            "description": "Imports skills from uploaded files or ZIP archives into the workspace."
+                          },
+                          "response": [
+                            {
+                              "id": "f14a3299-84d6-44b8-9b4c-5ce22968e65a",
+                              "name": "Skills import result.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) Skill files or ZIP archives to import.",
+                                      "key": "files",
+                                      "value": "<binary>,<binary>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Optional skill names to import from the uploaded files.",
+                                      "key": "names",
+                                      "value": "<string>,<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                      "key": "onConflict",
+                                      "value": "skip",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"imported\": [\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"active\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"web_app\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"on\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"platform_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"personal_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"suggested\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"local_file\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"on\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"personal_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"updated\": [\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"archived\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"api\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"auto\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"remote\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"personal_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"personal_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"sId\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"editedBy\": \"<integer>\",\n      \"status\": \"archived\",\n      \"name\": \"<string>\",\n      \"agentFacingDescription\": \"<string>\",\n      \"userFacingDescription\": \"<string>\",\n      \"icon\": \"<string>\",\n      \"source\": \"local_file\",\n      \"sourceMetadata\": {\n        \"repoUrl\": \"<string>\",\n        \"filePath\": \"<string>\"\n      },\n      \"reinforcement\": \"auto\",\n      \"lastReinforcementAnalysisAt\": \"<string>\",\n      \"requestedSpaceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fileAttachments\": [\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        },\n        {\n          \"fileId\": \"<string>\",\n          \"fileName\": \"<string>\"\n        }\n      ],\n      \"canWrite\": \"<boolean>\",\n      \"isExtendable\": \"<boolean>\",\n      \"isDefault\": \"<boolean>\",\n      \"extendedSkillId\": \"<string>\",\n      \"instructions\": \"<string>\",\n      \"instructionsHtml\": \"<string>\",\n      \"tools\": [\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"platform_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"platform_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"sId\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"createdAt\": \"<number>\",\n          \"updatedAt\": \"<number>\",\n          \"spaceId\": \"<string>\",\n          \"serverType\": \"internal\",\n          \"server\": {\n            \"sId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"version\": \"<string>\",\n            \"description\": \"<string>\",\n            \"icon\": \"<string>\",\n            \"authorization\": {\n              \"provider\": \"<string>\",\n              \"supported_use_cases\": [\n                \"platform_actions\",\n                \"platform_actions\"\n              ],\n              \"scope\": \"<string>\"\n            },\n            \"tools\": [\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              },\n              {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"inputSchema\": {}\n              }\n            ],\n            \"availability\": \"<string>\",\n            \"allowMultipleInstances\": \"<boolean>\",\n            \"documentationUrl\": \"<string>\"\n          },\n          \"oAuthUseCase\": \"personal_actions\",\n          \"editedByUser\": {\n            \"editedAt\": \"<number>\",\n            \"fullName\": \"<string>\",\n            \"imageUrl\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"skipped\": [\n    {\n      \"name\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-f14a3299-84d6-44b8-9b4c-5ce22968e65a"
+                            },
+                            {
+                              "id": "704eeae5-19b9-4a3a-a0d3-7c1ad51026d2",
+                              "name": "Bad Request. Missing or invalid uploaded files.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) Skill files or ZIP archives to import.",
+                                      "key": "files",
+                                      "value": "<binary>,<binary>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Optional skill names to import from the uploaded files.",
+                                      "key": "names",
+                                      "value": "<string>,<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                      "key": "onConflict",
+                                      "value": "skip",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-704eeae5-19b9-4a3a-a0d3-7c1ad51026d2"
+                            },
+                            {
+                              "id": "095e8fe4-9bd8-4265-bec5-d49a1ab113e8",
+                              "name": "Unauthorized. Invalid or missing authentication token.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) Skill files or ZIP archives to import.",
+                                      "key": "files",
+                                      "value": "<binary>,<binary>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Optional skill names to import from the uploaded files.",
+                                      "key": "names",
+                                      "value": "<string>,<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                      "key": "onConflict",
+                                      "value": "skip",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-095e8fe4-9bd8-4265-bec5-d49a1ab113e8"
+                            },
+                            {
+                              "id": "7b4bdd37-8049-4a25-ace1-8d7f9b2a4caf",
+                              "name": "Workspace not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) Skill files or ZIP archives to import.",
+                                      "key": "files",
+                                      "value": "<binary>,<binary>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Optional skill names to import from the uploaded files.",
+                                      "key": "names",
+                                      "value": "<string>,<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                      "key": "onConflict",
+                                      "value": "skip",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-7b4bdd37-8049-4a25-ace1-8d7f9b2a4caf"
+                            },
+                            {
+                              "id": "ac545eee-7422-4dea-b8a0-1677b9beda68",
+                              "name": "Method not supported.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) Skill files or ZIP archives to import.",
+                                      "key": "files",
+                                      "value": "<binary>,<binary>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Optional skill names to import from the uploaded files.",
+                                      "key": "names",
+                                      "value": "<string>,<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "Conflict handling strategy. Defaults to error. (This can only be one of error,skip,override)",
+                                      "key": "onConflict",
+                                      "value": "skip",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/skills",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "skills"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:29.000Z",
+                              "updatedAt": "2026-06-05T15:08:29.000Z",
+                              "uid": "35240-ac545eee-7422-4dea-b8a0-1677b9beda68"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:29.000Z",
+                          "updatedAt": "2026-06-05T15:08:29.000Z",
+                          "uid": "35240-f6056092-92bc-48cb-bb38-2525ae6bf1df"
+                        }
+                      ],
+                      "id": "09c3e28e-db1e-47be-a73c-202137db2639",
+                      "createdAt": "2026-06-05T15:08:29.000Z",
+                      "updatedAt": "2026-06-05T15:08:29.000Z",
+                      "uid": "35240-09c3e28e-db1e-47be-a73c-202137db2639"
+                    }
+                  ],
+                  "id": "d4c02105-3b2d-4540-8265-531270f84469",
+                  "createdAt": "2026-06-05T15:08:29.000Z",
+                  "updatedAt": "2026-06-05T15:08:29.000Z",
+                  "uid": "35240-d4c02105-3b2d-4540-8265-531270f84469"
+                }
+              ],
+              "id": "09e39470-1d9b-4c6b-b732-4169f0c12966",
+              "createdAt": "2026-06-05T15:08:29.000Z",
+              "updatedAt": "2026-06-05T15:08:29.000Z",
+              "uid": "35240-09e39470-1d9b-4c6b-b732-4169f0c12966"
+            }
+          ],
+          "id": "0646075b-034a-45b1-a0f1-76a95f39b994",
+          "createdAt": "2026-06-05T15:08:29.000Z",
+          "updatedAt": "2026-06-05T15:08:29.000Z",
+          "uid": "35240-0646075b-034a-45b1-a0f1-76a95f39b994"
+        }
+      ],
+      "id": "571f5ca5-99fb-417c-b6c1-09213c6fff8b",
+      "createdAt": "2026-06-05T15:08:29.000Z",
+      "updatedAt": "2026-06-05T15:08:29.000Z",
+      "uid": "35240-571f5ca5-99fb-417c-b6c1-09213c6fff8b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

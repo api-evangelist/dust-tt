@@ -1,0 +1,1221 @@
+{
+  "info": {
+    "_postman_id": "af4fe936-527e-43ea-b7dc-7e1d2f591c6c",
+    "name": "Dust Search API",
+    "description": "Search nodes (documents, tables, conversations) across a workspace with optional streaming.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:27.000Z",
+    "updatedAt": "2026-06-05T15:08:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-af4fe936-527e-43ea-b7dc-7e1d2f591c6c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "search",
+                      "item": [
+                        {
+                          "name": "tools",
+                          "item": [
+                            {
+                              "name": "upload",
+                              "item": [
+                                {
+                                  "name": "Upload a Tool File",
+                                  "id": "8ea64643-546e-4304-87c4-8a6318a92e21",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "search",
+                                        "tools",
+                                        "upload"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "09c9b49a-0f4d-46c3-9071-187f4dbc7a84",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the workspace"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Download and upload a file from a tool (MCP server) to Dust"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "5274b978-c089-4fd2-8add-93ff5382fe2e",
+                                      "name": "File uploaded successfully",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "search",
+                                            "tools",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:28.000Z",
+                                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                                      "uid": "35240-5274b978-c089-4fd2-8add-93ff5382fe2e"
+                                    },
+                                    {
+                                      "id": "204f3a43-16e7-47bc-ac33-19e84b12fc4f",
+                                      "name": "Bad request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "search",
+                                            "tools",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:28.000Z",
+                                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                                      "uid": "35240-204f3a43-16e7-47bc-ac33-19e84b12fc4f"
+                                    },
+                                    {
+                                      "id": "f01b727a-2dff-442d-963a-eb5fa899dedc",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "search",
+                                            "tools",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:28.000Z",
+                                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                                      "uid": "35240-f01b727a-2dff-442d-963a-eb5fa899dedc"
+                                    },
+                                    {
+                                      "id": "35014f2b-451a-4839-bbd6-8987f70c4e0c",
+                                      "name": "Method not allowed",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "search",
+                                            "tools",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:28.000Z",
+                                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                                      "uid": "35240-35014f2b-451a-4839-bbd6-8987f70c4e0c"
+                                    },
+                                    {
+                                      "id": "a023f03b-c8cf-4dc8-8193-61bbda23f714",
+                                      "name": "Internal server error",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"serverViewId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"serverName\": \"<string>\",\n  \"serverIcon\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/search/tools/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "search",
+                                            "tools",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:28.000Z",
+                                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                                      "uid": "35240-a023f03b-c8cf-4dc8-8193-61bbda23f714"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:28.000Z",
+                                  "updatedAt": "2026-06-05T15:08:28.000Z",
+                                  "uid": "35240-8ea64643-546e-4304-87c4-8a6318a92e21"
+                                }
+                              ],
+                              "id": "d1bf66d1-47d8-41ac-bd75-ae824941daac",
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-d1bf66d1-47d8-41ac-bd75-ae824941daac"
+                            }
+                          ],
+                          "id": "6cf5a9b9-ba04-45ff-896c-8b9f172c94e9",
+                          "createdAt": "2026-06-05T15:08:28.000Z",
+                          "updatedAt": "2026-06-05T15:08:28.000Z",
+                          "uid": "35240-6cf5a9b9-ba04-45ff-896c-8b9f172c94e9"
+                        },
+                        {
+                          "name": "Search for Nodes in the Workspace (streaming)",
+                          "id": "06d448f5-27a4-4ede-ab8c-effc1ae4798b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/event-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/w/:wId/search?query=<string>&limit=<integer>&cursor=<string>&viewType=document&spaceIds=<string>&includeDataSources=<boolean>&searchSourceUrls=<boolean>&includeTools=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "w",
+                                ":wId",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The search query (minimum 3 characters)",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of results per page (1-100, default 25)",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Cursor for pagination",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Type of view to filter results",
+                                  "key": "viewType",
+                                  "value": "document"
+                                },
+                                {
+                                  "description": "Comma-separated list of space IDs to search in",
+                                  "key": "spaceIds",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Whether to include data sources",
+                                  "key": "includeDataSources",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Whether to search source URLs",
+                                  "key": "searchSourceUrls",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "Whether to include tool results",
+                                  "key": "includeTools",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "44713b7a-a3c0-46b2-8850-fef47df30e9a",
+                                  "key": "wId",
+                                  "value": "<string>",
+                                  "description": "(Required) ID of the workspace"
+                                }
+                              ]
+                            },
+                            "description": "Search for nodes in the workspace with SSE streaming"
+                          },
+                          "response": [
+                            {
+                              "id": "82bf39e0-3364-48b6-af57-76dfbc71601c",
+                              "name": "Search results streamed successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/event-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search?query=<string>&limit=<integer>&cursor=<string>&viewType=document&spaceIds=<string>&includeDataSources=<boolean>&searchSourceUrls=<boolean>&includeTools=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The search query (minimum 3 characters)",
+                                      "key": "query",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Number of results per page (1-100, default 25)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for pagination",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Type of view to filter results",
+                                      "key": "viewType",
+                                      "value": "document"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of space IDs to search in",
+                                      "key": "spaceIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to include data sources",
+                                      "key": "includeDataSources",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to search source URLs",
+                                      "key": "searchSourceUrls",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to include tool results",
+                                      "key": "includeTools",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/event-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-82bf39e0-3364-48b6-af57-76dfbc71601c"
+                            },
+                            {
+                              "id": "6fb34a45-d77c-47a5-98e6-c2d080ad5622",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search?query=<string>&limit=<integer>&cursor=<string>&viewType=document&spaceIds=<string>&includeDataSources=<boolean>&searchSourceUrls=<boolean>&includeTools=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The search query (minimum 3 characters)",
+                                      "key": "query",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Number of results per page (1-100, default 25)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for pagination",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Type of view to filter results",
+                                      "key": "viewType",
+                                      "value": "document"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of space IDs to search in",
+                                      "key": "spaceIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to include data sources",
+                                      "key": "includeDataSources",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to search source URLs",
+                                      "key": "searchSourceUrls",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to include tool results",
+                                      "key": "includeTools",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-6fb34a45-d77c-47a5-98e6-c2d080ad5622"
+                            },
+                            {
+                              "id": "affb02a3-5990-4625-90f2-0c8f392d0460",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search?query=<string>&limit=<integer>&cursor=<string>&viewType=document&spaceIds=<string>&includeDataSources=<boolean>&searchSourceUrls=<boolean>&includeTools=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The search query (minimum 3 characters)",
+                                      "key": "query",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Number of results per page (1-100, default 25)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for pagination",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Type of view to filter results",
+                                      "key": "viewType",
+                                      "value": "document"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of space IDs to search in",
+                                      "key": "spaceIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to include data sources",
+                                      "key": "includeDataSources",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to search source URLs",
+                                      "key": "searchSourceUrls",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to include tool results",
+                                      "key": "includeTools",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-affb02a3-5990-4625-90f2-0c8f392d0460"
+                            },
+                            {
+                              "id": "c179927a-3114-41f7-a91e-5f45239d8b40",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search?query=<string>&limit=<integer>&cursor=<string>&viewType=document&spaceIds=<string>&includeDataSources=<boolean>&searchSourceUrls=<boolean>&includeTools=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The search query (minimum 3 characters)",
+                                      "key": "query",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Number of results per page (1-100, default 25)",
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Cursor for pagination",
+                                      "key": "cursor",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Type of view to filter results",
+                                      "key": "viewType",
+                                      "value": "document"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of space IDs to search in",
+                                      "key": "spaceIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Whether to include data sources",
+                                      "key": "includeDataSources",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to search source URLs",
+                                      "key": "searchSourceUrls",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Whether to include tool results",
+                                      "key": "includeTools",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-c179927a-3114-41f7-a91e-5f45239d8b40"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:28.000Z",
+                          "updatedAt": "2026-06-05T15:08:28.000Z",
+                          "uid": "35240-06d448f5-27a4-4ede-ab8c-effc1ae4798b"
+                        },
+                        {
+                          "name": "Search for Nodes in the Workspace",
+                          "id": "e8632266-8d0b-4168-b126-385dba1e3477",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "w",
+                                ":wId",
+                                "search"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3da1ad29-2f79-4a73-b179-2fa3b2971e3a",
+                                  "key": "wId",
+                                  "value": "<string>",
+                                  "description": "(Required) ID of the workspace"
+                                }
+                              ]
+                            },
+                            "description": "Search for nodes in the workspace"
+                          },
+                          "response": [
+                            {
+                              "id": "e8d3ef7a-eedc-478a-ae84-b8e9a13614e4",
+                              "name": "Search results retrieved successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-e8d3ef7a-eedc-478a-ae84-b8e9a13614e4"
+                            },
+                            {
+                              "id": "7de77951-c7e0-4b9f-87e3-5e65e6f30b77",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-7de77951-c7e0-4b9f-87e3-5e65e6f30b77"
+                            },
+                            {
+                              "id": "be16a988-c67a-4a3f-be41-dbdcf17017a3",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-be16a988-c67a-4a3f-be41-dbdcf17017a3"
+                            },
+                            {
+                              "id": "53492454-69fa-4f5f-8eda-62c6cdf53d21",
+                              "name": "Space not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-53492454-69fa-4f5f-8eda-62c6cdf53d21"
+                            },
+                            {
+                              "id": "cba4a392-3168-48c4-bf06-d560dd57caaa",
+                              "name": "Method not allowed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"includeDataSources\": \"<boolean>\",\n  \"viewType\": \"<string>\",\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchSourceUrls\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "search"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "wId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:28.000Z",
+                              "updatedAt": "2026-06-05T15:08:28.000Z",
+                              "uid": "35240-cba4a392-3168-48c4-bf06-d560dd57caaa"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:28.000Z",
+                          "updatedAt": "2026-06-05T15:08:28.000Z",
+                          "uid": "35240-e8632266-8d0b-4168-b126-385dba1e3477"
+                        }
+                      ],
+                      "id": "88ba74b2-af5d-4ab8-bef9-5ed2ea884716",
+                      "createdAt": "2026-06-05T15:08:28.000Z",
+                      "updatedAt": "2026-06-05T15:08:28.000Z",
+                      "uid": "35240-88ba74b2-af5d-4ab8-bef9-5ed2ea884716"
+                    }
+                  ],
+                  "id": "9c81e232-b8eb-4cbc-bdd7-1bc032701841",
+                  "createdAt": "2026-06-05T15:08:28.000Z",
+                  "updatedAt": "2026-06-05T15:08:28.000Z",
+                  "uid": "35240-9c81e232-b8eb-4cbc-bdd7-1bc032701841"
+                }
+              ],
+              "id": "a5043a93-4364-4b92-832d-616e962f8873",
+              "createdAt": "2026-06-05T15:08:28.000Z",
+              "updatedAt": "2026-06-05T15:08:28.000Z",
+              "uid": "35240-a5043a93-4364-4b92-832d-616e962f8873"
+            }
+          ],
+          "id": "cd770dc6-487d-48fe-b74b-4de00625d404",
+          "createdAt": "2026-06-05T15:08:28.000Z",
+          "updatedAt": "2026-06-05T15:08:28.000Z",
+          "uid": "35240-cd770dc6-487d-48fe-b74b-4de00625d404"
+        }
+      ],
+      "id": "8bc17d55-c9cd-4e66-8baa-baa4094a7a55",
+      "createdAt": "2026-06-05T15:08:28.000Z",
+      "updatedAt": "2026-06-05T15:08:28.000Z",
+      "uid": "35240-8bc17d55-c9cd-4e66-8baa-baa4094a7a55"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

@@ -1,0 +1,1903 @@
+{
+  "info": {
+    "_postman_id": "584814d7-20d5-4211-9dd2-37f0fbc70cc4",
+    "name": "Dust MCP API",
+    "description": "Register client-side Model Context Protocol servers, stream tool requests over SSE, return results, and list MCP server views available in a space.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:16.000Z",
+    "updatedAt": "2026-06-05T15:08:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-584814d7-20d5-4211-9dd2-37f0fbc70cc4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "mcp",
+                      "item": [
+                        {
+                          "name": "heartbeat",
+                          "item": [
+                            {
+                              "name": "Update Heartbeat for a Client-Side MCP Server",
+                              "id": "4ecdd9a6-bfdc-43db-ba51-e4908d70e03a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "mcp",
+                                    "heartbeat"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fedd5774-9a92-4f0f-b9d0-2458b74d1ee0",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) ID of the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)\nUpdate the heartbeat for a previously registered client-side MCP server.\nThis extends the TTL for the server registration.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "5af181b7-be17-4821-a9ac-ea1e9511fe11",
+                                  "name": "Heartbeat updated successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "heartbeat"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"success\": \"<boolean>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-5af181b7-be17-4821-a9ac-ea1e9511fe11"
+                                },
+                                {
+                                  "id": "a9fa6f27-6d1c-497d-85ff-83b59e883a45",
+                                  "name": "Bad Request. Missing or invalid parameters.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "heartbeat"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-a9fa6f27-6d1c-497d-85ff-83b59e883a45"
+                                },
+                                {
+                                  "id": "70dd7e34-9c51-4674-b04a-c79d3966a711",
+                                  "name": "Unauthorized. Invalid or missing authentication token.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "heartbeat"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-70dd7e34-9c51-4674-b04a-c79d3966a711"
+                                },
+                                {
+                                  "id": "19296236-926e-4f6c-98db-e45bf73d7d50",
+                                  "name": "Forbidden. User does not have access to the workspace.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "heartbeat"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-19296236-926e-4f6c-98db-e45bf73d7d50"
+                                },
+                                {
+                                  "id": "d8edc795-1cec-4a9e-a4e5-cf578d27b732",
+                                  "name": "Not Found. MCP server not registered or expired.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/heartbeat",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "heartbeat"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-d8edc795-1cec-4a9e-a4e5-cf578d27b732"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:16.000Z",
+                              "updatedAt": "2026-06-05T15:08:16.000Z",
+                              "uid": "35240-4ecdd9a6-bfdc-43db-ba51-e4908d70e03a"
+                            }
+                          ],
+                          "id": "714b6ca2-f6f3-41db-ab32-59eee0fbb460",
+                          "createdAt": "2026-06-05T15:08:16.000Z",
+                          "updatedAt": "2026-06-05T15:08:16.000Z",
+                          "uid": "35240-714b6ca2-f6f3-41db-ab32-59eee0fbb460"
+                        },
+                        {
+                          "name": "register",
+                          "item": [
+                            {
+                              "name": "Register a Client-Side MCP Server",
+                              "id": "06707e0d-9e2d-4fb8-97c8-cdafbe8648da",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"serverName\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/register",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "mcp",
+                                    "register"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d740b07c-e60d-4c0c-ab5d-ba4d9b265056",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) ID of the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)\nRegister a client-side MCP server to Dust.\nThe registration is scoped to the current user and workspace.\nA serverId identifier is generated and returned in the response.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "904e5dba-db05-4826-9e27-199e58ca1d12",
+                                  "name": "Server registered successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverName\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/register",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "register"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"serverId\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-904e5dba-db05-4826-9e27-199e58ca1d12"
+                                },
+                                {
+                                  "id": "1e93abbf-f0f0-4c2d-9ddd-d2a7d11d56b5",
+                                  "name": "Bad Request. Missing or invalid parameters.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverName\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/register",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "register"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-1e93abbf-f0f0-4c2d-9ddd-d2a7d11d56b5"
+                                },
+                                {
+                                  "id": "785be129-347f-4070-901e-b61080fc58f2",
+                                  "name": "Unauthorized. Invalid or missing authentication token.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverName\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/register",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "register"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-785be129-347f-4070-901e-b61080fc58f2"
+                                },
+                                {
+                                  "id": "59e75957-fc22-4579-8e38-5e43a145a772",
+                                  "name": "Forbidden. User does not have access to the workspace.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"serverName\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/register",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "register"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-59e75957-fc22-4579-8e38-5e43a145a772"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:16.000Z",
+                              "updatedAt": "2026-06-05T15:08:16.000Z",
+                              "uid": "35240-06707e0d-9e2d-4fb8-97c8-cdafbe8648da"
+                            }
+                          ],
+                          "id": "2c8e4745-5481-45b1-a728-3d1adbeb2a52",
+                          "createdAt": "2026-06-05T15:08:16.000Z",
+                          "updatedAt": "2026-06-05T15:08:16.000Z",
+                          "uid": "35240-2c8e4745-5481-45b1-a728-3d1adbeb2a52"
+                        },
+                        {
+                          "name": "requests",
+                          "item": [
+                            {
+                              "name": "Stream MCP Tool Requests for a Workspace",
+                              "id": "a947af44-9f4e-4c5b-a9d2-2120d4ac8d57",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/event-stream"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "mcp",
+                                    "requests"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ID of the MCP server to filter events for",
+                                      "key": "serverId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "ID of the last event to filter events for",
+                                      "key": "lastEventId",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7ea724e7-6e1c-4e11-8d33-f0500f93b661",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) ID of the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)\nServer-Sent Events (SSE) endpoint that streams MCP tool requests for a workspace.\nThis endpoint is used by client-side MCP servers to listen for tool requests in real-time.\nThe connection will remain open and events will be sent as new tool requests are made.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "9aca9fbf-ac8e-42f2-99fb-664c85fc105a",
+                                  "name": "Connection established successfully. Events will be streamed in Server-Sent Events format.\nEach event will contain a tool request that needs to be processed by the MCP server.\n",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "text/event-stream"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "requests"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ID of the MCP server to filter events for",
+                                          "key": "serverId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "ID of the last event to filter events for",
+                                          "key": "lastEventId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "text/event-stream"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"data\": {}\n}",
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-9aca9fbf-ac8e-42f2-99fb-664c85fc105a"
+                                },
+                                {
+                                  "id": "9ff13b93-5d9a-4081-9663-d7809de9a855",
+                                  "name": "Bad Request. Missing or invalid parameters.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "requests"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ID of the MCP server to filter events for",
+                                          "key": "serverId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "ID of the last event to filter events for",
+                                          "key": "lastEventId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-9ff13b93-5d9a-4081-9663-d7809de9a855"
+                                },
+                                {
+                                  "id": "82e98603-8c8d-4719-9ed1-b69d439e287c",
+                                  "name": "Unauthorized. Invalid or missing authentication token.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "requests"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ID of the MCP server to filter events for",
+                                          "key": "serverId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "ID of the last event to filter events for",
+                                          "key": "lastEventId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-82e98603-8c8d-4719-9ed1-b69d439e287c"
+                                },
+                                {
+                                  "id": "b4b7fc7a-b5a3-43d3-b8b7-68c59591b989",
+                                  "name": "Forbidden. You don't have access to this workspace or MCP server.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "requests"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ID of the MCP server to filter events for",
+                                          "key": "serverId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "ID of the last event to filter events for",
+                                          "key": "lastEventId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-b4b7fc7a-b5a3-43d3-b8b7-68c59591b989"
+                                },
+                                {
+                                  "id": "4faecd9b-3b6f-48d8-b40b-3cce37cf0967",
+                                  "name": "Internal Server Error.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/requests?serverId=<string>&lastEventId=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "requests"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) ID of the MCP server to filter events for",
+                                          "key": "serverId",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "ID of the last event to filter events for",
+                                          "key": "lastEventId",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-4faecd9b-3b6f-48d8-b40b-3cce37cf0967"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:16.000Z",
+                              "updatedAt": "2026-06-05T15:08:16.000Z",
+                              "uid": "35240-a947af44-9f4e-4c5b-a9d2-2120d4ac8d57"
+                            }
+                          ],
+                          "id": "d78725b4-6f9c-4709-a3bc-596fc98a4e05",
+                          "createdAt": "2026-06-05T15:08:16.000Z",
+                          "updatedAt": "2026-06-05T15:08:16.000Z",
+                          "uid": "35240-d78725b4-6f9c-4709-a3bc-596fc98a4e05"
+                        },
+                        {
+                          "name": "results",
+                          "item": [
+                            {
+                              "name": "Submit MCP Tool Execution Results",
+                              "id": "704e5b44-9353-49a4-9bc3-2e1196bf54af",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "w",
+                                    ":wId",
+                                    "mcp",
+                                    "results"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "80974c76-972e-4960-a38b-88dd28f00a0c",
+                                      "key": "wId",
+                                      "value": "<string>",
+                                      "description": "(Required) ID of the workspace"
+                                    }
+                                  ]
+                                },
+                                "description": "[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)\nEndpoint for client-side MCP servers to submit the results of tool executions.\nThis endpoint accepts the output from tools that were executed locally.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "0e2b6780-ce37-4e21-893f-a1d8a23e2647",
+                                  "name": "Tool execution results successfully submitted",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-0e2b6780-ce37-4e21-893f-a1d8a23e2647"
+                                },
+                                {
+                                  "id": "d49baa91-e353-4614-aaa6-4571347f496e",
+                                  "name": "Bad Request. Missing or invalid parameters.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-d49baa91-e353-4614-aaa6-4571347f496e"
+                                },
+                                {
+                                  "id": "7ca4b87d-36ca-4e6f-adfe-3b57e3456738",
+                                  "name": "Unauthorized. Invalid or missing authentication token.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-7ca4b87d-36ca-4e6f-adfe-3b57e3456738"
+                                },
+                                {
+                                  "id": "6d0f0d64-0ad2-4ff5-bf04-d541ae67f45c",
+                                  "name": "Forbidden. You don't have access to this workspace or MCP server.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-6d0f0d64-0ad2-4ff5-bf04-d541ae67f45c"
+                                },
+                                {
+                                  "id": "f1713cfe-5cdd-42da-9073-867b614e6b81",
+                                  "name": "Conversation or message not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-f1713cfe-5cdd-42da-9073-867b614e6b81"
+                                },
+                                {
+                                  "id": "beae36aa-e906-469f-9c46-4f73b1060cbf",
+                                  "name": "Internal Server Error.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"result\": {},\n  \"serverId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/mcp/results",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "mcp",
+                                        "results"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "wId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-beae36aa-e906-469f-9c46-4f73b1060cbf"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:08:16.000Z",
+                              "updatedAt": "2026-06-05T15:08:16.000Z",
+                              "uid": "35240-704e5b44-9353-49a4-9bc3-2e1196bf54af"
+                            }
+                          ],
+                          "id": "77403c5d-5a7d-4994-bc69-6d41299ab7b2",
+                          "createdAt": "2026-06-05T15:08:16.000Z",
+                          "updatedAt": "2026-06-05T15:08:16.000Z",
+                          "uid": "35240-77403c5d-5a7d-4994-bc69-6d41299ab7b2"
+                        }
+                      ],
+                      "id": "8a010c29-d1d5-499d-a7ff-0b60d9404525",
+                      "createdAt": "2026-06-05T15:08:16.000Z",
+                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                      "uid": "35240-8a010c29-d1d5-499d-a7ff-0b60d9404525"
+                    },
+                    {
+                      "name": "spaces",
+                      "item": [
+                        {
+                          "name": "{spaceId}",
+                          "item": [
+                            {
+                              "name": "mcp_server_views",
+                              "item": [
+                                {
+                                  "name": "List Available MCP Server Views.",
+                                  "id": "8a53e2ab-5fa2-4e88-ac81-aac4b0b0adff",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "spaces",
+                                        ":spaceId",
+                                        "mcp_server_views"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e593fdfe-2562-4cc6-9fec-2323bfb92abc",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) Unique string identifier for the workspace"
+                                        },
+                                        {
+                                          "id": "b6c1d3dc-fa1e-485b-8151-b40214dcc46f",
+                                          "key": "spaceId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the space"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieves a list of enabled MCP server views (aka tools) for a specific space of the authenticated workspace."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2d09021a-8a06-4797-b365-71f4c4dcce56",
+                                      "name": "MCP server views of the space",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"spaces\": [\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"spaceId\": \"<string>\",\n      \"serverType\": \"remote\",\n      \"server\": {\n        \"sId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"description\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"authorization\": {\n          \"provider\": \"<string>\",\n          \"supported_use_cases\": [\n            \"personal_actions\",\n            \"platform_actions\"\n          ],\n          \"scope\": \"<string>\"\n        },\n        \"tools\": [\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"inputSchema\": {}\n          },\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"inputSchema\": {}\n          }\n        ],\n        \"availability\": \"<string>\",\n        \"allowMultipleInstances\": \"<boolean>\",\n        \"documentationUrl\": \"<string>\"\n      },\n      \"oAuthUseCase\": \"platform_actions\",\n      \"editedByUser\": {\n        \"editedAt\": \"<number>\",\n        \"fullName\": \"<string>\",\n        \"imageUrl\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdAt\": \"<number>\",\n      \"updatedAt\": \"<number>\",\n      \"spaceId\": \"<string>\",\n      \"serverType\": \"remote\",\n      \"server\": {\n        \"sId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"description\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"authorization\": {\n          \"provider\": \"<string>\",\n          \"supported_use_cases\": [\n            \"personal_actions\",\n            \"platform_actions\"\n          ],\n          \"scope\": \"<string>\"\n        },\n        \"tools\": [\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"inputSchema\": {}\n          },\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"inputSchema\": {}\n          }\n        ],\n        \"availability\": \"<string>\",\n        \"allowMultipleInstances\": \"<boolean>\",\n        \"documentationUrl\": \"<string>\"\n      },\n      \"oAuthUseCase\": \"personal_actions\",\n      \"editedByUser\": {\n        \"editedAt\": \"<number>\",\n        \"fullName\": \"<string>\",\n        \"imageUrl\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-2d09021a-8a06-4797-b365-71f4c4dcce56"
+                                    },
+                                    {
+                                      "id": "bb80d26f-e02c-41ce-a711-77c441569293",
+                                      "name": "Bad Request. Missing or invalid parameters.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-bb80d26f-e02c-41ce-a711-77c441569293"
+                                    },
+                                    {
+                                      "id": "a66ea8d4-ca67-4839-8d6b-1a483c2322a4",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-a66ea8d4-ca67-4839-8d6b-1a483c2322a4"
+                                    },
+                                    {
+                                      "id": "d590811a-113b-45f6-b2a8-95129c99fd6f",
+                                      "name": "Workspace not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-d590811a-113b-45f6-b2a8-95129c99fd6f"
+                                    },
+                                    {
+                                      "id": "b1842420-84dd-4c71-a027-b3e975d54696",
+                                      "name": "Method not supported.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-b1842420-84dd-4c71-a027-b3e975d54696"
+                                    },
+                                    {
+                                      "id": "b637cae6-5fff-41ed-a6c9-db93e1dcbbd0",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "mcp_server_views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:16.000Z",
+                                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                                      "uid": "35240-b637cae6-5fff-41ed-a6c9-db93e1dcbbd0"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:16.000Z",
+                                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                                  "uid": "35240-8a53e2ab-5fa2-4e88-ac81-aac4b0b0adff"
+                                }
+                              ],
+                              "id": "c325e03e-aa30-47aa-b6ef-92252a29399e",
+                              "createdAt": "2026-06-05T15:08:16.000Z",
+                              "updatedAt": "2026-06-05T15:08:16.000Z",
+                              "uid": "35240-c325e03e-aa30-47aa-b6ef-92252a29399e"
+                            }
+                          ],
+                          "id": "7f357ac4-34b0-4247-bd83-dfeadf55a8d6",
+                          "createdAt": "2026-06-05T15:08:16.000Z",
+                          "updatedAt": "2026-06-05T15:08:16.000Z",
+                          "uid": "35240-7f357ac4-34b0-4247-bd83-dfeadf55a8d6"
+                        }
+                      ],
+                      "id": "9e1b74cb-6008-4d4c-99f1-e56d074def81",
+                      "createdAt": "2026-06-05T15:08:16.000Z",
+                      "updatedAt": "2026-06-05T15:08:16.000Z",
+                      "uid": "35240-9e1b74cb-6008-4d4c-99f1-e56d074def81"
+                    }
+                  ],
+                  "id": "b6cc6207-4ac0-4f6d-b659-312d190701c0",
+                  "createdAt": "2026-06-05T15:08:16.000Z",
+                  "updatedAt": "2026-06-05T15:08:16.000Z",
+                  "uid": "35240-b6cc6207-4ac0-4f6d-b659-312d190701c0"
+                }
+              ],
+              "id": "23cd0152-8aa2-4a27-9980-33f730a9b086",
+              "createdAt": "2026-06-05T15:08:16.000Z",
+              "updatedAt": "2026-06-05T15:08:16.000Z",
+              "uid": "35240-23cd0152-8aa2-4a27-9980-33f730a9b086"
+            }
+          ],
+          "id": "d2eb365d-c161-4bf8-b373-918aae19810a",
+          "createdAt": "2026-06-05T15:08:16.000Z",
+          "updatedAt": "2026-06-05T15:08:16.000Z",
+          "uid": "35240-d2eb365d-c161-4bf8-b373-918aae19810a"
+        }
+      ],
+      "id": "e1ba46ec-adf3-4f6d-a917-69f6747b832b",
+      "createdAt": "2026-06-05T15:08:16.000Z",
+      "updatedAt": "2026-06-05T15:08:16.000Z",
+      "uid": "35240-e1ba46ec-adf3-4f6d-a917-69f6747b832b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

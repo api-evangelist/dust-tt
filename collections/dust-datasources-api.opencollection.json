@@ -1,0 +1,1013 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Data Sources API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DatasourceViews",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Data Source View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_source_views/:dsvId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dsvId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a Data Source View"
+        },
+        {
+          "info": {
+            "name": "Update a Data Source View",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_source_views/:dsvId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dsvId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a Data Source View"
+        },
+        {
+          "info": {
+            "name": "Delete a Data Source View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_source_views/:dsvId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dsvId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a Data Source View"
+        },
+        {
+          "info": {
+            "name": "Search the Data Source View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_source_views/:dsvId/search",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsvId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source view"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query"
+              },
+              {
+                "name": "top_k",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return"
+              },
+              {
+                "name": "full_text",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return the full document content"
+              },
+              {
+                "name": "target_document_tokens",
+                "value": "",
+                "type": "query",
+                "description": "The number of tokens in the target document"
+              },
+              {
+                "name": "timestamp_gt",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to filter by"
+              },
+              {
+                "name": "timestamp_lt",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to filter by"
+              },
+              {
+                "name": "tags_in",
+                "value": "",
+                "type": "query",
+                "description": "The tags to filter by"
+              },
+              {
+                "name": "tags_not",
+                "value": "",
+                "type": "query",
+                "description": "The tags to filter by"
+              },
+              {
+                "name": "parents_in",
+                "value": "",
+                "type": "query",
+                "description": "The parents to filter by"
+              },
+              {
+                "name": "parents_not",
+                "value": "",
+                "type": "query",
+                "description": "The parents to filter by"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search the data source view identified by {dsvId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "List Data Source Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_source_views",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of data source views for the specified space"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Datasources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check the Upsert Queue Status for a Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/check_upsert_queue",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the number of running document upsert workflows for this data source. This endpoint is only accessible with system API keys (e.g., from connectors)."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Document from a Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/documents/:documentId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a document from a data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Upsert a Document in a Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/documents/:documentId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upsert a document in a data source in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Delete a Document from a Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/documents/:documentId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a document from a data source in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Update the Parents of a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/documents/:documentId/parents",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the parents of a document in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/documents",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "document_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the documents to fetch (optional)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of documents returned"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the returned documents"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get documents in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Search the Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/search",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query"
+              },
+              {
+                "name": "top_k",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return"
+              },
+              {
+                "name": "full_text",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return the full document content"
+              },
+              {
+                "name": "target_document_tokens",
+                "value": "",
+                "type": "query",
+                "description": "The number of tokens in the target document"
+              },
+              {
+                "name": "timestamp_gt",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to filter by"
+              },
+              {
+                "name": "timestamp_lt",
+                "value": "",
+                "type": "query",
+                "description": "The timestamp to filter by"
+              },
+              {
+                "name": "tags_in",
+                "value": "",
+                "type": "query",
+                "description": "The tags to filter by"
+              },
+              {
+                "name": "tags_not",
+                "value": "",
+                "type": "query",
+                "description": "The tags to filter by"
+              },
+              {
+                "name": "parents_in",
+                "value": "",
+                "type": "query",
+                "description": "The parents to filter by"
+              },
+              {
+                "name": "parents_not",
+                "value": "",
+                "type": "query",
+                "description": "The parents to filter by"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a table in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Delete a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a table in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get a Row",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId/rows/:rId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              },
+              {
+                "name": "rId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the row"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Delete a Row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId/rows/:rId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              },
+              {
+                "name": "rId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the row"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "List Rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId/rows",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of rows returned"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the returned rows"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Upsert Rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables/:tId/rows",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              },
+              {
+                "name": "tId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the table"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upsert rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get tables in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Upsert a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources/:dsId/tables",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              },
+              {
+                "name": "dsId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the data source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upsert a table in the data source identified by {dsId} in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/data_sources",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get data sources in the workspace identified by {wId}."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Spaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Available Spaces.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of accessible spaces for the authenticated workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,707 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Conversations API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel Message Generation in a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/cancel",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel Message Generation in a Conversation"
+        },
+        {
+          "info": {
+            "name": "Create a Content Fragment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/content_fragments",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new content fragment in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Get the Events for a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/events",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "lastEventId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the last event"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get the events for a conversation in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Download a Conversation-Scoped File by Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/files/:rel",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "rel",
+                "value": "",
+                "type": "path",
+                "description": "Conversation-scoped file path, e.g. `conversation/foo.pdf` or\n`conversation/subdir/foo.pdf`. The `conversation/` prefix is required; any other\nscope prefix is rejected. Path traversal segments (`..`) are rejected.\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download a file from a conversation's file system by its scoped path. The path must\nbe conversation-scoped, i.e. start with `conversation/` (as surfaced by agent file\nsystem tools). The file content is streamed directly from the conversation mount.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return. When omitted, all messages are returned."
+              },
+              {
+                "name": "lastValue",
+                "value": "",
+                "type": "query",
+                "description": "Cursor value (message rank) from a previous response to fetch the next page of messages."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a conversation in the workspace identified by {wId}. Supports optional pagination of message content via limit and lastValue query parameters."
+        },
+        {
+          "info": {
+            "name": "Update Conversation Read Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Mark a conversation as read or unread in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Answer a User Question in a Conversation Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/answer-question",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submits an answer to a question asked by an agent in a specific message"
+        },
+        {
+          "info": {
+            "name": "Edit an Existing Message in a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/edit",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID to edit"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Edit an Existing Message in a Conversation"
+        },
+        {
+          "info": {
+            "name": "Get Events for a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/events",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the message"
+              },
+              {
+                "name": "lastEventId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the last event received"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get events for a message in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Validate an Action in a Conversation Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/validate-action",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Approves or rejects an action taken in a specific message in a conversation"
+        },
+        {
+          "info": {
+            "name": "Create a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a message in the workspace identified by {wId} in the conversation identified by {cId}."
+        },
+        {
+          "info": {
+            "name": "Create a New Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new conversation in the workspace identified by {wId}."
+        },
+        {
+          "info": {
+            "name": "Create a File Upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/files",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a File Upload URL"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feedbacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feedbacks for a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all feedback entries for a specific conversation.\nRequires authentication and read:conversation scope.\n"
+        },
+        {
+          "info": {
+            "name": "Submit Feedback for a Specific Message in a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submit user feedback (thumbs up/down) for a specific message in a conversation.\nRequires authentication and update:conversation scope.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Feedback for a Specific Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete user feedback for a specific message in a conversation.\nRequires authentication and update:conversation scope.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mentions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Mention Suggestions for a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/mentions/suggestions",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to filter suggestions"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Array of mention types to include. Can be \"agents\", \"users\", or both. If not provided, defaults to agents and users."
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the current user in the suggestions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get suggestions for mentions (agents and users) based on a query string, scoped to a specific conversation."
+        },
+        {
+          "info": {
+            "name": "Parse Mentions in Markdown Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/mentions/parse",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Parses pasted text containing @ mentions and converts them to the proper mention format.\nMatches @agentName or @userName patterns against available agents and users.\n"
+        },
+        {
+          "info": {
+            "name": "Get Mention Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/mentions/suggestions",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to filter suggestions"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Array of mention types to include. Can be \"agents\", \"users\", or both. If not provided, defaults to agents and users."
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the current user in the suggestions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get suggestions for mentions (agents and users) based on a query string."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

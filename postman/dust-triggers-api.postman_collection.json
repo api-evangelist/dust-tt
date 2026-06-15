@@ -1,0 +1,398 @@
+{
+  "info": {
+    "_postman_id": "f27725ce-4a30-4602-a8d2-f6f587553a90",
+    "name": "Dust Triggers API",
+    "description": "Receive external webhook events that fan out to trigger Dust agent workflows.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:30.000Z",
+    "updatedAt": "2026-06-05T15:08:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f27725ce-4a30-4602-a8d2-f6f587553a90"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "triggers",
+                      "item": [
+                        {
+                          "name": "hooks",
+                          "item": [
+                            {
+                              "name": "{webhookSourceId}",
+                              "item": [
+                                {
+                                  "name": "Receive External Webhook to Trigger Flows",
+                                  "id": "19471a12-d283-4594-957c-0bde3a5b2136",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "triggers",
+                                        "hooks",
+                                        ":webhookSourceId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "58875471-113e-4069-b478-bced0520ae0b",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) Workspace ID"
+                                        },
+                                        {
+                                          "id": "08a15536-2074-4380-836c-9ea3768bdf75",
+                                          "key": "webhookSourceId",
+                                          "value": "<string>",
+                                          "description": "(Required) Webhook source ID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Skeleton endpoint that verifies workspace and webhook source and logs receipt."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8e9f1eae-41ee-40ac-8982-941dc7727b81",
+                                      "name": "Webhook received",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "triggers",
+                                            "hooks",
+                                            ":webhookSourceId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "webhookSourceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:30.000Z",
+                                      "updatedAt": "2026-06-05T15:08:30.000Z",
+                                      "uid": "35240-8e9f1eae-41ee-40ac-8982-941dc7727b81"
+                                    },
+                                    {
+                                      "id": "c8ff8c37-e672-4c8a-aab6-5039171051b7",
+                                      "name": "Invalid request",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "triggers",
+                                            "hooks",
+                                            ":webhookSourceId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "webhookSourceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:30.000Z",
+                                      "updatedAt": "2026-06-05T15:08:30.000Z",
+                                      "uid": "35240-c8ff8c37-e672-4c8a-aab6-5039171051b7"
+                                    },
+                                    {
+                                      "id": "06c50c70-da5e-4cf8-9fa8-62c7b9619b6b",
+                                      "name": "Workspace or webhook source not found",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "triggers",
+                                            "hooks",
+                                            ":webhookSourceId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "webhookSourceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:30.000Z",
+                                      "updatedAt": "2026-06-05T15:08:30.000Z",
+                                      "uid": "35240-06c50c70-da5e-4cf8-9fa8-62c7b9619b6b"
+                                    },
+                                    {
+                                      "id": "706ac312-5405-411f-9882-91e79183b84e",
+                                      "name": "Method not allowed",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/triggers/hooks/:webhookSourceId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "triggers",
+                                            "hooks",
+                                            ":webhookSourceId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "webhookSourceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:30.000Z",
+                                      "updatedAt": "2026-06-05T15:08:30.000Z",
+                                      "uid": "35240-706ac312-5405-411f-9882-91e79183b84e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:30.000Z",
+                                  "updatedAt": "2026-06-05T15:08:30.000Z",
+                                  "uid": "35240-19471a12-d283-4594-957c-0bde3a5b2136"
+                                }
+                              ],
+                              "id": "ee9d70f6-21d1-4056-ab73-81a0f80a8757",
+                              "createdAt": "2026-06-05T15:08:30.000Z",
+                              "updatedAt": "2026-06-05T15:08:30.000Z",
+                              "uid": "35240-ee9d70f6-21d1-4056-ab73-81a0f80a8757"
+                            }
+                          ],
+                          "id": "0b2253ba-e8f5-4d13-927c-bc5bc30a0fac",
+                          "createdAt": "2026-06-05T15:08:30.000Z",
+                          "updatedAt": "2026-06-05T15:08:30.000Z",
+                          "uid": "35240-0b2253ba-e8f5-4d13-927c-bc5bc30a0fac"
+                        }
+                      ],
+                      "id": "5daeb988-261f-4fc8-9044-428be33630a1",
+                      "createdAt": "2026-06-05T15:08:30.000Z",
+                      "updatedAt": "2026-06-05T15:08:30.000Z",
+                      "uid": "35240-5daeb988-261f-4fc8-9044-428be33630a1"
+                    }
+                  ],
+                  "id": "2d584d93-e541-4b8b-afb7-049741759d7f",
+                  "createdAt": "2026-06-05T15:08:30.000Z",
+                  "updatedAt": "2026-06-05T15:08:30.000Z",
+                  "uid": "35240-2d584d93-e541-4b8b-afb7-049741759d7f"
+                }
+              ],
+              "id": "d6943cac-c9cc-47de-afae-c8267f55cdc2",
+              "createdAt": "2026-06-05T15:08:30.000Z",
+              "updatedAt": "2026-06-05T15:08:30.000Z",
+              "uid": "35240-d6943cac-c9cc-47de-afae-c8267f55cdc2"
+            }
+          ],
+          "id": "9b72073c-4803-412d-b9a3-3c5ee04739e6",
+          "createdAt": "2026-06-05T15:08:30.000Z",
+          "updatedAt": "2026-06-05T15:08:30.000Z",
+          "uid": "35240-9b72073c-4803-412d-b9a3-3c5ee04739e6"
+        }
+      ],
+      "id": "0a7b0fa9-4921-4a29-862a-d1bd0728b3ac",
+      "createdAt": "2026-06-05T15:08:30.000Z",
+      "updatedAt": "2026-06-05T15:08:30.000Z",
+      "uid": "35240-0a7b0fa9-4921-4a29-862a-d1bd0728b3ac"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Search API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Nodes in the Workspace (streaming)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/search",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query (minimum 3 characters)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 25)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "viewType",
+                "value": "",
+                "type": "query",
+                "description": "Type of view to filter results"
+              },
+              {
+                "name": "spaceIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of space IDs to search in"
+              },
+              {
+                "name": "includeDataSources",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include data sources"
+              },
+              {
+                "name": "searchSourceUrls",
+                "value": "",
+                "type": "query",
+                "description": "Whether to search source URLs"
+              },
+              {
+                "name": "includeTools",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include tool results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for nodes in the workspace with SSE streaming"
+        },
+        {
+          "info": {
+            "name": "Search for Nodes in the Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/search",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for nodes in the workspace"
+        },
+        {
+          "info": {
+            "name": "Upload a Tool File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/search/tools/upload",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download and upload a file from a tool (MCP server) to Dust"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

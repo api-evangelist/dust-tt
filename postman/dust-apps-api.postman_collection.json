@@ -1,0 +1,1203 @@
+{
+  "info": {
+    "_postman_id": "6486e1ad-00a7-40b3-a6f3-65de00cdbf4e",
+    "name": "Dust Apps API",
+    "description": "Run Dust Apps \u2014 chained LLM/code blocks defined in the Dust Builder \u2014 and inspect their runs.\n\nContact Support:\n Name: Dust Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:18.000Z",
+    "updatedAt": "2026-06-05T15:08:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6486e1ad-00a7-40b3-a6f3-65de00cdbf4e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "w",
+              "item": [
+                {
+                  "name": "{wId}",
+                  "item": [
+                    {
+                      "name": "spaces",
+                      "item": [
+                        {
+                          "name": "{spaceId}",
+                          "item": [
+                            {
+                              "name": "apps",
+                              "item": [
+                                {
+                                  "name": "{aId}",
+                                  "item": [
+                                    {
+                                      "name": "runs",
+                                      "item": [
+                                        {
+                                          "name": "{runId}",
+                                          "item": [
+                                            {
+                                              "name": "Get an App Run",
+                                              "id": "87f84f30-2061-4b73-ab62-eb60e84af713",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "auth": {
+                                                  "type": "bearer",
+                                                  "bearer": [
+                                                    {
+                                                      "key": "token",
+                                                      "value": "{{bearerToken}}",
+                                                      "type": "string"
+                                                    }
+                                                  ]
+                                                },
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs/:runId",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs",
+                                                    ":runId"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "31ee6381-eefe-4e46-8827-0ba35c1ba626",
+                                                      "key": "wId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Unique string identifier for the workspace"
+                                                    },
+                                                    {
+                                                      "id": "a17d1768-39a2-4ca6-9d3c-5b1d70fba26b",
+                                                      "key": "spaceId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) ID of the space"
+                                                    },
+                                                    {
+                                                      "id": "76dad94d-5e8d-4193-ae76-39d4aa30e7c7",
+                                                      "key": "aId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) ID of the app"
+                                                    },
+                                                    {
+                                                      "id": "5980a372-7049-472a-bf3f-b28203676e1a",
+                                                      "key": "runId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) ID of the run"
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "Retrieve a run for an app in the space identified by {spaceId}."
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "eead1150-91aa-4db4-8213-73bae3ac20a7",
+                                                  "name": "The run",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs/:runId",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v1",
+                                                        "w",
+                                                        ":wId",
+                                                        "spaces",
+                                                        ":spaceId",
+                                                        "apps",
+                                                        ":aId",
+                                                        "runs",
+                                                        ":runId"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "wId"
+                                                        },
+                                                        {
+                                                          "key": "spaceId"
+                                                        },
+                                                        {
+                                                          "key": "aId"
+                                                        },
+                                                        {
+                                                          "key": "runId"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"run\": {\n    \"run_id\": \"<string>\",\n    \"app_id\": \"<string>\",\n    \"status\": {\n      \"run\": \"<string>\",\n      \"build\": \"<string>\"\n    },\n    \"results\": {},\n    \"specification_hash\": \"<string>\",\n    \"traces\": [\n      [\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        },\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        }\n      ],\n      [\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        },\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        }\n      ]\n    ]\n  }\n}",
+                                                  "createdAt": "2026-06-05T15:08:19.000Z",
+                                                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                                                  "uid": "35240-eead1150-91aa-4db4-8213-73bae3ac20a7"
+                                                },
+                                                {
+                                                  "id": "9ace6c2d-6377-47ba-879e-66c71fc9f346",
+                                                  "name": "Bad Request. Missing or invalid parameters.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs/:runId",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v1",
+                                                        "w",
+                                                        ":wId",
+                                                        "spaces",
+                                                        ":spaceId",
+                                                        "apps",
+                                                        ":aId",
+                                                        "runs",
+                                                        ":runId"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "wId"
+                                                        },
+                                                        {
+                                                          "key": "spaceId"
+                                                        },
+                                                        {
+                                                          "key": "aId"
+                                                        },
+                                                        {
+                                                          "key": "runId"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Bad Request",
+                                                  "code": 400,
+                                                  "_postman_previewlanguage": "text",
+                                                  "header": [],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": null,
+                                                  "createdAt": "2026-06-05T15:08:19.000Z",
+                                                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                                                  "uid": "35240-9ace6c2d-6377-47ba-879e-66c71fc9f346"
+                                                },
+                                                {
+                                                  "id": "3da7d500-7694-475f-be60-6d27d9b5bcda",
+                                                  "name": "Unauthorized. Invalid or missing authentication token.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs/:runId",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v1",
+                                                        "w",
+                                                        ":wId",
+                                                        "spaces",
+                                                        ":spaceId",
+                                                        "apps",
+                                                        ":aId",
+                                                        "runs",
+                                                        ":runId"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "wId"
+                                                        },
+                                                        {
+                                                          "key": "spaceId"
+                                                        },
+                                                        {
+                                                          "key": "aId"
+                                                        },
+                                                        {
+                                                          "key": "runId"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Unauthorized",
+                                                  "code": 401,
+                                                  "_postman_previewlanguage": "text",
+                                                  "header": [],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": null,
+                                                  "createdAt": "2026-06-05T15:08:19.000Z",
+                                                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                                                  "uid": "35240-3da7d500-7694-475f-be60-6d27d9b5bcda"
+                                                }
+                                              ],
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-87f84f30-2061-4b73-ab62-eb60e84af713"
+                                            }
+                                          ],
+                                          "id": "70b95734-5a02-470e-b6e4-767299ba6ca9",
+                                          "createdAt": "2026-06-05T15:08:19.000Z",
+                                          "updatedAt": "2026-06-05T15:08:19.000Z",
+                                          "uid": "35240-70b95734-5a02-470e-b6e4-767299ba6ca9"
+                                        },
+                                        {
+                                          "name": "Create an App Run",
+                                          "id": "5795dc84-4895-4a35-be2f-dda9e78d2c72",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "auth": {
+                                              "type": "bearer",
+                                              "bearer": [
+                                                {
+                                                  "key": "token",
+                                                  "value": "{{bearerToken}}",
+                                                  "type": "string"
+                                                }
+                                              ]
+                                            },
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "w",
+                                                ":wId",
+                                                "spaces",
+                                                ":spaceId",
+                                                "apps",
+                                                ":aId",
+                                                "runs"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "98317dd0-765c-48d2-9006-3916b3bdff34",
+                                                  "key": "wId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Unique string identifier for the workspace"
+                                                },
+                                                {
+                                                  "id": "54a97d0e-1ada-4a54-876d-bfd725b78067",
+                                                  "key": "spaceId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) ID of the space"
+                                                },
+                                                {
+                                                  "id": "d9a0144f-d061-476f-b6f8-4e0922ca37d1",
+                                                  "key": "aId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Unique identifier of the app"
+                                                }
+                                              ]
+                                            },
+                                            "description": "Create and execute a run for an app in the space specified by {spaceId}."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "c4a9688e-1288-4957-852e-f4bc9478f8f3",
+                                              "name": "App run created and executed successfully",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"run\": {\n    \"run_id\": \"<string>\",\n    \"app_id\": \"<string>\",\n    \"status\": {\n      \"run\": \"<string>\",\n      \"build\": \"<string>\"\n    },\n    \"results\": {},\n    \"specification_hash\": \"<string>\",\n    \"traces\": [\n      [\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        },\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        }\n      ],\n      [\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        },\n        {\n          \"timestamp\": \"<number>\",\n          \"trace\": {}\n        }\n      ]\n    ]\n  }\n}",
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-c4a9688e-1288-4957-852e-f4bc9478f8f3"
+                                            },
+                                            {
+                                              "id": "1e43322b-ced5-4a7c-8d24-36d4121b091d",
+                                              "name": "Bad Request. Missing or invalid parameters.",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Bad Request",
+                                              "code": 400,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-1e43322b-ced5-4a7c-8d24-36d4121b091d"
+                                            },
+                                            {
+                                              "id": "ac79b83c-ef79-4504-8547-a5d0683f0a74",
+                                              "name": "Unauthorized. Invalid or missing authentication token.",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Unauthorized",
+                                              "code": 401,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-ac79b83c-ef79-4504-8547-a5d0683f0a74"
+                                            },
+                                            {
+                                              "id": "dec2a583-363a-4e1d-9838-35346e9608b4",
+                                              "name": "Workspace or app not found.",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Not Found",
+                                              "code": 404,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-dec2a583-363a-4e1d-9838-35346e9608b4"
+                                            },
+                                            {
+                                              "id": "36314676-825e-49df-a64a-ad9f0eccc24a",
+                                              "name": "Method not supported.",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Method Not Allowed",
+                                              "code": 405,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-36314676-825e-49df-a64a-ad9f0eccc24a"
+                                            },
+                                            {
+                                              "id": "a792e967-09e6-4930-a465-f7ca96f5ea73",
+                                              "name": "Internal Server Error.",
+                                              "originalRequest": {
+                                                "method": "POST",
+                                                "header": [
+                                                  {
+                                                    "key": "Content-Type",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "body": {
+                                                  "mode": "raw",
+                                                  "raw": "{\n  \"specification_hash\": \"<string>\",\n  \"config\": {\n    \"model\": {\n      \"provider_id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"use_cache\": \"<boolean>\",\n      \"use_stream\": \"<boolean>\"\n    }\n  },\n  \"inputs\": [\n    {\n      \"minim_c49\": 72656138.46383286,\n      \"id0\": true\n    },\n    {\n      \"est952\": true,\n      \"ipsum690\": -60500639.5069295,\n      \"Duis89f\": \"labore\"\n    }\n  ],\n  \"stream\": \"<boolean>\",\n  \"blocking\": \"<boolean>\",\n  \"block_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                                  "options": {
+                                                    "raw": {
+                                                      "headerFamily": "json",
+                                                      "language": "json"
+                                                    }
+                                                  }
+                                                },
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps/:aId/runs",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "w",
+                                                    ":wId",
+                                                    "spaces",
+                                                    ":spaceId",
+                                                    "apps",
+                                                    ":aId",
+                                                    "runs"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "wId"
+                                                    },
+                                                    {
+                                                      "key": "spaceId"
+                                                    },
+                                                    {
+                                                      "key": "aId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Internal Server Error",
+                                              "code": 500,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:08:19.000Z",
+                                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                                              "uid": "35240-a792e967-09e6-4930-a465-f7ca96f5ea73"
+                                            }
+                                          ],
+                                          "createdAt": "2026-06-05T15:08:19.000Z",
+                                          "updatedAt": "2026-06-05T15:08:19.000Z",
+                                          "uid": "35240-5795dc84-4895-4a35-be2f-dda9e78d2c72"
+                                        }
+                                      ],
+                                      "id": "619f8f91-c05c-4ff4-8ffd-cb152ab14811",
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-619f8f91-c05c-4ff4-8ffd-cb152ab14811"
+                                    }
+                                  ],
+                                  "id": "25f63c0d-5961-4751-b1d5-f9d2083968ef",
+                                  "createdAt": "2026-06-05T15:08:19.000Z",
+                                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                                  "uid": "35240-25f63c0d-5961-4751-b1d5-f9d2083968ef"
+                                },
+                                {
+                                  "name": "List Apps",
+                                  "id": "a9d41555-fb58-47e9-be1c-9f9638841090",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "w",
+                                        ":wId",
+                                        "spaces",
+                                        ":spaceId",
+                                        "apps"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "876e869d-75fd-4cc1-a678-6fc3db196cef",
+                                          "key": "wId",
+                                          "value": "<string>",
+                                          "description": "(Required) Unique string identifier for the workspace"
+                                        },
+                                        {
+                                          "id": "7c0a808c-3433-44fd-82d5-71f8e0232fa6",
+                                          "key": "spaceId",
+                                          "value": "<string>",
+                                          "description": "(Required) ID of the space"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get all apps in the space identified by {spaceId}."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "af04ab69-4e13-4a8f-af2a-2ba5c8adbb57",
+                                      "name": "Apps of the workspace",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"apps\": [\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"savedSpecification\": \"<string>\",\n      \"savedConfig\": \"<string>\",\n      \"savedRun\": \"<string>\",\n      \"dustAPIProjectId\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"savedSpecification\": \"<string>\",\n      \"savedConfig\": \"<string>\",\n      \"savedRun\": \"<string>\",\n      \"dustAPIProjectId\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-af04ab69-4e13-4a8f-af2a-2ba5c8adbb57"
+                                    },
+                                    {
+                                      "id": "02a531d2-6cd7-453f-9d43-548fc2425812",
+                                      "name": "Bad Request. Missing or invalid parameters.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-02a531d2-6cd7-453f-9d43-548fc2425812"
+                                    },
+                                    {
+                                      "id": "f56b7980-d80d-4524-aeae-641efad17395",
+                                      "name": "Unauthorized. Invalid or missing authentication token.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-f56b7980-d80d-4524-aeae-641efad17395"
+                                    },
+                                    {
+                                      "id": "a94f97f2-5551-49b9-b9c4-690bfd27b383",
+                                      "name": "Workspace not found.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-a94f97f2-5551-49b9-b9c4-690bfd27b383"
+                                    },
+                                    {
+                                      "id": "5d8f1a9c-2e6e-4f60-9eab-ab776aa4ad7d",
+                                      "name": "Method not supported.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-5d8f1a9c-2e6e-4f60-9eab-ab776aa4ad7d"
+                                    },
+                                    {
+                                      "id": "3c7318d4-aff0-449a-84cc-558124073476",
+                                      "name": "Internal Server Error.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/w/:wId/spaces/:spaceId/apps",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "w",
+                                            ":wId",
+                                            "spaces",
+                                            ":spaceId",
+                                            "apps"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "wId"
+                                            },
+                                            {
+                                              "key": "spaceId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:08:19.000Z",
+                                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                                      "uid": "35240-3c7318d4-aff0-449a-84cc-558124073476"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:08:19.000Z",
+                                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                                  "uid": "35240-a9d41555-fb58-47e9-be1c-9f9638841090"
+                                }
+                              ],
+                              "id": "3618afaf-95f8-48f7-8d4d-7cf0fdf49d44",
+                              "createdAt": "2026-06-05T15:08:19.000Z",
+                              "updatedAt": "2026-06-05T15:08:19.000Z",
+                              "uid": "35240-3618afaf-95f8-48f7-8d4d-7cf0fdf49d44"
+                            }
+                          ],
+                          "id": "75da95ff-8770-4133-b02d-2ac5881dbcfe",
+                          "createdAt": "2026-06-05T15:08:19.000Z",
+                          "updatedAt": "2026-06-05T15:08:19.000Z",
+                          "uid": "35240-75da95ff-8770-4133-b02d-2ac5881dbcfe"
+                        }
+                      ],
+                      "id": "8533fa3d-ea34-463d-a373-1e0c6ee0d8d2",
+                      "createdAt": "2026-06-05T15:08:19.000Z",
+                      "updatedAt": "2026-06-05T15:08:19.000Z",
+                      "uid": "35240-8533fa3d-ea34-463d-a373-1e0c6ee0d8d2"
+                    }
+                  ],
+                  "id": "a6a702d1-c08e-4ac0-a77b-c3563a4c9b43",
+                  "createdAt": "2026-06-05T15:08:19.000Z",
+                  "updatedAt": "2026-06-05T15:08:19.000Z",
+                  "uid": "35240-a6a702d1-c08e-4ac0-a77b-c3563a4c9b43"
+                }
+              ],
+              "id": "366b4340-c484-4f55-a0fc-0dc5fbe311b8",
+              "createdAt": "2026-06-05T15:08:19.000Z",
+              "updatedAt": "2026-06-05T15:08:19.000Z",
+              "uid": "35240-366b4340-c484-4f55-a0fc-0dc5fbe311b8"
+            }
+          ],
+          "id": "fabb625d-752d-4fca-a0eb-0f541cda4388",
+          "createdAt": "2026-06-05T15:08:19.000Z",
+          "updatedAt": "2026-06-05T15:08:19.000Z",
+          "uid": "35240-fabb625d-752d-4fca-a0eb-0f541cda4388"
+        }
+      ],
+      "id": "90dc422b-4e49-4b61-942f-3f7e7510e847",
+      "createdAt": "2026-06-05T15:08:19.000Z",
+      "updatedAt": "2026-06-05T15:08:19.000Z",
+      "uid": "35240-90dc422b-4e49-4b61-942f-3f7e7510e847"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dust.tt"
+    }
+  ]
+}
