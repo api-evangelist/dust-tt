@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dust-agents-api-openapi.yml, openapi/dust-apps-api-openapi.yml, openapi/dust-conversations-api-openapi.yml,
+  openapi/dust-datasources-api-openapi.yml, openapi/dust-mcp-api-openapi.yml, openapi/dust-search-api-openapi.yml,
+  openapi/dust-skills-api-openapi.yml, openapi/dust-triggers-api-openapi.yml, openapi/dust-workspace-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Your DUST API key is a Bearer token.
+  sources:
+  - openapi/dust-agents-api-openapi.yml
+  - openapi/dust-apps-api-openapi.yml
+  - openapi/dust-conversations-api-openapi.yml
+  - openapi/dust-datasources-api-openapi.yml
+  - openapi/dust-mcp-api-openapi.yml
+  - openapi/dust-search-api-openapi.yml
+  - openapi/dust-skills-api-openapi.yml
+  - openapi/dust-triggers-api-openapi.yml
+  - openapi/dust-workspace-api-openapi.yml
