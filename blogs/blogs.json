@@ -2,13 +2,14 @@
   "repo": "dust-tt",
   "feeds": [
     {
-      "source": "https://blog.dust.tt",
+      "source": "https://dust.tt/academy",
+      "feed_url": "https://dust.tt/academy",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape",
-      "error": "redirects to dust.tt/blog which renders client-side; no post links extractable"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:37:59Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 2,
-  "agent_pulled": "2026-06-27"
+  "agent_pulled": "2026-07-04"
 }
