@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Dust Agents Spaces API
+  version: 1.0.2
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Spaces
+  description: Spaces
+paths:
+  /api/v1/w/{wId}/spaces:
+    get:
+      summary: List Available Spaces.
+      description: Retrieves a list of accessible spaces for the authenticated workspace.
+      tags:
+      - Spaces
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spaces of the workspace
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  spaces:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Space'
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Workspace not found.
+        '405':
+          description: Method not supported.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    Space:
+      type: object
+      properties:
+        sId:
+          type: string
+          description: Unique string identifier for the space
+        name:
+          type: string
+          description: Name of the space
+        kind:
+          type: string
+          enum:
+          - regular
+          - global
+          - system
+          - public
+          description: The kind of the space
+        groupIds:
+          type: array
+          items:
+            type: string
+          description: List of group IDs that have access to the space
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

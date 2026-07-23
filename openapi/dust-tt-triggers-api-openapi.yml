@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Dust Triggers API
+  title: Dust Agents Triggers API
   version: 1.0.2
-  description: Receive external webhook events that fan out to trigger Dust agent workflows.
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
   contact:
     name: Dust Support
     url: https://docs.dust.tt

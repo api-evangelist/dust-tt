@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Dust Workspace API
+  title: Dust Agents Workspace API
   version: 1.0.2
-  description: Export workspace analytics and read aggregated workspace usage data.
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
   contact:
     name: Dust Support
     url: https://docs.dust.tt

@@ -1,9 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Dust Data Sources API
+  title: Dust Agents Datasources API
   version: 1.0.2
-  description: Upsert, search, and manage documents, tables, and folders inside Dust data sources and data source views, organized
-    into workspace spaces.
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -16,324 +15,13 @@ servers:
 - url: https://eu.dust.tt
   description: Dust.tt API (europe-west1)
 tags:
-- name: DatasourceViews
-  description: Data source views
 - name: Datasources
   description: Data sources
-- name: Spaces
-  description: Spaces
 paths:
-  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}:
-    get:
-      tags:
-      - DatasourceViews
-      security:
-      - BearerAuth: []
-      summary: Get a Data Source View
-      parameters:
-      - name: wId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: spaceId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: dsvId
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DatasourceView'
-        '404':
-          description: Data source view not found
-        '405':
-          description: Method not allowed
-    patch:
-      tags:
-      - DatasourceViews
-      security:
-      - BearerAuth: []
-      summary: Update a Data Source View
-      parameters:
-      - name: wId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: spaceId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: dsvId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              oneOf:
-              - type: object
-                properties:
-                  parentsIn:
-                    type: array
-                    items:
-                      type: string
-                required:
-                - parentsIn
-              - type: object
-                properties:
-                  parentsToAdd:
-                    type: array
-                    items:
-                      type: string
-                  parentsToRemove:
-                    type: array
-                    items:
-                      type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DatasourceView'
-        '400':
-          description: Invalid request body
-        '403':
-          description: Unauthorized - Only admins or builders can administrate spaces
-        '404':
-          description: Data source view not found
-        '405':
-          description: Method not allowed
-        '500':
-          description: Internal server error - The data source view cannot be updated
-    delete:
-      tags:
-      - DatasourceViews
-      security:
-      - BearerAuth: []
-      summary: Delete a Data Source View
-      parameters:
-      - name: wId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: spaceId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: dsvId
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '204':
-          description: Data source view successfully deleted
-        '401':
-          description: Unauthorized - The data source view is in use and cannot be deleted
-        '403':
-          description: Forbidden - Only admins or builders can delete data source views
-        '404':
-          description: Data source view not found
-        '405':
-          description: Method not allowed
-  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}/search:
-    get:
-      summary: Search the Data Source View
-      description: Search the data source view identified by {dsvId} in the workspace identified by {wId}.
-      tags:
-      - DatasourceViews
-      security:
-      - BearerAuth: []
-      parameters:
-      - in: path
-        name: wId
-        required: true
-        description: ID of the workspace
-        schema:
-          type: string
-      - in: path
-        name: spaceId
-        required: true
-        description: ID of the space
-        schema:
-          type: string
-      - in: path
-        name: dsvId
-        required: true
-        description: ID of the data source view
-        schema:
-          type: string
-      - in: query
-        name: query
-        required: true
-        description: The search query
-        schema:
-          type: string
-      - in: query
-        name: top_k
-        required: true
-        description: The number of results to return
-        schema:
-          type: number
-      - in: query
-        name: full_text
-        required: true
-        description: Whether to return the full document content
-        schema:
-          type: boolean
-      - in: query
-        name: target_document_tokens
-        required: false
-        description: The number of tokens in the target document
-        schema:
-          type: number
-      - in: query
-        name: timestamp_gt
-        required: false
-        description: The timestamp to filter by
-        schema:
-          type: number
-      - in: query
-        name: timestamp_lt
-        required: false
-        description: The timestamp to filter by
-        schema:
-          type: number
-      - in: query
-        name: tags_in
-        required: false
-        description: The tags to filter by
-        schema:
-          type: string
-      - in: query
-        name: tags_not
-        required: false
-        description: The tags to filter by
-        schema:
-          type: string
-      - in: query
-        name: parents_in
-        required: false
-        description: The parents to filter by
-        schema:
-          type: string
-      - in: query
-        name: parents_not
-        required: false
-        description: The parents to filter by
-        schema:
-          type: string
-      responses:
-        '200':
-          description: The documents
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  documents:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: ID of the document
-                        title:
-                          type: string
-                          description: Title of the document
-                        content:
-                          type: string
-                          description: Content of the document
-                        tags:
-                          type: array
-                          items:
-                            type: string
-                          description: Tags of the document
-                        parents:
-                          type: array
-                          items:
-                            type: string
-                          description: Parents of the document
-                        timestamp:
-                          type: number
-                          description: Timestamp of the document
-                        data:
-                          type: object
-                          description: Data of the document
-                        score:
-                          type: number
-                          description: Score of the document
-        '400':
-          description: Invalid request error
-        '405':
-          description: Method not supported error
-  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views:
-    get:
-      summary: List Data Source Views
-      description: Retrieves a list of data source views for the specified space
-      tags:
-      - DatasourceViews
-      security:
-      - BearerAuth: []
-      parameters:
-      - in: path
-        name: wId
-        required: true
-        description: Unique string identifier for the workspace
-        schema:
-          type: string
-      - in: path
-        name: spaceId
-        required: true
-        description: ID of the space
-        schema:
-          type: string
-      responses:
-        '200':
-          description: List of data source views in the space
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  dataSourceViews:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/DatasourceView'
-        '400':
-          description: Bad Request. Missing or invalid parameters.
-        '401':
-          description: Unauthorized. Invalid or missing authentication token.
-        '404':
-          description: Workspace not found.
-        '405':
-          description: Method not supported.
-        '500':
-          description: Internal Server Error.
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/check_upsert_queue:
     get:
       summary: Check the Upsert Queue Status for a Data Source
-      description: Returns the number of running document upsert workflows for this data source. This endpoint is only accessible
-        with system API keys (e.g., from connectors).
+      description: Returns the number of running document upsert workflows for this data source. This endpoint is only accessible with system API keys (e.g., from connectors).
       tags:
       - Datasources
       parameters:
@@ -496,8 +184,7 @@ paths:
                   description: Unix timestamp (in milliseconds) for the document (e.g. 1736365559000).
                 light_document_output:
                   type: boolean
-                  description: If true, a lightweight version of the document will be returned in the response (excluding
-                    the text, chunks and vectors). Defaults to false.
+                  description: If true, a lightweight version of the document will be returned in the response (excluding the text, chunks and vectors). Defaults to false.
                 async:
                   type: boolean
                   description: If true, the upsert operation will be performed asynchronously.
@@ -588,8 +275,7 @@ paths:
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}/parents:
     post:
       summary: Update the Parents of a Document
-      description: Update the parents of a document in the data source identified by {dsId} in the workspace identified by
-        {wId}.
+      description: Update the parents of a document in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Datasources
       parameters:
@@ -633,8 +319,7 @@ paths:
                   type: array
                   items:
                     type: string
-                  description: 'Document and ancestor ids, with the following convention: parents[0] === documentId, parents[1]
-                    === parentId, and then ancestors ids in order'
+                  description: 'Document and ancestor ids, with the following convention: parents[0] === documentId, parents[1] === parentId, and then ancestors ids in order'
       responses:
         '200':
           description: The parents were updated
@@ -928,8 +613,7 @@ paths:
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows/{rId}:
     get:
       summary: Get a Row
-      description: Get a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified
-        by {wId}.
+      description: Get a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Datasources
       security:
@@ -978,8 +662,7 @@ paths:
           description: Method not supported
     delete:
       summary: Delete a Row
-      description: Delete a row in the table identified by {tId} in the data source identified by {dsId} in the workspace
-        identified by {wId}.
+      description: Delete a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Datasources
       security:
@@ -1025,8 +708,7 @@ paths:
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows:
     get:
       summary: List Rows
-      description: List rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified
-        by {wId}.
+      description: List rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Datasources
       security:
@@ -1079,8 +761,7 @@ paths:
           description: Method not supported
     post:
       summary: Upsert Rows
-      description: Upsert rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified
-        by {wId}.
+      description: Upsert rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Datasources
       security:
@@ -1302,45 +983,84 @@ paths:
           description: The workspace was not found
         '405':
           description: Method not supported
-  /api/v1/w/{wId}/spaces:
-    get:
-      summary: List Available Spaces.
-      description: Retrieves a list of accessible spaces for the authenticated workspace.
-      tags:
-      - Spaces
-      security:
-      - BearerAuth: []
-      parameters:
-      - in: path
-        name: wId
-        required: true
-        description: Unique string identifier for the workspace
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Spaces of the workspace
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  spaces:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Space'
-        '400':
-          description: Bad Request. Missing or invalid parameters.
-        '401':
-          description: Unauthorized. Invalid or missing authentication token.
-        '404':
-          description: Workspace not found.
-        '405':
-          description: Method not supported.
-        '500':
-          description: Internal Server Error.
 components:
   schemas:
+    Table:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the table
+          example: Roi data
+          deprecated: true
+        title:
+          type: string
+          description: Title of the table
+          example: ROI Data
+        table_id:
+          type: string
+          description: Unique identifier for the table
+          example: 1234f4567c
+        description:
+          type: string
+          description: Description of the table
+          example: roi data for Q1
+        mime_type:
+          type: string
+          description: MIME type of the table
+          example: text/csv
+        schema:
+          type: array
+          description: Array of column definitions
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the column
+                example: roi
+              value_type:
+                type: string
+                description: Data type of the column
+                enum:
+                - text
+                - int
+                - float
+                - bool
+                - date
+                example: int
+              possible_values:
+                type: array
+                description: Array of possible values for the column (null if unrestricted)
+                items:
+                  type: string
+                nullable: true
+                example:
+                - '1'
+                - '2'
+                - '3'
+        timestamp:
+          type: number
+          description: Unix timestamp of table creation/modification
+          example: 1732810375150
+        tags:
+          type: array
+          description: Array of tags associated with the table
+          items:
+            type: string
+        parent_id:
+          type: string
+          description: ID of the table parent
+          items:
+            type: string
+          example: 1234f4567c
+        parents:
+          type: array
+          description: Array of parent table IDs
+          items:
+            type: string
+          example:
+          - 1234f4567c
     Datasource:
       type: object
       properties:
@@ -1376,56 +1096,23 @@ components:
           type: boolean
           description: Whether this datasource is selected by default for agents
           example: true
-    DatasourceView:
+    Section:
       type: object
+      description: A section of a document that can contain nested sections
       properties:
-        category:
+        prefix:
           type: string
-          enum:
-          - managed
-          - folder
-          - website
-          - apps
-          description: The category of the data source view
-        createdAt:
-          type: number
-          description: Timestamp of when the data source view was created
-        dataSource:
-          $ref: '#/components/schemas/Datasource'
-        editedByUser:
-          type: object
-          description: The user who last edited the data source view
-          properties:
-            fullName:
-              type: string
-              description: Full name of the user
-            editedAt:
-              type: number
-              description: Timestamp of when the data source view was last edited by the user
-        id:
-          type: number
-          description: Unique identifier for the data source view
-        kind:
+          nullable: true
+          description: Optional prefix text for the section
+        content:
           type: string
-          enum:
-          - default
-          - custom
-          description: The kind of the data source view
-        parentsIn:
+          nullable: true
+          description: Optional content text for the section
+        sections:
           type: array
           items:
-            type: string
-          description: List of IDs included in this view, null if complete data source is taken
-          nullable: true
-        sId:
-          type: string
-          description: Unique string identifier for the data source view
-        updatedAt:
-          type: number
-          description: Timestamp of when the data source view was last updated
-        spaceId:
-          type: string
-          description: ID of the space containing the data source view
+            $ref: '#/components/schemas/Section'
+          description: Array of nested sections
     Document:
       type: object
       properties:
@@ -1503,127 +1190,11 @@ components:
             - 0.8
         text:
           type: string
-          example: This is the full text content of the document. It contains multiple paragraphs and covers various topics
-            related to customer support.
+          example: This is the full text content of the document. It contains multiple paragraphs and covers various topics related to customer support.
         token_count:
           type: number
           nullable: true
           example: 150
-    Section:
-      type: object
-      description: A section of a document that can contain nested sections
-      properties:
-        prefix:
-          type: string
-          nullable: true
-          description: Optional prefix text for the section
-        content:
-          type: string
-          nullable: true
-          description: Optional content text for the section
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-          description: Array of nested sections
-    Space:
-      type: object
-      properties:
-        sId:
-          type: string
-          description: Unique string identifier for the space
-        name:
-          type: string
-          description: Name of the space
-        kind:
-          type: string
-          enum:
-          - regular
-          - global
-          - system
-          - public
-          description: The kind of the space
-        groupIds:
-          type: array
-          items:
-            type: string
-          description: List of group IDs that have access to the space
-    Table:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the table
-          example: Roi data
-          deprecated: true
-        title:
-          type: string
-          description: Title of the table
-          example: ROI Data
-        table_id:
-          type: string
-          description: Unique identifier for the table
-          example: 1234f4567c
-        description:
-          type: string
-          description: Description of the table
-          example: roi data for Q1
-        mime_type:
-          type: string
-          description: MIME type of the table
-          example: text/csv
-        schema:
-          type: array
-          description: Array of column definitions
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the column
-                example: roi
-              value_type:
-                type: string
-                description: Data type of the column
-                enum:
-                - text
-                - int
-                - float
-                - bool
-                - date
-                example: int
-              possible_values:
-                type: array
-                description: Array of possible values for the column (null if unrestricted)
-                items:
-                  type: string
-                nullable: true
-                example:
-                - '1'
-                - '2'
-                - '3'
-        timestamp:
-          type: number
-          description: Unix timestamp of table creation/modification
-          example: 1732810375150
-        tags:
-          type: array
-          description: Array of tags associated with the table
-          items:
-            type: string
-        parent_id:
-          type: string
-          description: ID of the table parent
-          items:
-            type: string
-          example: 1234f4567c
-        parents:
-          type: array
-          description: Array of parent table IDs
-          items:
-            type: string
-          example:
-          - 1234f4567c
   securitySchemes:
     BearerAuth:
       type: http

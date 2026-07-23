@@ -1,0 +1,240 @@
+openapi: 3.0.0
+info:
+  title: Dust Agents Mentions API
+  version: 1.0.2
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Mentions
+  description: Mentions
+paths:
+  /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions:
+    get:
+      summary: Get Mention Suggestions for a Conversation
+      description: Get suggestions for mentions (agents and users) based on a query string, scoped to a specific conversation.
+      tags:
+      - Mentions
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: cId
+        required: true
+        description: ID of the conversation
+        schema:
+          type: string
+      - in: query
+        name: query
+        required: true
+        description: Search query string to filter suggestions
+        schema:
+          type: string
+      - in: query
+        name: select
+        required: false
+        description: Array of mention types to include. Can be "agents", "users", or both. If not provided, defaults to agents and users.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - agents
+            - users
+      - in: query
+        name: current
+        required: false
+        description: Whether to include the current user in the suggestions.
+        schema:
+          type: boolean
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: List of mention suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suggestions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RichMention'
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Conversation not found.
+        '405':
+          description: Method not supported. Only GET is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/mentions/parse:
+    post:
+      summary: Parse Mentions in Markdown Text
+      description: 'Parses pasted text containing @ mentions and converts them to the proper mention format.
+
+        Matches @agentName or @userName patterns against available agents and users.
+
+        '
+      tags:
+      - Mentions
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - markdown
+              properties:
+                markdown:
+                  type: string
+                  description: Markdown text containing @ mentions to parse
+                  example: Hello @JohnDoe, can you help with @MyAgent?
+      responses:
+        '200':
+          description: Parsed markdown with mentions converted to proper format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  markdown:
+                    type: string
+                    description: Processed markdown text with mentions converted to serialized format
+        '400':
+          description: Bad Request. Missing or invalid request body.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '405':
+          description: Method not supported. Only POST is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/mentions/suggestions:
+    get:
+      summary: Get Mention Suggestions
+      description: Get suggestions for mentions (agents and users) based on a query string.
+      tags:
+      - Mentions
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: query
+        name: query
+        required: true
+        description: Search query string to filter suggestions
+        schema:
+          type: string
+      - in: query
+        name: select
+        required: false
+        description: Array of mention types to include. Can be "agents", "users", or both. If not provided, defaults to agents and users.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - agents
+            - users
+      - in: query
+        name: current
+        required: false
+        description: Whether to include the current user in the suggestions.
+        schema:
+          type: boolean
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: List of mention suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suggestions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RichMention'
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '405':
+          description: Method not supported. Only GET is expected.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    RichMention:
+      type: object
+      description: A rich mention suggestion containing detailed information about an agent or user
+      required:
+      - id
+      - type
+      - label
+      - pictureUrl
+      - description
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the mention (agent sId or user sId)
+          example: 7f3a9c2b1e
+        type:
+          type: string
+          enum:
+          - agent
+          - user
+          description: Type of the mention
+          example: agent
+        label:
+          type: string
+          description: Display label for the mention
+          example: My Assistant
+        pictureUrl:
+          type: string
+          description: URL of the profile picture
+          example: https://example.com/avatar.png
+        description:
+          type: string
+          description: Description of the mention (agent description or user email)
+          example: A helpful AI assistant
+        userFavorite:
+          type: boolean
+          nullable: true
+          description: Whether the agent is marked as a favorite by the user (only for agent mentions)
+          example: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

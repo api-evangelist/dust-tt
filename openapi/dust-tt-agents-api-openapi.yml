@@ -83,8 +83,7 @@ paths:
         '400':
           description: Bad Request. Missing or invalid parameters.
         '401':
-          description: Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without
-            authentication.
+          description: Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without authentication.
         '404':
           description: Workspace not found.
         '405':
@@ -156,8 +155,7 @@ paths:
       - in: query
         name: variant
         required: false
-        description: Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete
-          actions/tools configuration
+        description: Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration
         schema:
           type: string
           enum:
@@ -328,8 +326,7 @@ paths:
           description: Internal Server Error.
     delete:
       summary: Archive Agent Configuration
-      description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is
-        soft-archived and triggers/editor-group memberships associated with it are disabled.
+      description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled.
       tags:
       - Agents
       parameters:

@@ -1,0 +1,418 @@
+openapi: 3.0.0
+info:
+  title: Dust Agents DatasourceViews API
+  version: 1.0.2
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: DatasourceViews
+  description: Data source views
+paths:
+  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}:
+    get:
+      tags:
+      - DatasourceViews
+      security:
+      - BearerAuth: []
+      summary: Get a Data Source View
+      parameters:
+      - name: wId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: spaceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: dsvId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasourceView'
+        '404':
+          description: Data source view not found
+        '405':
+          description: Method not allowed
+    patch:
+      tags:
+      - DatasourceViews
+      security:
+      - BearerAuth: []
+      summary: Update a Data Source View
+      parameters:
+      - name: wId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: spaceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: dsvId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              oneOf:
+              - type: object
+                properties:
+                  parentsIn:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - parentsIn
+              - type: object
+                properties:
+                  parentsToAdd:
+                    type: array
+                    items:
+                      type: string
+                  parentsToRemove:
+                    type: array
+                    items:
+                      type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasourceView'
+        '400':
+          description: Invalid request body
+        '403':
+          description: Unauthorized - Only admins or builders can administrate spaces
+        '404':
+          description: Data source view not found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal server error - The data source view cannot be updated
+    delete:
+      tags:
+      - DatasourceViews
+      security:
+      - BearerAuth: []
+      summary: Delete a Data Source View
+      parameters:
+      - name: wId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: spaceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: dsvId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Data source view successfully deleted
+        '401':
+          description: Unauthorized - The data source view is in use and cannot be deleted
+        '403':
+          description: Forbidden - Only admins or builders can delete data source views
+        '404':
+          description: Data source view not found
+        '405':
+          description: Method not allowed
+  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}/search:
+    get:
+      summary: Search the Data Source View
+      description: Search the data source view identified by {dsvId} in the workspace identified by {wId}.
+      tags:
+      - DatasourceViews
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: spaceId
+        required: true
+        description: ID of the space
+        schema:
+          type: string
+      - in: path
+        name: dsvId
+        required: true
+        description: ID of the data source view
+        schema:
+          type: string
+      - in: query
+        name: query
+        required: true
+        description: The search query
+        schema:
+          type: string
+      - in: query
+        name: top_k
+        required: true
+        description: The number of results to return
+        schema:
+          type: number
+      - in: query
+        name: full_text
+        required: true
+        description: Whether to return the full document content
+        schema:
+          type: boolean
+      - in: query
+        name: target_document_tokens
+        required: false
+        description: The number of tokens in the target document
+        schema:
+          type: number
+      - in: query
+        name: timestamp_gt
+        required: false
+        description: The timestamp to filter by
+        schema:
+          type: number
+      - in: query
+        name: timestamp_lt
+        required: false
+        description: The timestamp to filter by
+        schema:
+          type: number
+      - in: query
+        name: tags_in
+        required: false
+        description: The tags to filter by
+        schema:
+          type: string
+      - in: query
+        name: tags_not
+        required: false
+        description: The tags to filter by
+        schema:
+          type: string
+      - in: query
+        name: parents_in
+        required: false
+        description: The parents to filter by
+        schema:
+          type: string
+      - in: query
+        name: parents_not
+        required: false
+        description: The parents to filter by
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: ID of the document
+                        title:
+                          type: string
+                          description: Title of the document
+                        content:
+                          type: string
+                          description: Content of the document
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                          description: Tags of the document
+                        parents:
+                          type: array
+                          items:
+                            type: string
+                          description: Parents of the document
+                        timestamp:
+                          type: number
+                          description: Timestamp of the document
+                        data:
+                          type: object
+                          description: Data of the document
+                        score:
+                          type: number
+                          description: Score of the document
+        '400':
+          description: Invalid request error
+        '405':
+          description: Method not supported error
+  /api/v1/w/{wId}/spaces/{spaceId}/data_source_views:
+    get:
+      summary: List Data Source Views
+      description: Retrieves a list of data source views for the specified space
+      tags:
+      - DatasourceViews
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: path
+        name: spaceId
+        required: true
+        description: ID of the space
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of data source views in the space
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataSourceViews:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DatasourceView'
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Workspace not found.
+        '405':
+          description: Method not supported.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    Datasource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the datasource
+          example: 12345
+        createdAt:
+          type: integer
+          description: Timestamp of when the datasource was created
+          example: 1625097600
+        name:
+          type: string
+          description: Name of the datasource
+          example: Customer Knowledge Base
+        description:
+          type: string
+          description: Description of the datasource
+          example: Contains all customer-related information and FAQs
+        dustAPIProjectId:
+          type: string
+          description: ID of the associated Dust API project
+          example: 5e9d8c7b6a
+        connectorId:
+          type: string
+          description: ID of the connector used for this datasource
+          example: 1f3e5d7c9b
+        connectorProvider:
+          type: string
+          description: Provider of the connector (e.g., 'webcrawler')
+          example: webcrawler
+        assistantDefaultSelected:
+          type: boolean
+          description: Whether this datasource is selected by default for agents
+          example: true
+    DatasourceView:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+          - managed
+          - folder
+          - website
+          - apps
+          description: The category of the data source view
+        createdAt:
+          type: number
+          description: Timestamp of when the data source view was created
+        dataSource:
+          $ref: '#/components/schemas/Datasource'
+        editedByUser:
+          type: object
+          description: The user who last edited the data source view
+          properties:
+            fullName:
+              type: string
+              description: Full name of the user
+            editedAt:
+              type: number
+              description: Timestamp of when the data source view was last edited by the user
+        id:
+          type: number
+          description: Unique identifier for the data source view
+        kind:
+          type: string
+          enum:
+          - default
+          - custom
+          description: The kind of the data source view
+        parentsIn:
+          type: array
+          items:
+            type: string
+          description: List of IDs included in this view, null if complete data source is taken
+          nullable: true
+        sId:
+          type: string
+          description: Unique string identifier for the data source view
+        updatedAt:
+          type: number
+          description: Timestamp of when the data source view was last updated
+        spaceId:
+          type: string
+          description: ID of the space containing the data source view
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.
