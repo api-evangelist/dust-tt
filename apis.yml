@@ -1,182 +1,342 @@
 aid: dust-tt
 url: https://raw.githubusercontent.com/api-evangelist/dust-tt/refs/heads/main/apis.yml
 apis:
-  - aid: dust-tt:dust-agents-api
-    name: Dust Agents API
-    tags:
-      - Agents
-      - AI
-      - Artificial Intelligence
-      - Dust
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-agents-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/dust-agent-configuration-schema.json
-        type: JSONSchema
-      - url: json-ld/dust-context.jsonld
-        type: JSONLD
-    description: |
-      Create, list, retrieve, update, archive, search, import, and export Dust agent configurations. An agent in Dust is
-      a named, versioned configuration of an LLM (OpenAI, Anthropic, Google, Mistral) plus instructions, tools, and
-      data-source bindings that can be invoked from conversations, Slack, the Chrome extension, or programmatically.
-  - aid: dust-tt:dust-conversations-api
-    name: Dust Conversations API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Conversations
-      - Dust
-      - Messages
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-conversations-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/dust-conversation-schema.json
-        type: JSONSchema
-    description: |
-      Drive multi-turn conversations with Dust agents. Create conversations, post user messages, stream agent events
-      over SSE, attach content fragments (file/page/snippet attachments), retrieve and download conversation-scoped
-      files, submit and delete message feedback, and resolve @mention suggestions for agent routing.
-  - aid: dust-tt:dust-datasources-api
-    name: Dust Data Sources API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Data Sources
-      - Dust
-      - RAG
-      - Search
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-datasources-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/dust-datasource-schema.json
-        type: JSONSchema
-      - url: json-schema/dust-document-schema.json
-        type: JSONSchema
-    description: |
-      Manage Dust data sources, data source views, spaces, documents, tables, and folders. Upsert documents and table
-      rows programmatically, search semantically, manage hierarchies and parents, and check the asynchronous upsert
-      queue. Data sources are the retrieval layer behind every Dust agent.
-  - aid: dust-tt:dust-mcp-api
-    name: Dust MCP API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Dust
-      - MCP
-      - Tools
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-mcp-api-openapi.yml
-        type: OpenAPI
-    description: |
-      Register a client-side Model Context Protocol server with a Dust workspace, stream MCP tool-call requests over
-      SSE, return tool execution results back to Dust agents, and keep the server's heartbeat alive. Also lists the
-      MCP server views available in a space.
-  - aid: dust-tt:dust-apps-api
-    name: Dust Apps API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Apps
-      - Dust
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-apps-api-openapi.yml
-        type: OpenAPI
-    description: |
-      List Dust Apps in a space and create or retrieve App runs. Dust Apps are chained-block LLM/code pipelines
-      defined in the Dust Builder and executable as parameterized "functions" from agents, code, or webhooks.
-  - aid: dust-tt:dust-search-api
-    name: Dust Search API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Dust
-      - Search
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-search-api-openapi.yml
-        type: OpenAPI
-    description: |
-      Search nodes (documents, tables, folders, conversations) across an entire Dust workspace. Streaming SSE
-      variant for incremental result delivery, plus a tool-file upload endpoint backing search-related tool calls.
-  - aid: dust-tt:dust-skills-api
-    name: Dust Skills API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Dust
-      - Skills
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-skills-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/dust-skill-schema.json
-        type: JSONSchema
-    description: |
-      List the skill bundles installed in a Dust workspace and import new skills from uploaded files. Skills are
-      reusable instruction + tool packs that agents can attach to.
-  - aid: dust-tt:dust-triggers-api
-    name: Dust Triggers API
-    tags:
-      - AI
-      - Artificial Intelligence
-      - Dust
-      - Triggers
-      - Webhooks
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-triggers-api-openapi.yml
-        type: OpenAPI
-    description: |
-      Receive an external webhook on a registered Dust webhook source and fan it out to trigger agent workflows
-      (e.g. run an agent when a GitHub issue opens or a Notion page changes).
-  - aid: dust-tt:dust-workspace-api
-    name: Dust Workspace API
-    tags:
-      - Administration
-      - AI
-      - Analytics
-      - Artificial Intelligence
-      - Dust
-      - FinOps
-    humanURL: https://docs.dust.tt/reference
-    baseURL: https://dust.tt/api/v1
-    properties:
-      - url: https://docs.dust.tt/reference
-        type: Documentation
-      - url: openapi/dust-workspace-api-openapi.yml
-        type: OpenAPI
-    description: |
-      Export workspace analytics and pull aggregated workspace usage data for chargeback, capacity planning, and
-      FinOps reporting against Dust seat and programmatic-API consumption.
+- aid: dust-tt:dust-tt-agents-api
+  name: Dust Agents API
+  description: Agent configurations
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-agents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-apps-api
+  name: Dust Apps API
+  description: Dust apps
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-apps-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-conversations-api
+  name: Dust Conversations API
+  description: Conversations
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-datasources-api
+  name: Dust Datasources API
+  description: Data sources
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Datasources
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-datasources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-datasourceviews-api
+  name: Dust DatasourceViews API
+  description: Data source views
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - DatasourceViews
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-datasourceviews-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-feedbacks-api
+  name: Dust Feedbacks API
+  description: Message feedbacks
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Feedbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-feedbacks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-mcp-api
+  name: Dust MCP API
+  description: MCP servers
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - MCP
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-mcp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-mentions-api
+  name: Dust Mentions API
+  description: Mentions
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Mentions
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-mentions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-search-api
+  name: Dust Search API
+  description: Search
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-skills-api
+  name: Dust Skills API
+  description: Skills
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Skills
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-skills-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-spaces-api
+  name: Dust Spaces API
+  description: Spaces
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Spaces
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-spaces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-tools-api
+  name: Dust Tools API
+  description: Tools
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-tools-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-triggers-api
+  name: Dust Triggers API
+  description: Triggers
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-workspace-api
+  name: Dust Workspace API
+  description: Workspace
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Workspace
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-workspace-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
 name: Dust
 tags:
   - Agents
@@ -192,7 +352,20 @@ tags:
   - Multi-Model
   - RAG
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dust-tt.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
