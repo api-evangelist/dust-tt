@@ -1,0 +1,229 @@
+openapi: 3.0.0
+info:
+  title: Dust Workspace API
+  version: 1.0.2
+  description: Export workspace analytics and read aggregated workspace usage data.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Workspace
+  description: Workspace
+paths:
+  /api/v1/w/{wId}/analytics/export:
+    get:
+      summary: Export Workspace Analytics
+      description: Export analytics data for the workspace identified by {wId} in CSV or JSON format.
+      tags:
+      - Workspace
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: query
+        name: table
+        required: true
+        description: 'The analytics table to export:
+
+          - "usage_metrics": Messages, conversations, and active users over time.
+
+          - "active_users": Daily, weekly, and monthly active user counts.
+
+          - "source": Message volume by context origin (web, slack, etc.).
+
+          - "agents": Top agents by message count.
+
+          - "users": Top users by message count.
+
+          - "skill_usage": Skill executions and unique users over time.
+
+          - "tool_usage": Tool executions and unique users over time.
+
+          - "messages": Detailed message-level logs.
+
+          '
+        schema:
+          type: string
+          enum:
+          - usage_metrics
+          - active_users
+          - source
+          - agents
+          - users
+          - skill_usage
+          - tool_usage
+          - messages
+      - in: query
+        name: startDate
+        required: true
+        description: Start date in YYYY-MM-DD format
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: endDate
+        required: true
+        description: End date in YYYY-MM-DD format
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: timezone
+        required: false
+        description: IANA timezone name (defaults to UTC)
+        schema:
+          type: string
+      - in: query
+        name: format
+        required: false
+        description: Output format (defaults to csv)
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+      responses:
+        '200':
+          description: The analytics data in CSV or JSON format
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request query parameters
+        '403':
+          description: Requires an API key with admin scope
+        '405':
+          description: Method not supported
+  /api/v1/w/{wId}/workspace-usage:
+    get:
+      summary: Get Workspace Usage Data
+      deprecated: true
+      description: 'Deprecated: this endpoint will be removed after 2026-06-01.
+
+        Use GET /api/v1/w/{wId}/analytics/export instead.
+
+
+        Get usage data for the workspace identified by {wId} in CSV or JSON format.
+
+        '
+      tags:
+      - Workspace
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: query
+        name: start
+        required: true
+        description: The start date in YYYY-MM or YYYY-MM-DD format
+        schema:
+          type: string
+      - in: query
+        name: end
+        required: false
+        description: The end date in YYYY-MM or YYYY-MM-DD format (required when mode is 'range')
+        schema:
+          type: string
+      - in: query
+        name: mode
+        required: true
+        description: The mode of date range selection
+        schema:
+          type: string
+          enum:
+          - month
+          - range
+      - in: query
+        name: format
+        required: false
+        description: The output format of the data (defaults to 'csv')
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+      - in: query
+        name: table
+        required: true
+        description: 'The name of the usage table to retrieve:
+
+          - "users": The list of users categorized by their activity level.
+
+          - "assistant_messages": The list of messages sent by users including the mentioned agents.
+
+          - "builders": The list of builders categorized by their activity level.
+
+          - "assistants": The list of workspace agents and their corresponding usage.
+
+          - "feedback": The list of feedback given by users on the agent messages.
+
+          - "all": A concatenation of all the above tables.
+
+          '
+        schema:
+          type: string
+          enum:
+          - users
+          - assistant_messages
+          - builders
+          - assistants
+          - feedback
+          - all
+      - in: query
+        name: includeInactive
+        required: false
+        description: Include users and assistants with zero messages in the export (defaults to false)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The usage data in CSV or JSON format, or a ZIP of multiple CSVs if table is equal to "all"
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid request query
+        '403':
+          description: The workspace does not have access to the usage data API
+        '404':
+          description: The workspace was not found
+        '405':
+          description: Method not supported
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

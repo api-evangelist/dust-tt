@@ -1,0 +1,629 @@
+openapi: 3.0.0
+info:
+  title: Dust Agents API
+  version: 1.0.2
+  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Agents
+  description: Agent configurations
+paths:
+  /api/v1/w/{wId}/assistant/agent_configurations:
+    get:
+      summary: List Agents
+      description: Get the agent configurations for the workspace identified by {wId}.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: query
+        name: view
+        required: false
+        description: 'The view to use when retrieving agents:
+
+          - all: Retrieves all non-private agents (default if not authenticated)
+
+          - list: Retrieves all active agents accessible to the user (default if authenticated)
+
+          - published: Retrieves all agents with published scope
+
+          - global: Retrieves all global agents
+
+          - favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)
+
+          '
+        schema:
+          type: string
+          enum:
+          - all
+          - list
+          - workspace
+          - published
+          - global
+          - favorites
+      - in: query
+        name: withAuthors
+        required: false
+        description: When set to 'true', includes recent authors information for each agent
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Agent configurations for the workspace
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agentConfigurations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AgentConfiguration'
+                    description: Array of agent configurations, optionally including lastAuthors if withAuthors=true
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without
+            authentication.
+        '404':
+          description: Workspace not found.
+        '405':
+          description: Method not supported. Only GET is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/agent_configurations/{sId}/export/yaml:
+    get:
+      summary: Export Agent Configuration as YAML
+      description: Download the agent configuration identified by {sId} as a YAML file.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: sId
+        required: true
+        description: ID of the agent configuration
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: The agent configuration as a downloadable YAML file
+          content:
+            text/yaml:
+              schema:
+                type: string
+          headers:
+            Content-Disposition:
+              description: Attachment with suggested filename
+              schema:
+                type: string
+        '400':
+          description: Bad Request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Agent configuration not found.
+        '405':
+          description: Method not supported. Only GET is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/agent_configurations/{sId}:
+    get:
+      summary: Get Agent Configuration
+      description: Retrieve the agent configuration identified by {sId} in the workspace identified by {wId}.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: sId
+        required: true
+        description: ID of the agent configuration
+        schema:
+          type: string
+      - in: query
+        name: variant
+        required: false
+        description: Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete
+          actions/tools configuration
+        schema:
+          type: string
+          enum:
+          - light
+          - full
+          default: light
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved agent configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agentConfiguration:
+                    $ref: '#/components/schemas/AgentConfiguration'
+        '400':
+          description: Bad Request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Agent configuration not found.
+        '405':
+          description: Method not supported. Only GET or PATCH is expected.
+        '500':
+          description: Internal Server Error.
+    patch:
+      summary: Update Agent Configuration
+      description: Update the agent configuration identified by {sId} in the workspace identified by {wId}.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: sId
+        required: true
+        description: ID of the agent configuration
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userFavorite:
+                  type: boolean
+                agent:
+                  type: object
+                  properties:
+                    handle:
+                      type: string
+                    description:
+                      type: string
+                    scope:
+                      type: string
+                      enum:
+                      - visible
+                      - hidden
+                    avatar_url:
+                      type: string
+                    max_steps_per_run:
+                      type: number
+                    visualization_enabled:
+                      type: boolean
+                instructions:
+                  type: string
+                generation_settings:
+                  type: object
+                  properties:
+                    model_id:
+                      type: string
+                    provider_id:
+                      type: string
+                    temperature:
+                      type: number
+                    reasoning_effort:
+                      type: string
+                tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      kind:
+                        type: string
+                        enum:
+                        - standard
+                        - protected
+                editors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_id:
+                        type: string
+                      email:
+                        type: string
+                      full_name:
+                        type: string
+                skills:
+                  type: array
+                  description: Replaces the skills enabled on the agent configuration.
+                  items:
+                    type: object
+                    required:
+                    - sId
+                    - name
+                    properties:
+                      sId:
+                        type: string
+                      name:
+                        type: string
+                toolset:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                        - MCP
+                      configuration:
+                        type: object
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully updated agent configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agentConfiguration:
+                    $ref: '#/components/schemas/AgentConfiguration'
+                  skippedActions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        reason:
+                          type: string
+        '400':
+          description: Bad Request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Agent configuration not found.
+        '405':
+          description: Method not supported. Only GET or PATCH is expected.
+        '500':
+          description: Internal Server Error.
+    delete:
+      summary: Archive Agent Configuration
+      description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is
+        soft-archived and triggers/editor-group memberships associated with it are disabled.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: sId
+        required: true
+        description: ID of the agent configuration
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully archived agent configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Bad Request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. The caller is not allowed to archive this agent.
+        '404':
+          description: Agent configuration not found.
+        '405':
+          description: Method not supported. Only GET, PATCH or DELETE is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/agent_configurations/import:
+    post:
+      summary: Import Agent Configuration
+      description: Create a new agent configuration from a JSON body matching the agent config schema.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - agent
+              - instructions
+              - generation_settings
+              - tags
+              - editors
+              - toolset
+              properties:
+                agent:
+                  type: object
+                  required:
+                  - handle
+                  - description
+                  - scope
+                  - max_steps_per_run
+                  - visualization_enabled
+                  properties:
+                    handle:
+                      type: string
+                    description:
+                      type: string
+                    scope:
+                      type: string
+                      enum:
+                      - visible
+                      - hidden
+                    avatar_url:
+                      type: string
+                    max_steps_per_run:
+                      type: number
+                    visualization_enabled:
+                      type: boolean
+                instructions:
+                  type: string
+                generation_settings:
+                  type: object
+                  properties:
+                    model_id:
+                      type: string
+                    provider_id:
+                      type: string
+                    temperature:
+                      type: number
+                    reasoning_effort:
+                      type: string
+                tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      kind:
+                        type: string
+                        enum:
+                        - standard
+                        - protected
+                editors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_id:
+                        type: string
+                      email:
+                        type: string
+                      full_name:
+                        type: string
+                toolset:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                        - MCP
+                      configuration:
+                        type: object
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully created agent configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agentConfiguration:
+                    $ref: '#/components/schemas/AgentConfiguration'
+                  skippedActions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        reason:
+                          type: string
+        '400':
+          description: Bad Request. Invalid request body.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '405':
+          description: Method not supported. Only POST is expected.
+        '500':
+          description: Internal Server Error.
+  /api/v1/w/{wId}/assistant/agent_configurations/search:
+    get:
+      summary: Search Agents by Name
+      description: Search for agent configurations by name in the workspace identified by {wId}.
+      tags:
+      - Agents
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: query
+        name: q
+        required: true
+        description: Search query for agent configuration names
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully retrieved agent configurations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agentConfigurations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AgentConfiguration'
+        '400':
+          description: Bad Request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Workspace not found.
+        '405':
+          description: Method not supported. Only GET is expected.
+        '500':
+          description: Internal Server Error.
+components:
+  schemas:
+    AgentConfiguration:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 12345
+        sId:
+          type: string
+          description: Unique string identifier for the agent configuration
+          example: 7f3a9c2b1e
+        version:
+          type: integer
+          example: 2
+        versionCreatedAt:
+          type: string
+          nullable: true
+          description: Timestamp of when the version was created
+          example: '2023-06-15T14:30:00Z'
+        versionAuthorId:
+          type: string
+          nullable: true
+          description: ID of the user who created this version
+          example: 0ec9852c2f
+        name:
+          type: string
+          description: Name of the agent configuration
+          example: Customer Support Agent
+        description:
+          type: string
+          description: Description of the agent configuration
+          example: An AI agent designed to handle customer support inquiries
+        instructions:
+          type: string
+          nullable: true
+          description: Instructions for the agent
+          example: Always greet the customer politely and try to resolve their issue efficiently.
+        pictureUrl:
+          type: string
+          description: URL of the agent's picture
+          example: https://example.com/agent-images/support-agent.png
+        status:
+          type: string
+          description: Current status of the agent configuration
+          example: active
+        scope:
+          type: string
+          description: Scope of the agent configuration
+          example: workspace
+        userFavorite:
+          type: boolean
+          description: Status of the user favorite for this configuration
+          example: true
+        model:
+          type: object
+          properties:
+            providerId:
+              type: string
+              description: ID of the model provider
+              example: openai
+            modelId:
+              type: string
+              description: ID of the specific model
+              example: gpt-4
+            temperature:
+              type: number
+              example: 0.7
+        actions:
+          type: array
+          example: []
+        maxStepsPerRun:
+          type: integer
+          example: 10
+        templateId:
+          type: string
+          nullable: true
+          description: ID of the template used for this configuration
+          example: b4e2f1a9c7
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

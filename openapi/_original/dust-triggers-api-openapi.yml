@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Dust Triggers API
+  version: 1.0.2
+  description: Receive external webhook events that fan out to trigger Dust agent workflows.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Triggers
+  description: Triggers
+paths:
+  /api/v1/w/{wId}/triggers/hooks/{webhookSourceId}:
+    post:
+      summary: Receive External Webhook to Trigger Flows
+      description: Skeleton endpoint that verifies workspace and webhook source and logs receipt.
+      tags:
+      - Triggers
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Workspace ID
+        schema:
+          type: string
+      - in: path
+        name: webhookSourceId
+        required: true
+        description: Webhook source ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook received
+        '400':
+          description: Invalid request
+        '404':
+          description: Workspace or webhook source not found
+        '405':
+          description: Method not allowed
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

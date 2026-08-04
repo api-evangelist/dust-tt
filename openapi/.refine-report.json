@@ -1,0 +1,40 @@
+{
+  "provider": "dust-tt",
+  "sources": [
+    "dust-tt-agents-api-openapi.yml",
+    "dust-tt-apps-api-openapi.yml",
+    "dust-tt-conversations-api-openapi.yml",
+    "dust-tt-datasources-api-openapi.yml",
+    "dust-tt-datasourceviews-api-openapi.yml",
+    "dust-tt-feedbacks-api-openapi.yml",
+    "dust-tt-mcp-api-openapi.yml",
+    "dust-tt-mentions-api-openapi.yml",
+    "dust-tt-search-api-openapi.yml",
+    "dust-tt-skills-api-openapi.yml",
+    "dust-tt-spaces-api-openapi.yml",
+    "dust-tt-tools-api-openapi.yml",
+    "dust-tt-triggers-api-openapi.yml",
+    "dust-tt-workspace-api-openapi.yml"
+  ],
+  "outputs": [
+    "dust-tt-agents-api-openapi.yml",
+    "dust-tt-apps-api-openapi.yml",
+    "dust-tt-conversations-api-openapi.yml",
+    "dust-tt-datasources-api-openapi.yml",
+    "dust-tt-datasourceviews-api-openapi.yml",
+    "dust-tt-feedbacks-api-openapi.yml",
+    "dust-tt-mcp-api-openapi.yml",
+    "dust-tt-mentions-api-openapi.yml",
+    "dust-tt-search-api-openapi.yml",
+    "dust-tt-skills-api-openapi.yml",
+    "dust-tt-spaces-api-openapi.yml",
+    "dust-tt-tools-api-openapi.yml",
+    "dust-tt-triggers-api-openapi.yml",
+    "dust-tt-workspace-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
