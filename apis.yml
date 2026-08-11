@@ -368,6 +368,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dust-tt.png
 access: 3rd-Party
 common:
+  - type: IssueTracker
+    url: https://github.com/dust-tt/dust/issues
+  - type: Releases
+    url: https://github.com/dust-tt/dust/releases
+  - type: SecurityPolicy
+    url: https://github.com/dust-tt/dust/blob/main/SECURITY.md
   - type: AgenticAccess
     url: agentic-access/dust-tt-agentic-access.yml
   - type: DomainSecurity
