@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Agents Mentions API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mentions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Mention Suggestions for a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/mentions/suggestions",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to filter suggestions"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Array of mention types to include. Can be \"agents\", \"users\", or both. If not provided, defaults to agents and users."
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the current user in the suggestions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get suggestions for mentions (agents and users) based on a query string, scoped to a specific conversation."
+        },
+        {
+          "info": {
+            "name": "Parse Mentions in Markdown Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/mentions/parse",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Parses pasted text containing @ mentions and converts them to the proper mention format.\nMatches @agentName or @userName patterns against available agents and users.\n"
+        },
+        {
+          "info": {
+            "name": "Get Mention Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/mentions/suggestions",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workspace"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to filter suggestions"
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Array of mention types to include. Can be \"agents\", \"users\", or both. If not provided, defaults to agents and users."
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the current user in the suggestions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get suggestions for mentions (agents and users) based on a query string."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

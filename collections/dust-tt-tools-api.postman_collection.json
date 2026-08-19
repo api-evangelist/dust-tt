@@ -1,0 +1,460 @@
+{
+  "item": [
+    {
+      "id": "f03a568b-dcc4-48f7-b4fa-4136e0a1b90d",
+      "name": "Tools",
+      "description": {
+        "content": "Tools",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cedc3571-fc6d-4935-8f4d-009feaa728f5",
+          "name": "List Available MCP Server Views.",
+          "request": {
+            "name": "List Available MCP Server Views.",
+            "description": {
+              "content": "Retrieves a list of enabled MCP server views (aka tools) for a specific space of the authenticated workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "spaces",
+                ":spaceId",
+                "mcp_server_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) Unique string identifier for the workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "spaceId",
+                  "description": "(Required) ID of the space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a26327cb-10e9-44fc-83fa-257a401fed99",
+              "name": "MCP server views of the space",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spaces\": [\n    {\n      \"id\": 123,\n      \"sId\": \"mcp_sv_abc123\",\n      \"name\": \"My Custom MCP Server\",\n      \"description\": \"This MCP server handles customer data operations\",\n      \"createdAt\": 1625097600,\n      \"updatedAt\": 1625184000,\n      \"spaceId\": \"spc_xyz789\",\n      \"serverType\": \"remote\",\n      \"server\": {\n        \"sId\": \"mcp_srv_def456\",\n        \"name\": \"Customer Data Server\",\n        \"version\": \"1.0.0\",\n        \"description\": \"Handles customer data operations and queries\",\n        \"icon\": \"database\",\n        \"authorization\": {\n          \"provider\": \"github\",\n          \"supported_use_cases\": [\n            \"platform_actions\"\n          ],\n          \"scope\": \"repo:read\"\n        },\n        \"tools\": [\n          {\n            \"name\": \"query_customers\",\n            \"description\": \"Query customer database for information\",\n            \"inputSchema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"customerId\": {\n                  \"type\": \"string\"\n                }\n              }\n            }\n          },\n          {\n            \"name\": \"query_customers\",\n            \"description\": \"Query customer database for information\",\n            \"inputSchema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"customerId\": {\n                  \"type\": \"string\"\n                }\n              }\n            }\n          }\n        ],\n        \"availability\": \"production\",\n        \"allowMultipleInstances\": false,\n        \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n      },\n      \"oAuthUseCase\": \"platform_actions\",\n      \"editedByUser\": {\n        \"editedAt\": 1625184000,\n        \"fullName\": \"John Doe\",\n        \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n      }\n    },\n    {\n      \"id\": 123,\n      \"sId\": \"mcp_sv_abc123\",\n      \"name\": \"My Custom MCP Server\",\n      \"description\": \"This MCP server handles customer data operations\",\n      \"createdAt\": 1625097600,\n      \"updatedAt\": 1625184000,\n      \"spaceId\": \"spc_xyz789\",\n      \"serverType\": \"remote\",\n      \"server\": {\n        \"sId\": \"mcp_srv_def456\",\n        \"name\": \"Customer Data Server\",\n        \"version\": \"1.0.0\",\n        \"description\": \"Handles customer data operations and queries\",\n        \"icon\": \"database\",\n        \"authorization\": {\n          \"provider\": \"github\",\n          \"supported_use_cases\": [\n            \"platform_actions\"\n          ],\n          \"scope\": \"repo:read\"\n        },\n        \"tools\": [\n          {\n            \"name\": \"query_customers\",\n            \"description\": \"Query customer database for information\",\n            \"inputSchema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"customerId\": {\n                  \"type\": \"string\"\n                }\n              }\n            }\n          },\n          {\n            \"name\": \"query_customers\",\n            \"description\": \"Query customer database for information\",\n            \"inputSchema\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"customerId\": {\n                  \"type\": \"string\"\n                }\n              }\n            }\n          }\n        ],\n        \"availability\": \"production\",\n        \"allowMultipleInstances\": false,\n        \"documentationUrl\": \"https://docs.example.com/mcp-server\"\n      },\n      \"oAuthUseCase\": \"platform_actions\",\n      \"editedByUser\": {\n        \"editedAt\": 1625184000,\n        \"fullName\": \"John Doe\",\n        \"imageUrl\": \"https://example.com/profile/johndoe.jpg\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf224b27-7cd5-4fa9-97d4-390a9af08c82",
+              "name": "Bad Request. Missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f329fd53-1c4b-43b8-9257-8465b7c8fcd4",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "121fb53a-7e9f-40aa-bdb7-5d4d637f71db",
+              "name": "Workspace not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c689727-9e0d-447e-8691-bc6546be6a4f",
+              "name": "Method not supported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8c45c6f-6ff0-46f5-99e6-4eb9cdbb1cb9",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "spaces",
+                    ":spaceId",
+                    "mcp_server_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) Unique string identifier for the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "spaceId",
+                      "description": "(Required) ID of the space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dust.tt",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "281d2a0b-6481-40f9-9044-7ee6105fdf9b",
+    "name": "Dust Agents Tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.\n\nContact Support:\n Name: Dust Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Agents Tools API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Available MCP Server Views.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces/:spaceId/mcp_server_views",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              },
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the space"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of enabled MCP server views (aka tools) for a specific space of the authenticated workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

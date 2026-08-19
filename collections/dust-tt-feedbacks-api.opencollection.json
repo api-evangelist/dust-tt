@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Agents Feedbacks API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feedbacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feedbacks for a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all feedback entries for a specific conversation.\nRequires authentication and read:conversation scope.\n"
+        },
+        {
+          "info": {
+            "name": "Submit Feedback for a Specific Message in a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submit user feedback (thumbs up/down) for a specific message in a conversation.\nRequires authentication and update:conversation scope.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Feedback for a Specific Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dust.tt/api/v1/w/:wId/assistant/conversations/:cId/messages/:mId/feedbacks",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace ID"
+              },
+              {
+                "name": "cId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "mId",
+                "value": "",
+                "type": "path",
+                "description": "Message ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete user feedback for a specific message in a conversation.\nRequires authentication and update:conversation scope.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

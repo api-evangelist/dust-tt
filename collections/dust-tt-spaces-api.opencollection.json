@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dust Agents Spaces API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Available Spaces.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dust.tt/api/v1/w/:wId/spaces",
+            "params": [
+              {
+                "name": "wId",
+                "value": "",
+                "type": "path",
+                "description": "Unique string identifier for the workspace"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of accessible spaces for the authenticated workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

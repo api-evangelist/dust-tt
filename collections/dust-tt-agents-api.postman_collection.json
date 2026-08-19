@@ -1,0 +1,3156 @@
+{
+  "item": [
+    {
+      "id": "bc736f6b-586c-49e1-9cd3-067ba92d4c0e",
+      "name": "Agents",
+      "description": {
+        "content": "Agent configurations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a18520a-6dbd-4083-bf51-67ebccaab4dc",
+          "name": "List Agents",
+          "request": {
+            "name": "List Agents",
+            "description": {
+              "content": "Get the agent configurations for the workspace identified by {wId}.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>",
+                  "description": "The view to use when retrieving agents:\n- all: Retrieves all non-private agents (default if not authenticated)\n- list: Retrieves all active agents accessible to the user (default if authenticated)\n- published: Retrieves all agents with published scope\n- global: Retrieves all global agents\n- favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "withAuthors",
+                  "value": "<string>",
+                  "description": "When set to 'true', includes recent authors information for each agent"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f26e564c-93a7-4f26-b7d3-b25ac0c10d04",
+              "name": "Agent configurations for the workspace",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentConfigurations\": [\n    {\n      \"id\": 12345,\n      \"sId\": \"7f3a9c2b1e\",\n      \"version\": 2,\n      \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n      \"versionAuthorId\": \"0ec9852c2f\",\n      \"name\": \"Customer Support Agent\",\n      \"description\": \"An AI agent designed to handle customer support inquiries\",\n      \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n      \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n      \"status\": \"active\",\n      \"scope\": \"workspace\",\n      \"userFavorite\": true,\n      \"model\": {\n        \"providerId\": \"openai\",\n        \"modelId\": \"gpt-4\",\n        \"temperature\": 0.7\n      },\n      \"maxStepsPerRun\": 10,\n      \"templateId\": \"b4e2f1a9c7\"\n    },\n    {\n      \"id\": 12345,\n      \"sId\": \"7f3a9c2b1e\",\n      \"version\": 2,\n      \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n      \"versionAuthorId\": \"0ec9852c2f\",\n      \"name\": \"Customer Support Agent\",\n      \"description\": \"An AI agent designed to handle customer support inquiries\",\n      \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n      \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n      \"status\": \"active\",\n      \"scope\": \"workspace\",\n      \"userFavorite\": true,\n      \"model\": {\n        \"providerId\": \"openai\",\n        \"modelId\": \"gpt-4\",\n        \"temperature\": 0.7\n      },\n      \"maxStepsPerRun\": 10,\n      \"templateId\": \"b4e2f1a9c7\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "425fe7a5-5ad0-4bf4-851a-1a76739cc08c",
+              "name": "Bad Request. Missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe706d57-9770-4bcf-b025-4f73b2827178",
+              "name": "Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13f1c3a9-1f23-4597-9131-676538b88a06",
+              "name": "Workspace not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a059a955-c2cd-43b0-a5f2-0d1cfbb3f464",
+              "name": "Method not supported. Only GET is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d190d94-448f-4c87-b9ea-9c923249fdb8",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAuthors",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d2b9862-fe1c-4abe-b53e-8f3e20b9bd9b",
+          "name": "Export Agent Configuration as YAML",
+          "request": {
+            "name": "Export Agent Configuration as YAML",
+            "description": {
+              "content": "Download the agent configuration identified by {sId} as a YAML file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                ":sId",
+                "export",
+                "yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sId",
+                  "description": "(Required) ID of the agent configuration"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/yaml"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c99e401e-e241-4dc4-b944-2842a7d30cf0",
+              "name": "The agent configuration as a downloadable YAML file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/yaml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Attachment with suggested filename",
+                  "key": "Content-Disposition",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/yaml"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01504561-4e3f-4ae6-9a63-791861595184",
+              "name": "Bad Request. Invalid or missing parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2205dabb-5fa8-451d-b3e4-d5ee2a7d4ee7",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1be297b-6352-4e0f-a09c-5f84e322c8d8",
+              "name": "Agent configuration not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9920d81-50a9-43fb-abb1-7b4119448312",
+              "name": "Method not supported. Only GET is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afb7feb2-2fd0-47fd-b60e-57e51404cb89",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId",
+                    "export",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83182e14-e45e-4a89-b804-925f1a11482f",
+          "name": "Get Agent Configuration",
+          "request": {
+            "name": "Get Agent Configuration",
+            "description": {
+              "content": "Retrieve the agent configuration identified by {sId} in the workspace identified by {wId}.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                ":sId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "variant",
+                  "value": "light",
+                  "description": "Configuration variant to retrieve. 'light' returns basic config without actions, 'full' includes complete actions/tools configuration"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sId",
+                  "description": "(Required) ID of the agent configuration"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "734d602b-0ec6-4908-bad8-bf78528aaf91",
+              "name": "Successfully retrieved agent configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentConfiguration\": {\n    \"id\": 12345,\n    \"sId\": \"7f3a9c2b1e\",\n    \"version\": 2,\n    \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n    \"versionAuthorId\": \"0ec9852c2f\",\n    \"name\": \"Customer Support Agent\",\n    \"description\": \"An AI agent designed to handle customer support inquiries\",\n    \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n    \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n    \"status\": \"active\",\n    \"scope\": \"workspace\",\n    \"userFavorite\": true,\n    \"model\": {\n      \"providerId\": \"openai\",\n      \"modelId\": \"gpt-4\",\n      \"temperature\": 0.7\n    },\n    \"maxStepsPerRun\": 10,\n    \"templateId\": \"b4e2f1a9c7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "241bbc04-52ff-468b-8beb-9f972b669869",
+              "name": "Bad Request. Invalid or missing parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ab94510-f748-44e4-9749-d90c2bc55f2a",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e37304c-b2f4-420c-a575-679a1270e4c2",
+              "name": "Agent configuration not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b50cff7a-847d-482b-83a2-682ef311e7f4",
+              "name": "Method not supported. Only GET or PATCH is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a32fb94d-71dd-4129-87fe-cf08b10312ea",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "variant",
+                      "value": "light"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba98244c-bd2e-4d8c-b15d-dcb97a3aae45",
+          "name": "Update Agent Configuration",
+          "request": {
+            "name": "Update Agent Configuration",
+            "description": {
+              "content": "Update the agent configuration identified by {sId} in the workspace identified by {wId}.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                ":sId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sId",
+                  "description": "(Required) ID of the agent configuration"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77c491ba-8fec-4f22-89a5-889f9b0de64b",
+              "name": "Successfully updated agent configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentConfiguration\": {\n    \"id\": 12345,\n    \"sId\": \"7f3a9c2b1e\",\n    \"version\": 2,\n    \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n    \"versionAuthorId\": \"0ec9852c2f\",\n    \"name\": \"Customer Support Agent\",\n    \"description\": \"An AI agent designed to handle customer support inquiries\",\n    \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n    \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n    \"status\": \"active\",\n    \"scope\": \"workspace\",\n    \"userFavorite\": true,\n    \"model\": {\n      \"providerId\": \"openai\",\n      \"modelId\": \"gpt-4\",\n      \"temperature\": 0.7\n    },\n    \"maxStepsPerRun\": 10,\n    \"templateId\": \"b4e2f1a9c7\"\n  },\n  \"skippedActions\": [\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20f9139-80b7-46e2-bfa4-be8b117eac96",
+              "name": "Bad Request. Invalid or missing parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2bea3495-2060-4be5-9350-dc8f02eac22d",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2dc353ae-00e2-45b9-ad84-f9a3a24549af",
+              "name": "Agent configuration not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ba874b7-8664-4ee5-bfb1-a173a7a532b4",
+              "name": "Method not supported. Only GET or PATCH is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87d500b9-dc42-488f-a2f0-7478820e5e24",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userFavorite\": \"<boolean>\",\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"avatar_url\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"sId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "040ea7f4-cf0e-49b6-a06c-c7f480ebe3a5",
+          "name": "Archive Agent Configuration",
+          "request": {
+            "name": "Archive Agent Configuration",
+            "description": {
+              "content": "Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                ":sId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sId",
+                  "description": "(Required) ID of the agent configuration"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7cd44a8-3810-4993-b7c1-5cd75b4e2c39",
+              "name": "Successfully archived agent configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df7fd606-f3f4-48ea-96fe-338e3c3da0a0",
+              "name": "Bad Request. Invalid or missing parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bef10bfa-fbe1-4a2b-b8b2-d7f0b6b00fc4",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e093113-14d3-42d9-a673-a8dde1281196",
+              "name": "Forbidden. The caller is not allowed to archive this agent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "746dcfb3-cd4c-47e9-94bd-9a23f065f379",
+              "name": "Agent configuration not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff0d5b49-ce13-4aa4-ad17-b6837c4ae94b",
+              "name": "Method not supported. Only GET, PATCH or DELETE is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28deec07-1d35-4f8c-afca-32386306a3ef",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    ":sId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sId",
+                      "description": "(Required) ID of the agent configuration"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "015b2ef7-2013-4755-a913-acf8d23afef6",
+          "name": "Import Agent Configuration",
+          "request": {
+            "name": "Import Agent Configuration",
+            "description": {
+              "content": "Create a new agent configuration from a JSON body matching the agent config schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2069621c-1b3c-4334-a184-5d3b9c1dd660",
+              "name": "Successfully created agent configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentConfiguration\": {\n    \"id\": 12345,\n    \"sId\": \"7f3a9c2b1e\",\n    \"version\": 2,\n    \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n    \"versionAuthorId\": \"0ec9852c2f\",\n    \"name\": \"Customer Support Agent\",\n    \"description\": \"An AI agent designed to handle customer support inquiries\",\n    \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n    \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n    \"status\": \"active\",\n    \"scope\": \"workspace\",\n    \"userFavorite\": true,\n    \"model\": {\n      \"providerId\": \"openai\",\n      \"modelId\": \"gpt-4\",\n      \"temperature\": 0.7\n    },\n    \"maxStepsPerRun\": 10,\n    \"templateId\": \"b4e2f1a9c7\"\n  },\n  \"skippedActions\": [\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a58645f-6987-4c3a-8f94-a2d38254b3d9",
+              "name": "Bad Request. Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01dc1c82-8c17-41eb-8d61-3f5c6efd0f3a",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e196034b-2de5-4701-b6bf-243d983597a2",
+              "name": "Method not supported. Only POST is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ccd632a-f66b-4238-958e-f25dc5a29c9a",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent\": {\n    \"handle\": \"<string>\",\n    \"description\": \"<string>\",\n    \"scope\": \"<string>\",\n    \"max_steps_per_run\": \"<number>\",\n    \"visualization_enabled\": \"<boolean>\",\n    \"avatar_url\": \"<string>\"\n  },\n  \"instructions\": \"<string>\",\n  \"generation_settings\": {\n    \"model_id\": \"<string>\",\n    \"provider_id\": \"<string>\",\n    \"temperature\": \"<number>\",\n    \"reasoning_effort\": \"<string>\"\n  },\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"editors\": [\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"full_name\": \"<string>\"\n    }\n  ],\n  \"toolset\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"<string>\",\n      \"configuration\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "130fbf66-fa3a-49db-ba67-5b234a9b76d6",
+          "name": "Search Agents by Name",
+          "request": {
+            "name": "Search Agents by Name",
+            "description": {
+              "content": "Search for agent configurations by name in the workspace identified by {wId}.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "w",
+                ":wId",
+                "assistant",
+                "agent_configurations",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query for agent configuration names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "wId",
+                  "description": "(Required) ID of the workspace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ff52af1-4890-4fa4-a6f7-50a4895655aa",
+              "name": "Successfully retrieved agent configurations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentConfigurations\": [\n    {\n      \"id\": 12345,\n      \"sId\": \"7f3a9c2b1e\",\n      \"version\": 2,\n      \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n      \"versionAuthorId\": \"0ec9852c2f\",\n      \"name\": \"Customer Support Agent\",\n      \"description\": \"An AI agent designed to handle customer support inquiries\",\n      \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n      \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n      \"status\": \"active\",\n      \"scope\": \"workspace\",\n      \"userFavorite\": true,\n      \"model\": {\n        \"providerId\": \"openai\",\n        \"modelId\": \"gpt-4\",\n        \"temperature\": 0.7\n      },\n      \"maxStepsPerRun\": 10,\n      \"templateId\": \"b4e2f1a9c7\"\n    },\n    {\n      \"id\": 12345,\n      \"sId\": \"7f3a9c2b1e\",\n      \"version\": 2,\n      \"versionCreatedAt\": \"2023-06-15T14:30:00Z\",\n      \"versionAuthorId\": \"0ec9852c2f\",\n      \"name\": \"Customer Support Agent\",\n      \"description\": \"An AI agent designed to handle customer support inquiries\",\n      \"instructions\": \"Always greet the customer politely and try to resolve their issue efficiently.\",\n      \"pictureUrl\": \"https://example.com/agent-images/support-agent.png\",\n      \"status\": \"active\",\n      \"scope\": \"workspace\",\n      \"userFavorite\": true,\n      \"model\": {\n        \"providerId\": \"openai\",\n        \"modelId\": \"gpt-4\",\n        \"temperature\": 0.7\n      },\n      \"maxStepsPerRun\": 10,\n      \"templateId\": \"b4e2f1a9c7\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73bfb1ad-ccae-4cd3-8b17-cabc51fd79da",
+              "name": "Bad Request. Invalid or missing parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ecdbf16-4196-4070-903e-8551a96c0f53",
+              "name": "Unauthorized. Invalid or missing authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74d95951-f930-4a78-b954-671398f038c3",
+              "name": "Workspace not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc729317-bd24-4035-8429-489273c16ec7",
+              "name": "Method not supported. Only GET is expected.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0eb5b30e-4e0f-474d-a9ac-9febd269b2fc",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "w",
+                    ":wId",
+                    "assistant",
+                    "agent_configurations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "wId",
+                      "description": "(Required) ID of the workspace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dust.tt",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f461a007-6e08-467c-9d49-ac1776e593c5",
+    "name": "Dust Agents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.\n\nContact Support:\n Name: Dust Support",
+      "type": "text/plain"
+    }
+  }
+}
