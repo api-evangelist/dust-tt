@@ -31,6 +31,8 @@ apis:
   humanURL: https://docs.dust.tt/reference
   baseURL: https://dust.tt/api/v1
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -79,6 +81,8 @@ apis:
   humanURL: https://docs.dust.tt/reference
   baseURL: https://dust.tt/api/v1
   tags:
+  - Data Sources
+  tags_raw:
   - Datasources
   properties:
   - type: OpenAPI
@@ -339,6 +343,18 @@ apis:
     url: json-schema/dust-skill-schema.json
 name: Dust
 tags:
+  - Agents
+  - Artificial Intelligence
+  - Custom Workflows
+  - Data Sources
+  - Dust
+  - Enterprise AI
+  - Knowledge-Management
+  - LLM
+  - MCP
+  - Multi-Model
+  - RAG
+tags_raw:
   - Agents
   - AI
   - Artificial Intelligence
