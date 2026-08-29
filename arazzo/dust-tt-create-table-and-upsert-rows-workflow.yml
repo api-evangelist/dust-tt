@@ -11,7 +11,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: datasourcesApi
-  url: ../openapi/dust-datasources-api-openapi.yml
+  url: ../openapi/dust-tt-datasources-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-table-and-upsert-rows

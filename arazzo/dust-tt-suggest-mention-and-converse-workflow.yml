@@ -12,7 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: conversationsApi
-  url: ../openapi/dust-conversations-api-openapi.yml
+  url: ../openapi/dust-tt-conversations-api-openapi.yml
+  type: openapi
+- name: mentionsApi
+  url: ../openapi/dust-tt-mentions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: suggest-mention-and-converse
@@ -48,7 +51,7 @@ workflows:
     description: >-
       Fetch mention suggestions limited to agents for the supplied query and
       capture the id of the first suggested agent.
-    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1mentions~1suggestions/get'
+    operationPath: '{$sourceDescriptions.mentionsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1mentions~1suggestions/get'
     parameters:
     - name: Authorization
       in: header

@@ -12,7 +12,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: appsApi
-  url: ../openapi/dust-apps-api-openapi.yml
+  url: ../openapi/dust-tt-apps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-app-and-poll

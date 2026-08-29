@@ -12,7 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: conversationsApi
-  url: ../openapi/dust-conversations-api-openapi.yml
+  url: ../openapi/dust-tt-conversations-api-openapi.yml
+  type: openapi
+- name: feedbacksApi
+  url: ../openapi/dust-tt-feedbacks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: message-and-submit-feedback
@@ -116,7 +119,7 @@ workflows:
   - stepId: submitFeedback
     description: >-
       Submit thumbs feedback for the agent message.
-    operationPath: '{$sourceDescriptions.conversationsApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages~1{mId}~1feedbacks/post'
+    operationPath: '{$sourceDescriptions.feedbacksApi.url}#/paths/~1api~1v1~1w~1{wId}~1assistant~1conversations~1{cId}~1messages~1{mId}~1feedbacks/post'
     parameters:
     - name: Authorization
       in: header

@@ -12,7 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: datasourcesApi
-  url: ../openapi/dust-datasources-api-openapi.yml
+  url: ../openapi/dust-tt-datasources-api-openapi.yml
+  type: openapi
+- name: spacesApi
+  url: ../openapi/dust-tt-spaces-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: discover-spaces-and-data-sources
@@ -37,7 +40,7 @@ workflows:
     description: >-
       List the spaces accessible to the authenticated workspace and capture the
       first space id.
-    operationPath: '{$sourceDescriptions.datasourcesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces/get'
+    operationPath: '{$sourceDescriptions.spacesApi.url}#/paths/~1api~1v1~1w~1{wId}~1spaces/get'
     parameters:
     - name: Authorization
       in: header

@@ -12,10 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: agentsApi
-  url: ../openapi/dust-agents-api-openapi.yml
+  url: ../openapi/dust-tt-agents-api-openapi.yml
   type: openapi
 - name: conversationsApi
-  url: ../openapi/dust-conversations-api-openapi.yml
+  url: ../openapi/dust-tt-conversations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: import-agent-and-converse

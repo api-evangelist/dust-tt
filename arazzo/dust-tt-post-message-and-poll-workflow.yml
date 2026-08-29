@@ -11,7 +11,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: conversationsApi
-  url: ../openapi/dust-conversations-api-openapi.yml
+  url: ../openapi/dust-tt-conversations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: post-message-and-poll
