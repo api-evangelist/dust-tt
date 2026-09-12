@@ -399,6 +399,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dust-tt.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.dust.tt/
   - type: IssueTracker
     url: https://github.com/dust-tt/dust/issues
   - type: Releases
