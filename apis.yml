@@ -75,32 +75,6 @@ apis:
     url: json-schema/dust-document-schema.json
   - type: JSONSchema
     url: json-schema/dust-skill-schema.json
-- aid: dust-tt:dust-tt-datasources-api
-  name: Dust Datasources API
-  description: Data sources
-  humanURL: https://docs.dust.tt/reference
-  baseURL: https://dust.tt/api/v1
-  tags:
-  - Data Sources
-  tags_raw:
-  - Datasources
-  properties:
-  - type: OpenAPI
-    url: openapi/dust-tt-datasources-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dust.tt/reference
-  - type: JSONSchema
-    url: json-schema/dust-agent-configuration-schema.json
-  - type: JSONLD
-    url: json-ld/dust-context.jsonld
-  - type: JSONSchema
-    url: json-schema/dust-conversation-schema.json
-  - type: JSONSchema
-    url: json-schema/dust-datasource-schema.json
-  - type: JSONSchema
-    url: json-schema/dust-document-schema.json
-  - type: JSONSchema
-    url: json-schema/dust-skill-schema.json
 - aid: dust-tt:dust-tt-datasourceviews-api
   name: Dust DatasourceViews API
   description: Data source views
@@ -327,6 +301,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/dust-tt-workspace-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dust.tt/reference
+  - type: JSONSchema
+    url: json-schema/dust-agent-configuration-schema.json
+  - type: JSONLD
+    url: json-ld/dust-context.jsonld
+  - type: JSONSchema
+    url: json-schema/dust-conversation-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-datasource-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-document-schema.json
+  - type: JSONSchema
+    url: json-schema/dust-skill-schema.json
+- aid: dust-tt:dust-tt-data-sources-api
+  name: Dust Data Sources API
+  description: Data sources
+  humanURL: https://docs.dust.tt/reference
+  baseURL: https://dust.tt/api/v1
+  tags:
+  - Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/dust-tt-data-sources-api-openapi.yml
   - type: Documentation
     url: https://docs.dust.tt/reference
   - type: JSONSchema
