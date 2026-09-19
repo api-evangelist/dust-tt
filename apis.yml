@@ -225,6 +225,8 @@ apis:
   humanURL: https://docs.dust.tt/reference
   baseURL: https://dust.tt/api/v1
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
