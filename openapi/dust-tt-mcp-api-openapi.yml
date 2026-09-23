@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents MCP API
+  title: Dust MCP API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: Register client-side Model Context Protocol servers, stream tool requests over SSE, return results, and list MCP server views available in a space.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -21,13 +21,11 @@ paths:
   /api/v1/w/{wId}/mcp/heartbeat:
     post:
       summary: Update Heartbeat for a Client-Side MCP Server
-      description: '[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)
+      description: 'Documentation
 
         Update the heartbeat for a previously registered client-side MCP server.
 
-        This extends the TTL for the server registration.
-
-        '
+        This extends the TTL for the server registration.'
       tags:
       - MCP
       security:
@@ -72,18 +70,18 @@ paths:
           description: Forbidden. User does not have access to the workspace.
         '404':
           description: Not Found. MCP server not registered or expired.
+      operationId: postApiV1WByWIdMcpHeartbeat
+      x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/register:
     post:
       summary: Register a Client-Side MCP Server
-      description: '[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)
+      description: 'Documentation
 
         Register a client-side MCP server to Dust.
 
         The registration is scoped to the current user and workspace.
 
-        A serverId identifier is generated and returned in the response.
-
-        '
+        A serverId identifier is generated and returned in the response.'
       tags:
       - MCP
       security:
@@ -126,18 +124,18 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '403':
           description: Forbidden. User does not have access to the workspace.
+      operationId: postApiV1WByWIdMcpRegister
+      x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/requests:
     get:
       summary: Stream MCP Tool Requests for a Workspace
-      description: '[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)
+      description: 'Documentation
 
         Server-Sent Events (SSE) endpoint that streams MCP tool requests for a workspace.
 
         This endpoint is used by client-side MCP servers to listen for tool requests in real-time.
 
-        The connection will remain open and events will be sent as new tool requests are made.
-
-        '
+        The connection will remain open and events will be sent as new tool requests are made.'
       tags:
       - MCP
       security:
@@ -187,16 +185,16 @@ paths:
           description: Forbidden. You don't have access to this workspace or MCP server.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdMcpRequests
+      x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/results:
     post:
       summary: Submit MCP Tool Execution Results
-      description: '[Documentation](https://docs.dust.tt/docs/client-side-mcp-server)
+      description: 'Documentation
 
         Endpoint for client-side MCP servers to submit the results of tool executions.
 
-        This endpoint accepts the output from tools that were executed locally.
-
-        '
+        This endpoint accepts the output from tools that were executed locally.'
       tags:
       - MCP
       security:
@@ -237,6 +235,8 @@ paths:
           description: Conversation or message not found.
         '500':
           description: Internal Server Error.
+      operationId: postApiV1WByWIdMcpResults
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

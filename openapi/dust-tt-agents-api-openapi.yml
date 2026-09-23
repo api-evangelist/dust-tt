@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Dust Agents API
   version: 1.0.2
@@ -90,6 +90,8 @@ paths:
           description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdAssistantAgentConfigurations
+      x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/{sId}/export/yaml:
     get:
       summary: Export Agent Configuration as YAML
@@ -133,6 +135,8 @@ paths:
           description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdAssistantAgentConfigurationsBySIdExportYaml
+      x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/{sId}:
     get:
       summary: Get Agent Configuration
@@ -184,6 +188,8 @@ paths:
           description: Method not supported. Only GET or PATCH is expected.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdAssistantAgentConfigurationsBySId
+      x-operation-id-source: derived
     patch:
       summary: Update Agent Configuration
       description: Update the agent configuration identified by {sId} in the workspace identified by {wId}.
@@ -324,6 +330,8 @@ paths:
           description: Method not supported. Only GET or PATCH is expected.
         '500':
           description: Internal Server Error.
+      operationId: patchApiV1WByWIdAssistantAgentConfigurationsBySId
+      x-operation-id-source: derived
     delete:
       summary: Archive Agent Configuration
       description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled.
@@ -366,6 +374,8 @@ paths:
           description: Method not supported. Only GET, PATCH or DELETE is expected.
         '500':
           description: Internal Server Error.
+      operationId: deleteApiV1WByWIdAssistantAgentConfigurationsBySId
+      x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/import:
     post:
       summary: Import Agent Configuration
@@ -497,6 +507,8 @@ paths:
           description: Method not supported. Only POST is expected.
         '500':
           description: Internal Server Error.
+      operationId: postApiV1WByWIdAssistantAgentConfigurationsImport
+      x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/search:
     get:
       summary: Search Agents by Name
@@ -540,6 +552,8 @@ paths:
           description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdAssistantAgentConfigurationsSearch
+      x-operation-id-source: derived
 components:
   schemas:
     AgentConfiguration:
@@ -556,13 +570,15 @@ components:
           type: integer
           example: 2
         versionCreatedAt:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Timestamp of when the version was created
           example: '2023-06-15T14:30:00Z'
         versionAuthorId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: ID of the user who created this version
           example: 0ec9852c2f
         name:
@@ -574,8 +590,9 @@ components:
           description: Description of the agent configuration
           example: An AI agent designed to handle customer support inquiries
         instructions:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Instructions for the agent
           example: Always greet the customer politely and try to resolve their issue efficiently.
         pictureUrl:
@@ -615,8 +632,9 @@ components:
           type: integer
           example: 10
         templateId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: ID of the template used for this configuration
           example: b4e2f1a9c7
   securitySchemes:

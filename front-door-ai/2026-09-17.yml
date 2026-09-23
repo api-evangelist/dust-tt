@@ -1,0 +1,31 @@
+# Front Door AI Index — dust-tt — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: dust-tt
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.dust.tt
+  final_host: dust.tt
+  ownership: own
+  owner: dust-tt
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 22
+  host_score: 22
+  density: 22.36
+  words: 984
+  tiers:
+    agentic: 2
+    core: 17
+    model: 3
+  ambiguous: 18
+  top_terms:
+    agent: 18
+    AI: 17
+    Anthropic: 1
+    Mistral: 1
+    OpenAI: 1
+    agentic: 1
+    chatbot: 1

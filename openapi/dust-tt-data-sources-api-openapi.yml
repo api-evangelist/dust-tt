@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents Datasources API
+  title: Dust Data Sources Datasources API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: Upsert, search, and manage documents, tables, and folders inside Dust data sources and data source views, organized into workspace spaces.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -15,7 +15,7 @@ servers:
 - url: https://eu.dust.tt
   description: Dust.tt API (europe-west1)
 tags:
-- name: Datasources
+- name: Data Sources
   description: Data sources
 paths:
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/check_upsert_queue:
@@ -23,7 +23,7 @@ paths:
       summary: Check the Upsert Queue Status for a Data Source
       description: Returns the number of running document upsert workflows for this data source. This endpoint is only accessible with system API keys (e.g., from connectors).
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -68,12 +68,14 @@ paths:
           description: Method not supported.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdCheckUpsertQueue
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}:
     get:
       summary: Retrieve a Document from a Data Source
       description: Retrieve a document from a data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -121,11 +123,13 @@ paths:
           description: Method not supported.
         '500':
           description: Internal Server Error.
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
+      x-operation-id-source: derived
     post:
       summary: Upsert a Document in a Data Source
       description: Upsert a document in a data source in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -217,11 +221,13 @@ paths:
           description: Rate limit exceeded.
         '500':
           description: Internal Server Error.
+      operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
+      x-operation-id-source: derived
     delete:
       summary: Delete a Document from a Data Source
       description: Delete a document from a data source in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -272,12 +278,14 @@ paths:
           description: Method not supported.
         '500':
           description: Internal Server Error.
+      operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}/parents:
     post:
       summary: Update the Parents of a Document
       description: Update the parents of a document in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -333,12 +341,14 @@ paths:
           description: Method not supported.
         '500':
           description: Internal Server Error.
+      operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentIdParents
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents:
     get:
       summary: Get Documents
       description: Get documents in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -395,12 +405,14 @@ paths:
           description: The data source was not found
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocuments
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/search:
     get:
       summary: Search the Data Source
       description: Search the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -527,12 +539,14 @@ paths:
           description: Invalid request error
         '405':
           description: Method not supported error
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdSearch
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}:
     get:
       summary: Get a Table
       description: Get a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -571,11 +585,13 @@ paths:
           description: The table was not found
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
+      x-operation-id-source: derived
     delete:
       summary: Delete a Table
       description: Delete a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -610,12 +626,14 @@ paths:
           description: The table was not found
         '405':
           description: Method not supported
+      operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows/{rId}:
     get:
       summary: Get a Row
       description: Get a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -660,11 +678,13 @@ paths:
           description: The row was not found
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
+      x-operation-id-source: derived
     delete:
       summary: Delete a Row
       description: Delete a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -705,12 +725,14 @@ paths:
           description: The row was not found
         '405':
           description: Method not supported
+      operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows:
     get:
       summary: List Rows
       description: List rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -759,11 +781,13 @@ paths:
                   $ref: '#/components/schemas/Datasource'
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
+      x-operation-id-source: derived
     post:
       summary: Upsert Rows
       description: Upsert rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -841,12 +865,14 @@ paths:
           description: Method not supported.
         '500':
           description: Internal Server Error.
+      operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables:
     get:
       summary: Get Tables
       description: Get tables in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -879,11 +905,13 @@ paths:
                   $ref: '#/components/schemas/Table'
         '400':
           description: Invalid request
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
+      x-operation-id-source: derived
     post:
       summary: Upsert a Table
       description: Upsert a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       security:
       - BearerAuth: []
       parameters:
@@ -946,12 +974,14 @@ paths:
           description: Invalid request
         '405':
           description: Method not supported
+      operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
+      x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources:
     get:
       summary: Get Data Sources
       description: Get data sources in the workspace identified by {wId}.
       tags:
-      - Datasources
+      - Data Sources
       parameters:
       - in: path
         name: wId
@@ -983,8 +1013,113 @@ paths:
           description: The workspace was not found
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdSpacesBySpaceIdDataSources
+      x-operation-id-source: derived
 components:
   schemas:
+    Section:
+      type: object
+      description: A section of a document that can contain nested sections
+      properties:
+        prefix:
+          type:
+          - string
+          - 'null'
+          description: Optional prefix text for the section
+        content:
+          type:
+          - string
+          - 'null'
+          description: Optional content text for the section
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+          description: Array of nested sections
+    Document:
+      type: object
+      properties:
+        data_source_id:
+          type: string
+          example: 3b7d9f1e5a
+        created:
+          type: number
+          example: 1625097600
+        document_id:
+          type: string
+          example: 2c4a6e8d0f
+        title:
+          type: string
+          description: Title of the document
+          example: Customer Support FAQ
+        mime_type:
+          type: string
+          description: MIME type of the table
+          example: text/md
+        timestamp:
+          type: number
+          example: 1625097600
+        tags:
+          type: array
+          items:
+            type: string
+          example:
+          - customer_support
+          - faq
+        parent_id:
+          type: string
+          description: ID of the document parent
+          items:
+            type: string
+          example: 1234f4567c
+        parents:
+          type: array
+          items:
+            type: string
+          example:
+          - 7b9d1f3e5a
+          - 2c4a6e8d0f
+        source_url:
+          type:
+          - string
+          - 'null'
+          example: https://example.com/support/article1
+        hash:
+          type: string
+          example: a1b2c3d4e5
+        text_size:
+          type: number
+          example: 1024
+        chunk_count:
+          type: number
+          example: 5
+        chunks:
+          type: array
+          items:
+            type: object
+          example:
+          - chunk_id: 9f1d3b5a7c
+            text: This is the first chunk of the document.
+            embedding:
+            - 0.1
+            - 0.2
+            - 0.3
+            - 0.4
+          - chunk_id: 4a2c6e8b0d
+            text: This is the second chunk of the document.
+            embedding:
+            - 0.5
+            - 0.6
+            - 0.7
+            - 0.8
+        text:
+          type: string
+          example: This is the full text content of the document. It contains multiple paragraphs and covers various topics related to customer support.
+        token_count:
+          type:
+          - number
+          - 'null'
+          example: 150
     Table:
       type: object
       properties:
@@ -1030,11 +1165,12 @@ components:
                 - date
                 example: int
               possible_values:
-                type: array
+                type:
+                - array
+                - 'null'
                 description: Array of possible values for the column (null if unrestricted)
                 items:
                   type: string
-                nullable: true
                 example:
                 - '1'
                 - '2'
@@ -1096,105 +1232,6 @@ components:
           type: boolean
           description: Whether this datasource is selected by default for agents
           example: true
-    Section:
-      type: object
-      description: A section of a document that can contain nested sections
-      properties:
-        prefix:
-          type: string
-          nullable: true
-          description: Optional prefix text for the section
-        content:
-          type: string
-          nullable: true
-          description: Optional content text for the section
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-          description: Array of nested sections
-    Document:
-      type: object
-      properties:
-        data_source_id:
-          type: string
-          example: 3b7d9f1e5a
-        created:
-          type: number
-          example: 1625097600
-        document_id:
-          type: string
-          example: 2c4a6e8d0f
-        title:
-          type: string
-          description: Title of the document
-          example: Customer Support FAQ
-        mime_type:
-          type: string
-          description: MIME type of the table
-          example: text/md
-        timestamp:
-          type: number
-          example: 1625097600
-        tags:
-          type: array
-          items:
-            type: string
-          example:
-          - customer_support
-          - faq
-        parent_id:
-          type: string
-          description: ID of the document parent
-          items:
-            type: string
-          example: 1234f4567c
-        parents:
-          type: array
-          items:
-            type: string
-          example:
-          - 7b9d1f3e5a
-          - 2c4a6e8d0f
-        source_url:
-          type: string
-          nullable: true
-          example: https://example.com/support/article1
-        hash:
-          type: string
-          example: a1b2c3d4e5
-        text_size:
-          type: number
-          example: 1024
-        chunk_count:
-          type: number
-          example: 5
-        chunks:
-          type: array
-          items:
-            type: object
-          example:
-          - chunk_id: 9f1d3b5a7c
-            text: This is the first chunk of the document.
-            embedding:
-            - 0.1
-            - 0.2
-            - 0.3
-            - 0.4
-          - chunk_id: 4a2c6e8b0d
-            text: This is the second chunk of the document.
-            embedding:
-            - 0.5
-            - 0.6
-            - 0.7
-            - 0.8
-        text:
-          type: string
-          example: This is the full text content of the document. It contains multiple paragraphs and covers various topics related to customer support.
-        token_count:
-          type: number
-          nullable: true
-          example: 150
   securitySchemes:
     BearerAuth:
       type: http

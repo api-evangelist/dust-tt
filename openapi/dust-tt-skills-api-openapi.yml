@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents Skills API
+  title: Dust Skills API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: List and import skill bundles into a Dust workspace.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -63,6 +63,8 @@ paths:
           description: Workspace not found.
         '405':
           description: Method not supported.
+      operationId: getApiV1WByWIdSkills
+      x-operation-id-source: derived
     post:
       summary: Import Skills from Uploaded Files
       description: Imports skills from uploaded files or ZIP archives into the workspace.
@@ -137,6 +139,8 @@ paths:
           description: Workspace not found.
         '405':
           description: Method not supported.
+      operationId: postApiV1WByWIdSkills
+      x-operation-id-source: derived
 components:
   schemas:
     MCPServerView:
@@ -151,13 +155,15 @@ components:
           description: Unique string identifier for the MCP server view
           example: mcp_sv_abc123
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Custom name for the MCP server view (null if not set)
           example: My Custom MCP Server
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Custom description for the MCP server view (null if not set)
           example: This MCP server handles customer data operations
         createdAt:
@@ -203,8 +209,9 @@ components:
               description: Icon identifier for the MCP server
               example: database
             authorization:
-              type: object
-              nullable: true
+              type:
+              - object
+              - 'null'
               properties:
                 provider:
                   type: string
@@ -254,36 +261,42 @@ components:
               description: Whether multiple instances of this server can be created
               example: false
             documentationUrl:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: URL to the server's documentation
               example: https://docs.example.com/mcp-server
         oAuthUseCase:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           enum:
           - platform_actions
           - personal_actions
           description: OAuth use case for the MCP server view
           example: platform_actions
         editedByUser:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Information about the user who last edited the MCP server view
           properties:
             editedAt:
-              type: number
-              nullable: true
+              type:
+              - number
+              - 'null'
               description: Unix timestamp of when the edit occurred
               example: 1625184000
             fullName:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Full name of the editor
               example: John Doe
             imageUrl:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Profile image URL of the editor
               example: https://example.com/profile/johndoe.jpg
     SkillSourceMetadata:
@@ -305,16 +318,19 @@ components:
           description: Unique string identifier for the skill
           example: skill_abc123
         createdAt:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Timestamp of when the skill was created
         updatedAt:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Timestamp of when the skill was last updated
         editedBy:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Numeric identifier of the last editor
         status:
           type: string
@@ -337,13 +353,15 @@ components:
           description: Description shown to workspace users
           example: Answers support questions with the right workspace context.
         icon:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Icon identifier for the skill
           example: ActionRobotIcon
         source:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           enum:
           - web_app
           - github
@@ -351,8 +369,9 @@ components:
           - local_file
           description: Source used to create or import the skill
         sourceMetadata:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           allOf:
           - $ref: '#/components/schemas/SkillSourceMetadata'
         reinforcement:
@@ -363,8 +382,9 @@ components:
           - 'off'
           description: Reinforcement setting for the skill
         lastReinforcementAnalysisAt:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Timestamp of the last reinforcement analysis, when available
         requestedSpaceIds:
           type: array
@@ -392,16 +412,19 @@ components:
           type: boolean
           description: Whether this skill is enabled by default
         extendedSkillId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Identifier of the extended skill, when applicable
         instructions:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Instructions used by the agent when running the skill
         instructionsHtml:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: HTML representation of the skill instructions
         tools:
           type: array

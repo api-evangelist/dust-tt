@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents Workspace API
+  title: Dust Workspace API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: Export workspace analytics and read aggregated workspace usage data.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -113,6 +113,8 @@ paths:
           description: Requires an API key with admin scope
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdAnalyticsExport
+      x-operation-id-source: derived
   /api/v1/w/{wId}/workspace-usage:
     get:
       summary: Get Workspace Usage Data
@@ -122,9 +124,7 @@ paths:
         Use GET /api/v1/w/{wId}/analytics/export instead.
 
 
-        Get usage data for the workspace identified by {wId} in CSV or JSON format.
-
-        '
+        Get usage data for the workspace identified by {wId} in CSV or JSON format.'
       tags:
       - Workspace
       security:
@@ -221,6 +221,8 @@ paths:
           description: The workspace was not found
         '405':
           description: Method not supported
+      operationId: getApiV1WByWIdWorkspaceUsage
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

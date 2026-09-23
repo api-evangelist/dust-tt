@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents Search API
+  title: Dust Search API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: Search nodes (documents, tables, conversations) across a workspace with optional streaming.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -98,6 +98,8 @@ paths:
           description: Unauthorized
         '405':
           description: Method not allowed
+      operationId: getApiV1WByWIdSearch
+      x-operation-id-source: derived
     post:
       summary: Search for Nodes in the Workspace
       description: Search for nodes in the workspace
@@ -154,6 +156,8 @@ paths:
           description: Space not found
         '405':
           description: Method not allowed
+      operationId: postApiV1WByWIdSearch
+      x-operation-id-source: derived
   /api/v1/w/{wId}/search/tools/upload:
     post:
       summary: Upload a Tool File
@@ -205,6 +209,8 @@ paths:
           description: Method not allowed
         '500':
           description: Internal server error
+      operationId: postApiV1WByWIdSearchToolsUpload
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:

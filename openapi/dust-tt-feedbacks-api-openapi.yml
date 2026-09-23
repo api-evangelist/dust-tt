@@ -1,8 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Dust Agents Feedbacks API
+  title: Dust Conversations Feedbacks API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
+  description: Create and drive multi-turn conversations with Dust agents — post messages, stream events, manage content fragments, gather feedback, and resolve mentions.
   contact:
     name: Dust Support
     url: https://docs.dust.tt
@@ -23,9 +23,7 @@ paths:
       summary: Get Feedbacks for a Conversation
       description: 'Retrieves all feedback entries for a specific conversation.
 
-        Requires authentication and read:conversation scope.
-
-        '
+        Requires authentication and read:conversation scope.'
       tags:
       - Feedbacks
       parameters:
@@ -72,8 +70,9 @@ paths:
                           - down
                           description: Direction of the thumb feedback
                         content:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           description: Optional feedback content/comment
                         createdAt:
                           type: number
@@ -97,14 +96,14 @@ paths:
           description: Conversation not found
         '500':
           description: Internal server error
+      operationId: getApiV1WByWIdAssistantConversationsByCIdFeedbacks
+      x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks:
     post:
       summary: Submit Feedback for a Specific Message in a Conversation
       description: 'Submit user feedback (thumbs up/down) for a specific message in a conversation.
 
-        Requires authentication and update:conversation scope.
-
-        '
+        Requires authentication and update:conversation scope.'
       tags:
       - Feedbacks
       parameters:
@@ -165,13 +164,13 @@ paths:
           description: Unauthorized
         '404':
           description: Conversation or message not found
+      operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdFeedbacks
+      x-operation-id-source: derived
     delete:
       summary: Delete Feedback for a Specific Message
       description: 'Delete user feedback for a specific message in a conversation.
 
-        Requires authentication and update:conversation scope.
-
-        '
+        Requires authentication and update:conversation scope.'
       tags:
       - Feedbacks
       parameters:
@@ -211,6 +210,8 @@ paths:
           description: Unauthorized
         '404':
           description: Conversation, message or feedback not found
+      operationId: deleteApiV1WByWIdAssistantConversationsByCIdMessagesByMIdFeedbacks
+      x-operation-id-source: derived
 components:
   securitySchemes:
     BearerAuth:
