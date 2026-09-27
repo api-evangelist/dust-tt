@@ -299,17 +299,6 @@ components:
               - 'null'
               description: Profile image URL of the editor
               example: https://example.com/profile/johndoe.jpg
-    SkillSourceMetadata:
-      type: object
-      properties:
-        repoUrl:
-          type: string
-          description: URL of the source repository, when applicable
-          example: https://github.com/dust-tt/skills
-        filePath:
-          type: string
-          description: Path to the source skill file
-          example: support/SKILL.md
     Skill:
       type: object
       properties:
@@ -430,6 +419,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MCPServerView'
+    SkillSourceMetadata:
+      type: object
+      properties:
+        repoUrl:
+          type: string
+          description: URL of the source repository, when applicable
+          example: https://github.com/dust-tt/skills
+        filePath:
+          type: string
+          description: Path to the source skill file
+          example: support/SKILL.md
   securitySchemes:
     BearerAuth:
       type: http

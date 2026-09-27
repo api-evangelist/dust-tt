@@ -225,9 +225,11 @@ apis:
   humanURL: https://docs.dust.tt/reference
   baseURL: https://dust.tt/api/v1
   tags:
+  - Spaces
   - Space
   tags_raw:
   - Spaces
+  - Space
   properties:
   - type: OpenAPI
     url: openapi/dust-tt-spaces-api-openapi.yml
@@ -349,7 +351,7 @@ tags:
   - Data Sources
   - Dust
   - Enterprise AI
-  - Knowledge-Management
+  - Knowledge Management
   - LLM
   - MCP
   - Multi-Model
@@ -367,6 +369,7 @@ tags_raw:
   - MCP
   - Multi-Model
   - RAG
+  - Knowledge-Management
 kind: contract
 deliveryModel:
   model: saas

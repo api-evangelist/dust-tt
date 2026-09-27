@@ -761,6 +761,249 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Message:
+      type: object
+      required:
+      - content
+      - mentions
+      properties:
+        content:
+          type: string
+          description: The content of the message. Should not be empty.
+          example: This is my message
+        mentions:
+          type: array
+          description: Empty array is accepted but won't trigger any agent.
+          items:
+            $ref: '#/components/schemas/Mention'
+        context:
+          $ref: '#/components/schemas/Context'
+    Context:
+      type: object
+      required:
+      - username
+      - timezone
+      properties:
+        username:
+          type: string
+          description: Username in the current context
+          example: johndoe123
+        timezone:
+          type: string
+          description: User's timezone
+          example: America/New_York
+        fullName:
+          type: string
+          description: User's full name in the current context
+          example: John Doe
+        email:
+          type: string
+          description: User's email in the current context
+          example: john.doe@example.com
+        profilePictureUrl:
+          type: string
+          description: URL of the user's profile picture
+          example: https://example.com/profiles/johndoe123.jpg
+        agenticMessageData:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - run_agent
+              - agent_handover
+              description: Type of the agentic message
+            originMessageId:
+              type: string
+              description: ID of the origin message
+              example: 2b8e4f6a0c
+    ContentFragment:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: The title of the content fragment
+          example: My content fragment
+        content:
+          type: string
+          description: The content of the content fragment (optional if `fileId` is set)
+          example: This is my content fragment extracted text
+        contentType:
+          type: string
+          description: The content type of the content fragment (optional if `fileId` is set)
+          example: text/plain
+        url:
+          type: string
+          description: The URL of the content fragment
+          example: https://example.com/content
+        fileId:
+          type: string
+          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
+          example: fil_123456
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of this file inside the sandbox conversation mount.
+          example: conversation/report.csv
+        skipFileProcessing:
+          type: boolean
+          description: Whether upload-time file processing was skipped.
+        nodeId:
+          type: string
+          description: The id of the content node (optional if `content` and `contentType` are set)
+          example: node_123456
+        nodeDataSourceViewId:
+          type: string
+          description: The id of the data source view (optional if `content` and `contentType` are set)
+          example: dsv_123456
+        context:
+          $ref: '#/components/schemas/Context'
+    Workspace:
+      type: object
+      required:
+      - regionalModelsOnly
+      properties:
+        id:
+          type: integer
+          example: 67890
+        sId:
+          type: string
+          description: Unique string identifier for the workspace
+          example: dQFf9l5FQY
+        name:
+          type: string
+          description: Name of the workspace
+          example: My Awesome Workspace
+        role:
+          type: string
+          description: User's role in the workspace
+          example: admin
+        segmentation:
+          type:
+          - string
+          - 'null'
+          description: Segmentation information for the workspace
+          example: enterprise
+        flags:
+          type: array
+          items:
+            type: string
+            description: Feature flags enabled for the workspace
+          example:
+          - advanced_analytics
+          - beta_features
+        ssoEnforced:
+          type: boolean
+          example: true
+        regionalModelsOnly:
+          type: boolean
+          description: When true, only models whose regionalAvailability includes the workspace's region are usable.
+          example: false
+        whiteListedProviders:
+          type: array
+          items:
+            type: string
+            description: List of allowed authentication providers
+          example:
+          - google
+          - github
+        defaultEmbeddingProvider:
+          type:
+          - string
+          - 'null'
+          description: Default provider for embeddings in the workspace
+          example: openai
+    AgentConfiguration:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 12345
+        sId:
+          type: string
+          description: Unique string identifier for the agent configuration
+          example: 7f3a9c2b1e
+        version:
+          type: integer
+          example: 2
+        versionCreatedAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of when the version was created
+          example: '2023-06-15T14:30:00Z'
+        versionAuthorId:
+          type:
+          - string
+          - 'null'
+          description: ID of the user who created this version
+          example: 0ec9852c2f
+        name:
+          type: string
+          description: Name of the agent configuration
+          example: Customer Support Agent
+        description:
+          type: string
+          description: Description of the agent configuration
+          example: An AI agent designed to handle customer support inquiries
+        instructions:
+          type:
+          - string
+          - 'null'
+          description: Instructions for the agent
+          example: Always greet the customer politely and try to resolve their issue efficiently.
+        pictureUrl:
+          type: string
+          description: URL of the agent's picture
+          example: https://example.com/agent-images/support-agent.png
+        status:
+          type: string
+          description: Current status of the agent configuration
+          example: active
+        scope:
+          type: string
+          description: Scope of the agent configuration
+          example: workspace
+        userFavorite:
+          type: boolean
+          description: Status of the user favorite for this configuration
+          example: true
+        model:
+          type: object
+          properties:
+            providerId:
+              type: string
+              description: ID of the model provider
+              example: openai
+            modelId:
+              type: string
+              description: ID of the specific model
+              example: gpt-4
+            temperature:
+              type: number
+              example: 0.7
+        actions:
+          type: array
+          example: []
+        maxStepsPerRun:
+          type: integer
+          example: 10
+        templateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the template used for this configuration
+          example: b4e2f1a9c7
+    Mention:
+      type: object
+      properties:
+        configurationId:
+          type: string
+          description: ID of the mentioned agent configuration
+          example: 7f3a9c2b1e
     Conversation:
       type: object
       properties:
@@ -867,111 +1110,6 @@ components:
                       example: null
                     configuration:
                       $ref: '#/components/schemas/AgentConfiguration'
-    Message:
-      type: object
-      required:
-      - content
-      - mentions
-      properties:
-        content:
-          type: string
-          description: The content of the message. Should not be empty.
-          example: This is my message
-        mentions:
-          type: array
-          description: Empty array is accepted but won't trigger any agent.
-          items:
-            $ref: '#/components/schemas/Mention'
-        context:
-          $ref: '#/components/schemas/Context'
-    AgentConfiguration:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 12345
-        sId:
-          type: string
-          description: Unique string identifier for the agent configuration
-          example: 7f3a9c2b1e
-        version:
-          type: integer
-          example: 2
-        versionCreatedAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of when the version was created
-          example: '2023-06-15T14:30:00Z'
-        versionAuthorId:
-          type:
-          - string
-          - 'null'
-          description: ID of the user who created this version
-          example: 0ec9852c2f
-        name:
-          type: string
-          description: Name of the agent configuration
-          example: Customer Support Agent
-        description:
-          type: string
-          description: Description of the agent configuration
-          example: An AI agent designed to handle customer support inquiries
-        instructions:
-          type:
-          - string
-          - 'null'
-          description: Instructions for the agent
-          example: Always greet the customer politely and try to resolve their issue efficiently.
-        pictureUrl:
-          type: string
-          description: URL of the agent's picture
-          example: https://example.com/agent-images/support-agent.png
-        status:
-          type: string
-          description: Current status of the agent configuration
-          example: active
-        scope:
-          type: string
-          description: Scope of the agent configuration
-          example: workspace
-        userFavorite:
-          type: boolean
-          description: Status of the user favorite for this configuration
-          example: true
-        model:
-          type: object
-          properties:
-            providerId:
-              type: string
-              description: ID of the model provider
-              example: openai
-            modelId:
-              type: string
-              description: ID of the specific model
-              example: gpt-4
-            temperature:
-              type: number
-              example: 0.7
-        actions:
-          type: array
-          example: []
-        maxStepsPerRun:
-          type: integer
-          example: 10
-        templateId:
-          type:
-          - string
-          - 'null'
-          description: ID of the template used for this configuration
-          example: b4e2f1a9c7
-    Mention:
-      type: object
-      properties:
-        configurationId:
-          type: string
-          description: ID of the mentioned agent configuration
-          example: 7f3a9c2b1e
     User:
       type: object
       properties:
@@ -1013,144 +1151,6 @@ components:
           type: string
           description: URL of the user's profile image
           example: https://example.com/profile/johndoe.jpg
-    ContentFragment:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          description: The title of the content fragment
-          example: My content fragment
-        content:
-          type: string
-          description: The content of the content fragment (optional if `fileId` is set)
-          example: This is my content fragment extracted text
-        contentType:
-          type: string
-          description: The content type of the content fragment (optional if `fileId` is set)
-          example: text/plain
-        url:
-          type: string
-          description: The URL of the content fragment
-          example: https://example.com/content
-        fileId:
-          type: string
-          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
-          example: fil_123456
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of this file inside the sandbox conversation mount.
-          example: conversation/report.csv
-        skipFileProcessing:
-          type: boolean
-          description: Whether upload-time file processing was skipped.
-        nodeId:
-          type: string
-          description: The id of the content node (optional if `content` and `contentType` are set)
-          example: node_123456
-        nodeDataSourceViewId:
-          type: string
-          description: The id of the data source view (optional if `content` and `contentType` are set)
-          example: dsv_123456
-        context:
-          $ref: '#/components/schemas/Context'
-    Context:
-      type: object
-      required:
-      - username
-      - timezone
-      properties:
-        username:
-          type: string
-          description: Username in the current context
-          example: johndoe123
-        timezone:
-          type: string
-          description: User's timezone
-          example: America/New_York
-        fullName:
-          type: string
-          description: User's full name in the current context
-          example: John Doe
-        email:
-          type: string
-          description: User's email in the current context
-          example: john.doe@example.com
-        profilePictureUrl:
-          type: string
-          description: URL of the user's profile picture
-          example: https://example.com/profiles/johndoe123.jpg
-        agenticMessageData:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - run_agent
-              - agent_handover
-              description: Type of the agentic message
-            originMessageId:
-              type: string
-              description: ID of the origin message
-              example: 2b8e4f6a0c
-    Workspace:
-      type: object
-      required:
-      - regionalModelsOnly
-      properties:
-        id:
-          type: integer
-          example: 67890
-        sId:
-          type: string
-          description: Unique string identifier for the workspace
-          example: dQFf9l5FQY
-        name:
-          type: string
-          description: Name of the workspace
-          example: My Awesome Workspace
-        role:
-          type: string
-          description: User's role in the workspace
-          example: admin
-        segmentation:
-          type:
-          - string
-          - 'null'
-          description: Segmentation information for the workspace
-          example: enterprise
-        flags:
-          type: array
-          items:
-            type: string
-            description: Feature flags enabled for the workspace
-          example:
-          - advanced_analytics
-          - beta_features
-        ssoEnforced:
-          type: boolean
-          example: true
-        regionalModelsOnly:
-          type: boolean
-          description: When true, only models whose regionalAvailability includes the workspace's region are usable.
-          example: false
-        whiteListedProviders:
-          type: array
-          items:
-            type: string
-            description: List of allowed authentication providers
-          example:
-          - google
-          - github
-        defaultEmbeddingProvider:
-          type:
-          - string
-          - 'null'
-          description: Default provider for embeddings in the workspace
-          example: openai
   securitySchemes:
     BearerAuth:
       type: http

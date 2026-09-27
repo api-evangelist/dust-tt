@@ -1036,6 +1036,83 @@ components:
           items:
             $ref: '#/components/schemas/Section'
           description: Array of nested sections
+    Table:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the table
+          example: Roi data
+          deprecated: true
+        title:
+          type: string
+          description: Title of the table
+          example: ROI Data
+        table_id:
+          type: string
+          description: Unique identifier for the table
+          example: 1234f4567c
+        description:
+          type: string
+          description: Description of the table
+          example: roi data for Q1
+        mime_type:
+          type: string
+          description: MIME type of the table
+          example: text/csv
+        schema:
+          type: array
+          description: Array of column definitions
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the column
+                example: roi
+              value_type:
+                type: string
+                description: Data type of the column
+                enum:
+                - text
+                - int
+                - float
+                - bool
+                - date
+                example: int
+              possible_values:
+                type:
+                - array
+                - 'null'
+                description: Array of possible values for the column (null if unrestricted)
+                items:
+                  type: string
+                example:
+                - '1'
+                - '2'
+                - '3'
+        timestamp:
+          type: number
+          description: Unix timestamp of table creation/modification
+          example: 1732810375150
+        tags:
+          type: array
+          description: Array of tags associated with the table
+          items:
+            type: string
+        parent_id:
+          type: string
+          description: ID of the table parent
+          items:
+            type: string
+          example: 1234f4567c
+        parents:
+          type: array
+          description: Array of parent table IDs
+          items:
+            type: string
+          example:
+          - 1234f4567c
     Document:
       type: object
       properties:
@@ -1120,83 +1197,6 @@ components:
           - number
           - 'null'
           example: 150
-    Table:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the table
-          example: Roi data
-          deprecated: true
-        title:
-          type: string
-          description: Title of the table
-          example: ROI Data
-        table_id:
-          type: string
-          description: Unique identifier for the table
-          example: 1234f4567c
-        description:
-          type: string
-          description: Description of the table
-          example: roi data for Q1
-        mime_type:
-          type: string
-          description: MIME type of the table
-          example: text/csv
-        schema:
-          type: array
-          description: Array of column definitions
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the column
-                example: roi
-              value_type:
-                type: string
-                description: Data type of the column
-                enum:
-                - text
-                - int
-                - float
-                - bool
-                - date
-                example: int
-              possible_values:
-                type:
-                - array
-                - 'null'
-                description: Array of possible values for the column (null if unrestricted)
-                items:
-                  type: string
-                example:
-                - '1'
-                - '2'
-                - '3'
-        timestamp:
-          type: number
-          description: Unix timestamp of table creation/modification
-          example: 1732810375150
-        tags:
-          type: array
-          description: Array of tags associated with the table
-          items:
-            type: string
-        parent_id:
-          type: string
-          description: ID of the table parent
-          items:
-            type: string
-          example: 1234f4567c
-        parents:
-          type: array
-          description: Array of parent table IDs
-          items:
-            type: string
-          example:
-          - 1234f4567c
     Datasource:
       type: object
       properties:
