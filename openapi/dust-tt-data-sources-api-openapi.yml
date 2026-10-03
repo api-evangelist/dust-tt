@@ -1017,25 +1017,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Section:
-      type: object
-      description: A section of a document that can contain nested sections
-      properties:
-        prefix:
-          type:
-          - string
-          - 'null'
-          description: Optional prefix text for the section
-        content:
-          type:
-          - string
-          - 'null'
-          description: Optional content text for the section
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-          description: Array of nested sections
     Table:
       type: object
       properties:
@@ -1197,6 +1178,25 @@ components:
           - number
           - 'null'
           example: 150
+    Section:
+      type: object
+      description: A section of a document that can contain nested sections
+      properties:
+        prefix:
+          type:
+          - string
+          - 'null'
+          description: Optional prefix text for the section
+        content:
+          type:
+          - string
+          - 'null'
+          description: Optional content text for the section
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+          description: Array of nested sections
     Datasource:
       type: object
       properties:
