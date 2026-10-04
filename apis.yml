@@ -1,5 +1,8 @@
 aid: dust-tt
 url: https://raw.githubusercontent.com/api-evangelist/dust-tt/refs/heads/main/apis.yml
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 apis:
 - aid: dust-tt:dust-tt-agents-api
   name: Dust Agents API
@@ -402,6 +405,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dust-tt.png
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/dust-tt-capability-edges.yml
+    name: Dust Business Capability Map
   - type: Website
     url: https://www.dust.tt/
   - type: IssueTracker
