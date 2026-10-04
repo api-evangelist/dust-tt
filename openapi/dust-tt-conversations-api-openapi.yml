@@ -761,156 +761,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ContentFragment:
+    Mention:
+      type: object
+      properties:
+        configurationId:
+          type: string
+          description: ID of the mentioned agent configuration
+          example: 7f3a9c2b1e
+    Message:
       type: object
       required:
-      - title
+      - content
+      - mentions
       properties:
-        title:
-          type: string
-          description: The title of the content fragment
-          example: My content fragment
         content:
           type: string
-          description: The content of the content fragment (optional if `fileId` is set)
-          example: This is my content fragment extracted text
-        contentType:
-          type: string
-          description: The content type of the content fragment (optional if `fileId` is set)
-          example: text/plain
-        url:
-          type: string
-          description: The URL of the content fragment
-          example: https://example.com/content
-        fileId:
-          type: string
-          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
-          example: fil_123456
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of this file inside the sandbox conversation mount.
-          example: conversation/report.csv
-        skipFileProcessing:
-          type: boolean
-          description: Whether upload-time file processing was skipped.
-        nodeId:
-          type: string
-          description: The id of the content node (optional if `content` and `contentType` are set)
-          example: node_123456
-        nodeDataSourceViewId:
-          type: string
-          description: The id of the data source view (optional if `content` and `contentType` are set)
-          example: dsv_123456
+          description: The content of the message. Should not be empty.
+          example: This is my message
+        mentions:
+          type: array
+          description: Empty array is accepted but won't trigger any agent.
+          items:
+            $ref: '#/components/schemas/Mention'
         context:
           $ref: '#/components/schemas/Context'
-    Conversation:
-      type: object
-      properties:
-        conversation:
-          type: object
-          properties:
-            id:
-              type: integer
-              example: 67890
-            created:
-              type: integer
-              example: 1625097600
-            sId:
-              type: string
-              description: Unique string identifier for the conversation
-              example: 3d8f6a2c1b
-            owner:
-              $ref: '#/components/schemas/Workspace'
-            title:
-              type: string
-              description: Title of the conversation
-              example: 'Customer Inquiry #1234'
-            visibility:
-              type: string
-              description: Visibility setting of the conversation
-              example: private
-            content:
-              type: array
-              items:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                    sId:
-                      type: string
-                      description: Unique string identifier for the message
-                      example: 9e7d5c3a1f
-                    type:
-                      type: string
-                      description: Type of the message
-                      example: human
-                    visibility:
-                      type: string
-                      description: Visibility setting of the message
-                      example: visible
-                    version:
-                      type: integer
-                      example: 1
-                    created:
-                      type: integer
-                      example: 1625097700
-                    user:
-                      $ref: '#/components/schemas/User'
-                    mentions:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Mention'
-                    content:
-                      type: string
-                      description: Content of the message
-                      example: Hello, I need help with my order.
-                    context:
-                      $ref: '#/components/schemas/Context'
-                    agentMessageId:
-                      type: integer
-                      example: 1
-                    parentMessageId:
-                      type: string
-                      description: ID of the parent message
-                      example: 2b8e4f6a0c
-                    status:
-                      type: string
-                      description: Status of the message
-                      example: completed
-                    actions:
-                      type: array
-                      example: []
-                    chainOfThought:
-                      type:
-                      - string
-                      - 'null'
-                      description: Chain of thought for the message
-                      example: The user is asking about their order. I should first greet them and then ask for their order number.
-                    rawContents:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          step:
-                            type: integer
-                            example: 1
-                          content:
-                            type: string
-                            description: Content for each step
-                            example: Hello! I'd be happy to help you with your order. Could you please provide your order number?
-                    error:
-                      type:
-                      - string
-                      - 'null'
-                      description: Error message, if any
-                      example: null
-                    configuration:
-                      $ref: '#/components/schemas/AgentConfiguration'
     AgentConfiguration:
       type: object
       properties:
@@ -1033,62 +907,6 @@ components:
           type: string
           description: URL of the user's profile image
           example: https://example.com/profile/johndoe.jpg
-    Context:
-      type: object
-      required:
-      - username
-      - timezone
-      properties:
-        username:
-          type: string
-          description: Username in the current context
-          example: johndoe123
-        timezone:
-          type: string
-          description: User's timezone
-          example: America/New_York
-        fullName:
-          type: string
-          description: User's full name in the current context
-          example: John Doe
-        email:
-          type: string
-          description: User's email in the current context
-          example: john.doe@example.com
-        profilePictureUrl:
-          type: string
-          description: URL of the user's profile picture
-          example: https://example.com/profiles/johndoe123.jpg
-        agenticMessageData:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - run_agent
-              - agent_handover
-              description: Type of the agentic message
-            originMessageId:
-              type: string
-              description: ID of the origin message
-              example: 2b8e4f6a0c
-    Message:
-      type: object
-      required:
-      - content
-      - mentions
-      properties:
-        content:
-          type: string
-          description: The content of the message. Should not be empty.
-          example: This is my message
-        mentions:
-          type: array
-          description: Empty array is accepted but won't trigger any agent.
-          items:
-            $ref: '#/components/schemas/Mention'
-        context:
-          $ref: '#/components/schemas/Context'
     Workspace:
       type: object
       required:
@@ -1144,13 +962,195 @@ components:
           - 'null'
           description: Default provider for embeddings in the workspace
           example: openai
-    Mention:
+    Context:
+      type: object
+      required:
+      - username
+      - timezone
+      properties:
+        username:
+          type: string
+          description: Username in the current context
+          example: johndoe123
+        timezone:
+          type: string
+          description: User's timezone
+          example: America/New_York
+        fullName:
+          type: string
+          description: User's full name in the current context
+          example: John Doe
+        email:
+          type: string
+          description: User's email in the current context
+          example: john.doe@example.com
+        profilePictureUrl:
+          type: string
+          description: URL of the user's profile picture
+          example: https://example.com/profiles/johndoe123.jpg
+        agenticMessageData:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - run_agent
+              - agent_handover
+              description: Type of the agentic message
+            originMessageId:
+              type: string
+              description: ID of the origin message
+              example: 2b8e4f6a0c
+    Conversation:
       type: object
       properties:
-        configurationId:
+        conversation:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 67890
+            created:
+              type: integer
+              example: 1625097600
+            sId:
+              type: string
+              description: Unique string identifier for the conversation
+              example: 3d8f6a2c1b
+            owner:
+              $ref: '#/components/schemas/Workspace'
+            title:
+              type: string
+              description: Title of the conversation
+              example: 'Customer Inquiry #1234'
+            visibility:
+              type: string
+              description: Visibility setting of the conversation
+              example: private
+            content:
+              type: array
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    sId:
+                      type: string
+                      description: Unique string identifier for the message
+                      example: 9e7d5c3a1f
+                    type:
+                      type: string
+                      description: Type of the message
+                      example: human
+                    visibility:
+                      type: string
+                      description: Visibility setting of the message
+                      example: visible
+                    version:
+                      type: integer
+                      example: 1
+                    created:
+                      type: integer
+                      example: 1625097700
+                    user:
+                      $ref: '#/components/schemas/User'
+                    mentions:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Mention'
+                    content:
+                      type: string
+                      description: Content of the message
+                      example: Hello, I need help with my order.
+                    context:
+                      $ref: '#/components/schemas/Context'
+                    agentMessageId:
+                      type: integer
+                      example: 1
+                    parentMessageId:
+                      type: string
+                      description: ID of the parent message
+                      example: 2b8e4f6a0c
+                    status:
+                      type: string
+                      description: Status of the message
+                      example: completed
+                    actions:
+                      type: array
+                      example: []
+                    chainOfThought:
+                      type:
+                      - string
+                      - 'null'
+                      description: Chain of thought for the message
+                      example: The user is asking about their order. I should first greet them and then ask for their order number.
+                    rawContents:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          step:
+                            type: integer
+                            example: 1
+                          content:
+                            type: string
+                            description: Content for each step
+                            example: Hello! I'd be happy to help you with your order. Could you please provide your order number?
+                    error:
+                      type:
+                      - string
+                      - 'null'
+                      description: Error message, if any
+                      example: null
+                    configuration:
+                      $ref: '#/components/schemas/AgentConfiguration'
+    ContentFragment:
+      type: object
+      required:
+      - title
+      properties:
+        title:
           type: string
-          description: ID of the mentioned agent configuration
-          example: 7f3a9c2b1e
+          description: The title of the content fragment
+          example: My content fragment
+        content:
+          type: string
+          description: The content of the content fragment (optional if `fileId` is set)
+          example: This is my content fragment extracted text
+        contentType:
+          type: string
+          description: The content type of the content fragment (optional if `fileId` is set)
+          example: text/plain
+        url:
+          type: string
+          description: The URL of the content fragment
+          example: https://example.com/content
+        fileId:
+          type: string
+          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
+          example: fil_123456
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of this file inside the sandbox conversation mount.
+          example: conversation/report.csv
+        skipFileProcessing:
+          type: boolean
+          description: Whether upload-time file processing was skipped.
+        nodeId:
+          type: string
+          description: The id of the content node (optional if `content` and `contentType` are set)
+          example: node_123456
+        nodeDataSourceViewId:
+          type: string
+          description: The id of the data source view (optional if `content` and `contentType` are set)
+          example: dsv_123456
+        context:
+          $ref: '#/components/schemas/Context'
   securitySchemes:
     BearerAuth:
       type: http
