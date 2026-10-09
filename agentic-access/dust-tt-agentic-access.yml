@@ -1,24 +1,27 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/dust-agents-api-openapi.yml, openapi/dust-apps-api-openapi.yml, openapi/dust-conversations-api-openapi.yml,
-  openapi/dust-datasources-api-openapi.yml, openapi/dust-mcp-api-openapi.yml, openapi/dust-search-api-openapi.yml,
-  openapi/dust-skills-api-openapi.yml, openapi/dust-triggers-api-openapi.yml, openapi/dust-workspace-api-openapi.yml
+source: openapi/dust-tt-agents-api-openapi.yml, openapi/dust-tt-apps-api-openapi.yml, openapi/dust-tt-conversations-api-openapi.yml,
+  openapi/dust-tt-data-sources-api-openapi.yml, openapi/dust-tt-datasourceviews-api-openapi.yml,
+  openapi/dust-tt-feedbacks-api-openapi.yml, openapi/dust-tt-mcp-api-openapi.yml, openapi/dust-tt-mentions-api-openapi.yml,
+  openapi/dust-tt-search-api-openapi.yml, openapi/dust-tt-skills-api-openapi.yml, openapi/dust-tt-spaces-api-openapi.yml,
+  openapi/dust-tt-tools-api-openapi.yml, openapi/dust-tt-triggers-api-openapi.yml, openapi/dust-tt-workspace-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 64
   by_action_class:
-    connected: 32
-    acting: 32
+    connected: 33
+    acting: 31
   by_consequence:
-    read: 32
-    write: 31
+    read: 33
+    write: 30
     safety-critical: 1
   human_in_the_loop_required: 1
 operations:
 - path: /api/v1/w/{wId}/assistant/agent_configurations
   method: get
+  operationId: getApiV1WByWIdAssistantAgentConfigurations
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -28,6 +31,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/agent_configurations/{sId}/export/yaml
   method: get
+  operationId: getApiV1WByWIdAssistantAgentConfigurationsBySIdExportYaml
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -37,6 +41,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/agent_configurations/{sId}
   method: get
+  operationId: getApiV1WByWIdAssistantAgentConfigurationsBySId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -46,6 +51,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/agent_configurations/{sId}
   method: patch
+  operationId: patchApiV1WByWIdAssistantAgentConfigurationsBySId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -61,6 +67,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/agent_configurations/{sId}
   method: delete
+  operationId: deleteApiV1WByWIdAssistantAgentConfigurationsBySId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -76,6 +83,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/agent_configurations/import
   method: post
+  operationId: postApiV1WByWIdAssistantAgentConfigurationsImport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -91,6 +99,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/agent_configurations/search
   method: get
+  operationId: getApiV1WByWIdAssistantAgentConfigurationsSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -100,6 +109,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/apps/{aId}/runs/{runId}
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdAppsByAIdRunsByRunId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -109,6 +119,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/apps/{aId}/runs
   method: post
+  operationId: postApiV1WByWIdSpacesBySpaceIdAppsByAIdRuns
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -124,6 +135,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/apps
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdApps
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -133,6 +145,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/cancel
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdCancel
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -148,6 +161,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/content_fragments
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdContentFragments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -163,15 +177,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/events
   method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks
-  method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCIdEvents
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -181,6 +187,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/files/{rel}
   method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCIdFilesByRel
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -190,6 +197,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}
   method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -199,6 +207,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}
   method: patch
+  operationId: patchApiV1WByWIdAssistantConversationsByCId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -212,17 +221,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/answer-question
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdAnswerQuestion
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -238,6 +239,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/edit
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdEdit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -253,6 +255,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/events
   method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCIdMessagesByMIdEvents
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -260,38 +263,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/validate-action
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdValidateAction
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -307,6 +281,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages
   method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdMessages
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -322,6 +297,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/assistant/conversations
   method: post
+  operationId: postApiV1WByWIdAssistantConversations
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -335,32 +311,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/w/{wId}/assistant/mentions/parse
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v1/w/{wId}/assistant/mentions/suggestions
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /api/v1/w/{wId}/files
   method: post
+  operationId: postApiV1WByWIdFiles
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -374,65 +327,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
-  method: patch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}/search
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/check_upsert_queue
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdCheckUpsertQueue
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -442,6 +339,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -451,6 +349,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}
   method: post
+  operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -466,6 +365,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}
   method: delete
+  operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -481,6 +381,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}/parents
   method: post
+  operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentIdParents
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -496,6 +397,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocuments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -505,6 +407,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/search
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -514,6 +417,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -523,6 +427,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}
   method: delete
+  operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -538,6 +443,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows/{rId}
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -547,6 +453,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows/{rId}
   method: delete
+  operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -562,6 +469,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -571,6 +479,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows
   method: post
+  operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -586,6 +495,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -595,6 +505,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables
   method: post
+  operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -610,6 +521,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/spaces/{spaceId}/data_sources
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSources
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -617,8 +529,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/w/{wId}/spaces
+- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
   method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourceViewsByDsvId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -626,8 +539,103 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
+  method: patch
+  operationId: patchApiV1WByWIdSpacesBySpaceIdDataSourceViewsByDsvId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}
+  method: delete
+  operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourceViewsByDsvId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views/{dsvId}/search
+  method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourceViewsByDsvIdSearch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/w/{wId}/spaces/{spaceId}/data_source_views
+  method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdDataSourceViews
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks
+  method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCIdFeedbacks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
+  method: post
+  operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdFeedbacks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks
+  method: delete
+  operationId: deleteApiV1WByWIdAssistantConversationsByCIdMessagesByMIdFeedbacks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v1/w/{wId}/mcp/heartbeat
   method: post
+  operationId: postApiV1WByWIdMcpHeartbeat
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -643,6 +651,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/mcp/register
   method: post
+  operationId: postApiV1WByWIdMcpRegister
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -658,6 +667,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/mcp/requests
   method: get
+  operationId: getApiV1WByWIdMcpRequests
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -667,6 +677,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/mcp/results
   method: post
+  operationId: postApiV1WByWIdMcpResults
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -680,8 +691,35 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/w/{wId}/spaces/{spaceId}/mcp_server_views
+- path: /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions
   method: get
+  operationId: getApiV1WByWIdAssistantConversationsByCIdMentionsSuggestions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/w/{wId}/assistant/mentions/parse
+  method: post
+  operationId: postApiV1WByWIdAssistantMentionsParse
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/w/{wId}/assistant/mentions/suggestions
+  method: get
+  operationId: getApiV1WByWIdAssistantMentionsSuggestions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -691,6 +729,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/search
   method: get
+  operationId: getApiV1WByWIdSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -700,21 +739,17 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/search
   method: post
+  operationId: postApiV1WByWIdSearch
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/w/{wId}/search/tools/upload
   method: post
+  operationId: postApiV1WByWIdSearchToolsUpload
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -730,6 +765,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/skills
   method: get
+  operationId: getApiV1WByWIdSkills
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -739,6 +775,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/skills
   method: post
+  operationId: postApiV1WByWIdSkills
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -752,8 +789,29 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /api/v1/w/{wId}/spaces
+  method: get
+  operationId: getApiV1WByWIdSpaces
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/w/{wId}/spaces/{spaceId}/mcp_server_views
+  method: get
+  operationId: getApiV1WByWIdSpacesBySpaceIdMcpServerViews
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/w/{wId}/triggers/hooks/{webhookSourceId}
   method: post
+  operationId: postApiV1WByWIdTriggersHooksByWebhookSourceId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -769,6 +827,7 @@ operations:
     audit: required
 - path: /api/v1/w/{wId}/analytics/export
   method: get
+  operationId: getApiV1WByWIdAnalyticsExport
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -778,6 +837,7 @@ operations:
     audit: none
 - path: /api/v1/w/{wId}/workspace-usage
   method: get
+  operationId: getApiV1WByWIdWorkspaceUsage
   x-agentic-access:
     action-class: connected
     consequence: read
