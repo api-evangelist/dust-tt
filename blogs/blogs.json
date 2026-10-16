@@ -2,6 +2,13 @@
   "repo": "dust-tt",
   "feeds": [
     {
+      "source": "https://blog.dust.tt",
+      "feed_url": "https://blog.dust.tt",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://dust.tt/academy",
       "feed_url": "https://dust.tt/academy",
       "title": "",
@@ -9,7 +16,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 2,
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
