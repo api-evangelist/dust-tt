@@ -761,30 +761,45 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Mention:
-      type: object
-      properties:
-        configurationId:
-          type: string
-          description: ID of the mentioned agent configuration
-          example: 7f3a9c2b1e
-    Message:
+    Context:
       type: object
       required:
-      - content
-      - mentions
+      - username
+      - timezone
       properties:
-        content:
+        username:
           type: string
-          description: The content of the message. Should not be empty.
-          example: This is my message
-        mentions:
-          type: array
-          description: Empty array is accepted but won't trigger any agent.
-          items:
-            $ref: '#/components/schemas/Mention'
-        context:
-          $ref: '#/components/schemas/Context'
+          description: Username in the current context
+          example: johndoe123
+        timezone:
+          type: string
+          description: User's timezone
+          example: America/New_York
+        fullName:
+          type: string
+          description: User's full name in the current context
+          example: John Doe
+        email:
+          type: string
+          description: User's email in the current context
+          example: john.doe@example.com
+        profilePictureUrl:
+          type: string
+          description: URL of the user's profile picture
+          example: https://example.com/profiles/johndoe123.jpg
+        agenticMessageData:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - run_agent
+              - agent_handover
+              description: Type of the agentic message
+            originMessageId:
+              type: string
+              description: ID of the origin message
+              example: 2b8e4f6a0c
     AgentConfiguration:
       type: object
       properties:
@@ -866,47 +881,6 @@ components:
           - 'null'
           description: ID of the template used for this configuration
           example: b4e2f1a9c7
-    User:
-      type: object
-      properties:
-        sId:
-          type: string
-          description: Unique string identifier for the user
-          example: 0ec9852c2f
-        id:
-          type: integer
-          example: 12345
-        createdAt:
-          type: integer
-          example: 1625097600
-        username:
-          type: string
-          description: User's chosen username
-          example: johndoe
-        email:
-          type: string
-          description: User's email address
-          example: john.doe@example.com
-        firstName:
-          type: string
-          description: User's first name
-          example: John
-        lastName:
-          type: string
-          description: User's last name
-          example: Doe
-        fullName:
-          type: string
-          description: User's full name
-          example: John Doe
-        provider:
-          type: string
-          description: Authentication provider used by the user
-          example: google
-        image:
-          type: string
-          description: URL of the user's profile image
-          example: https://example.com/profile/johndoe.jpg
     Workspace:
       type: object
       required:
@@ -962,45 +936,6 @@ components:
           - 'null'
           description: Default provider for embeddings in the workspace
           example: openai
-    Context:
-      type: object
-      required:
-      - username
-      - timezone
-      properties:
-        username:
-          type: string
-          description: Username in the current context
-          example: johndoe123
-        timezone:
-          type: string
-          description: User's timezone
-          example: America/New_York
-        fullName:
-          type: string
-          description: User's full name in the current context
-          example: John Doe
-        email:
-          type: string
-          description: User's email in the current context
-          example: john.doe@example.com
-        profilePictureUrl:
-          type: string
-          description: URL of the user's profile picture
-          example: https://example.com/profiles/johndoe123.jpg
-        agenticMessageData:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - run_agent
-              - agent_handover
-              description: Type of the agentic message
-            originMessageId:
-              type: string
-              description: ID of the origin message
-              example: 2b8e4f6a0c
     Conversation:
       type: object
       properties:
@@ -1107,6 +1042,13 @@ components:
                       example: null
                     configuration:
                       $ref: '#/components/schemas/AgentConfiguration'
+    Mention:
+      type: object
+      properties:
+        configurationId:
+          type: string
+          description: ID of the mentioned agent configuration
+          example: 7f3a9c2b1e
     ContentFragment:
       type: object
       required:
@@ -1151,6 +1093,64 @@ components:
           example: dsv_123456
         context:
           $ref: '#/components/schemas/Context'
+    Message:
+      type: object
+      required:
+      - content
+      - mentions
+      properties:
+        content:
+          type: string
+          description: The content of the message. Should not be empty.
+          example: This is my message
+        mentions:
+          type: array
+          description: Empty array is accepted but won't trigger any agent.
+          items:
+            $ref: '#/components/schemas/Mention'
+        context:
+          $ref: '#/components/schemas/Context'
+    User:
+      type: object
+      properties:
+        sId:
+          type: string
+          description: Unique string identifier for the user
+          example: 0ec9852c2f
+        id:
+          type: integer
+          example: 12345
+        createdAt:
+          type: integer
+          example: 1625097600
+        username:
+          type: string
+          description: User's chosen username
+          example: johndoe
+        email:
+          type: string
+          description: User's email address
+          example: john.doe@example.com
+        firstName:
+          type: string
+          description: User's first name
+          example: John
+        lastName:
+          type: string
+          description: User's last name
+          example: Doe
+        fullName:
+          type: string
+          description: User's full name
+          example: John Doe
+        provider:
+          type: string
+          description: Authentication provider used by the user
+          example: google
+        image:
+          type: string
+          description: URL of the user's profile image
+          example: https://example.com/profile/johndoe.jpg
   securitySchemes:
     BearerAuth:
       type: http

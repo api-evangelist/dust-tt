@@ -336,6 +336,41 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Datasource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the datasource
+          example: 12345
+        createdAt:
+          type: integer
+          description: Timestamp of when the datasource was created
+          example: 1625097600
+        name:
+          type: string
+          description: Name of the datasource
+          example: Customer Knowledge Base
+        description:
+          type: string
+          description: Description of the datasource
+          example: Contains all customer-related information and FAQs
+        dustAPIProjectId:
+          type: string
+          description: ID of the associated Dust API project
+          example: 5e9d8c7b6a
+        connectorId:
+          type: string
+          description: ID of the connector used for this datasource
+          example: 1f3e5d7c9b
+        connectorProvider:
+          type: string
+          description: Provider of the connector (e.g., 'webcrawler')
+          example: webcrawler
+        assistantDefaultSelected:
+          type: boolean
+          description: Whether this datasource is selected by default for agents
+          example: true
     DatasourceView:
       type: object
       properties:
@@ -387,41 +422,6 @@ components:
         spaceId:
           type: string
           description: ID of the space containing the data source view
-    Datasource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the datasource
-          example: 12345
-        createdAt:
-          type: integer
-          description: Timestamp of when the datasource was created
-          example: 1625097600
-        name:
-          type: string
-          description: Name of the datasource
-          example: Customer Knowledge Base
-        description:
-          type: string
-          description: Description of the datasource
-          example: Contains all customer-related information and FAQs
-        dustAPIProjectId:
-          type: string
-          description: ID of the associated Dust API project
-          example: 5e9d8c7b6a
-        connectorId:
-          type: string
-          description: ID of the connector used for this datasource
-          example: 1f3e5d7c9b
-        connectorProvider:
-          type: string
-          description: Provider of the connector (e.g., 'webcrawler')
-          example: webcrawler
-        assistantDefaultSelected:
-          type: boolean
-          description: Whether this datasource is selected by default for agents
-          example: true
   securitySchemes:
     BearerAuth:
       type: http
