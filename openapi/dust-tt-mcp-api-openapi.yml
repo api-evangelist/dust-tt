@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust MCP API
+  title: DUST API Documentation MCP API
   version: 1.0.2
-  description: Register client-side Model Context Protocol servers, stream tool requests over SSE, return results, and list MCP server views available in a space.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -18,9 +15,47 @@ tags:
 - name: MCP
   description: MCP servers
 paths:
+  /api/v1/w/{wId}/mcp/deregister:
+    post:
+      summary: Deregister a client-side MCP server
+      description: 'Documentation
+
+        Remove a previously registered client-side MCP server registration.'
+      tags:
+      - MCP
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - serverId
+              properties:
+                serverId:
+                  type: string
+                  description: The ID of the registered MCP server
+      responses:
+        '200':
+          description: Server deregistered successfully
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. User does not have access to the workspace.
+      operationId: postApiV1WByWIdMcpDeregister
+      x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/heartbeat:
     post:
-      summary: Update Heartbeat for a Client-Side MCP Server
+      summary: Update heartbeat for a client-side MCP server
       description: 'Documentation
 
         Update the heartbeat for a previously registered client-side MCP server.
@@ -74,7 +109,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/register:
     post:
-      summary: Register a Client-Side MCP Server
+      summary: Register a client-side MCP server
       description: 'Documentation
 
         Register a client-side MCP server to Dust.
@@ -128,14 +163,16 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/requests:
     get:
-      summary: Stream MCP Tool Requests for a Workspace
+      summary: Stream MCP tool requests for a workspace
       description: 'Documentation
 
         Server-Sent Events (SSE) endpoint that streams MCP tool requests for a workspace.
 
         This endpoint is used by client-side MCP servers to listen for tool requests in real-time.
 
-        The connection will remain open and events will be sent as new tool requests are made.'
+        Events arrive as new tool requests are made. Reconnect with `lastEventId` after the stream closes to continue receiving events.
+
+        The stream starts with a `:connect` comment. Request frames carry JSON with `eventId` and `data` fields. A plain-text `data: done` frame ends the current connection; clients may reconnect with `lastEventId`.'
       tags:
       - MCP
       security:
@@ -156,24 +193,25 @@ paths:
       - in: query
         name: lastEventId
         required: false
-        description: ID of the last event to filter events for
+        description: Redis stream ID of the last received request event. Omit to start from the available history.
         schema:
           type: string
       responses:
         '200':
-          description: 'Connection established successfully. Events will be streamed in Server-Sent Events format.
-
-            Each event will contain a tool request that needs to be processed by the MCP server.
+          description: 'SSE event stream with a `:connect` comment followed by request frames. The JSON `data` field in each request frame contains the tool request.
 
             '
           content:
             text/event-stream:
               schema:
                 type: object
+                required:
+                - eventId
+                - data
                 properties:
-                  type:
+                  eventId:
                     type: string
-                    description: Type of the event (e.g. "tool_request")
+                    description: Redis stream ID used as the resume cursor.
                   data:
                     type: object
                     description: The tool request data
@@ -189,7 +227,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/mcp/results:
     post:
-      summary: Submit MCP Tool Execution Results
+      summary: Submit MCP tool execution results
       description: 'Documentation
 
         Endpoint for client-side MCP servers to submit the results of tool executions.

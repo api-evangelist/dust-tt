@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/dust-tt/dust/refs/heads/main/front-api/public/swagger.json",
+ "final": "https://raw.githubusercontent.com/dust-tt/dust/refs/heads/main/front-api/public/swagger.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 255784,
+ "sha256": "844da65bf86b1b9790836017c4d0c5df934da2f30a35a320e20789106ca73ad7",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

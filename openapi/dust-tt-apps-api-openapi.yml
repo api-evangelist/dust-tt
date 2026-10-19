@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Apps API
+  title: DUST API Documentation Apps API
   version: 1.0.2
-  description: Run Dust Apps — chained LLM/code blocks defined in the Dust Builder — and inspect their runs.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/spaces/{spaceId}/apps/{aId}/runs/{runId}:
     get:
-      summary: Get an App Run
+      summary: Get an app run
       description: Retrieve a run for an app in the space identified by {spaceId}.
       tags:
       - Apps
@@ -69,7 +66,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/apps/{aId}/runs:
     post:
-      summary: Create an App Run
+      summary: Create an app run
       description: Create and execute a run for an app in the space specified by {spaceId}.
       tags:
       - Apps
@@ -161,15 +158,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace or app not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: postApiV1WByWIdSpacesBySpaceIdAppsByAIdRuns
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/apps:
     get:
-      summary: List Apps
+      summary: List apps
       description: Get all apps in the space identified by {spaceId}.
       tags:
       - Apps
@@ -231,8 +226,6 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdSpacesBySpaceIdApps

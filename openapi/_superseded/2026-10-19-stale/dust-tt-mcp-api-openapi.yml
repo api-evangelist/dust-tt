@@ -1,0 +1,245 @@
+openapi: 3.2.0
+info:
+  title: Dust MCP API
+  version: 1.0.2
+  description: Register client-side Model Context Protocol servers, stream tool requests over SSE, return results, and list MCP server views available in a space.
+  contact:
+    name: Dust Support
+    url: https://docs.dust.tt
+  license:
+    name: MIT
+    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: MCP
+  description: MCP servers
+paths:
+  /api/v1/w/{wId}/mcp/heartbeat:
+    post:
+      summary: Update Heartbeat for a Client-Side MCP Server
+      description: 'Documentation
+
+        Update the heartbeat for a previously registered client-side MCP server.
+
+        This extends the TTL for the server registration.'
+      tags:
+      - MCP
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - serverId
+              properties:
+                serverId:
+                  type: string
+                  description: The ID of the registered MCP server
+      responses:
+        '200':
+          description: Heartbeat updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  expiresAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. User does not have access to the workspace.
+        '404':
+          description: Not Found. MCP server not registered or expired.
+      operationId: postApiV1WByWIdMcpHeartbeat
+      x-operation-id-source: derived
+  /api/v1/w/{wId}/mcp/register:
+    post:
+      summary: Register a Client-Side MCP Server
+      description: 'Documentation
+
+        Register a client-side MCP server to Dust.
+
+        The registration is scoped to the current user and workspace.
+
+        A serverId identifier is generated and returned in the response.'
+      tags:
+      - MCP
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - serverName
+              properties:
+                serverName:
+                  type: string
+                  description: Name of the MCP server
+      responses:
+        '200':
+          description: Server registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverId:
+                    type: string
+                  expiresAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. User does not have access to the workspace.
+      operationId: postApiV1WByWIdMcpRegister
+      x-operation-id-source: derived
+  /api/v1/w/{wId}/mcp/requests:
+    get:
+      summary: Stream MCP Tool Requests for a Workspace
+      description: 'Documentation
+
+        Server-Sent Events (SSE) endpoint that streams MCP tool requests for a workspace.
+
+        This endpoint is used by client-side MCP servers to listen for tool requests in real-time.
+
+        The connection will remain open and events will be sent as new tool requests are made.'
+      tags:
+      - MCP
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: query
+        name: serverId
+        required: true
+        description: ID of the MCP server to filter events for
+        schema:
+          type: string
+      - in: query
+        name: lastEventId
+        required: false
+        description: ID of the last event to filter events for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Connection established successfully. Events will be streamed in Server-Sent Events format.
+
+            Each event will contain a tool request that needs to be processed by the MCP server.
+
+            '
+          content:
+            text/event-stream:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    description: Type of the event (e.g. "tool_request")
+                  data:
+                    type: object
+                    description: The tool request data
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. You don't have access to this workspace or MCP server.
+        '500':
+          description: Internal Server Error.
+      operationId: getApiV1WByWIdMcpRequests
+      x-operation-id-source: derived
+  /api/v1/w/{wId}/mcp/results:
+    post:
+      summary: Submit MCP Tool Execution Results
+      description: 'Documentation
+
+        Endpoint for client-side MCP servers to submit the results of tool executions.
+
+        This endpoint accepts the output from tools that were executed locally.'
+      tags:
+      - MCP
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - result
+              - serverId
+              properties:
+                result:
+                  type: object
+                  description: The result data from the tool execution
+                serverId:
+                  type: string
+                  description: ID of the MCP server submitting the results
+      responses:
+        '200':
+          description: Tool execution results successfully submitted
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. You don't have access to this workspace or MCP server.
+        '404':
+          description: Conversation or message not found.
+        '500':
+          description: Internal Server Error.
+      operationId: postApiV1WByWIdMcpResults
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

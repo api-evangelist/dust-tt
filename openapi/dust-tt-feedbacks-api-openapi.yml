@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Conversations Feedbacks API
+  title: DUST API Documentation Feedbacks API
   version: 1.0.2
-  description: Create and drive multi-turn conversations with Dust agents — post messages, stream events, manage content fragments, gather feedback, and resolve mentions.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/assistant/conversations/{cId}/feedbacks:
     get:
-      summary: Get Feedbacks for a Conversation
+      summary: Get feedbacks for a conversation
       description: 'Retrieves all feedback entries for a specific conversation.
 
         Requires authentication and read:conversation scope.'
@@ -100,7 +97,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/feedbacks:
     post:
-      summary: Submit Feedback for a Specific Message in a Conversation
+      summary: Submit feedback for a specific message in a conversation
       description: 'Submit user feedback (thumbs up/down) for a specific message in a conversation.
 
         Requires authentication and update:conversation scope.'
@@ -167,7 +164,7 @@ paths:
       operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdFeedbacks
       x-operation-id-source: derived
     delete:
-      summary: Delete Feedback for a Specific Message
+      summary: Delete feedback for a specific message
       description: 'Delete user feedback for a specific message in a conversation.
 
         Requires authentication and update:conversation scope.'

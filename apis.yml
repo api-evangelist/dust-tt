@@ -298,16 +298,16 @@ apis:
     url: json-schema/dust-document-schema.json
   - type: JSONSchema
     url: json-schema/dust-skill-schema.json
-- aid: dust-tt:dust-tt-workspace-api
-  name: Dust Workspace API
-  description: Workspace
+- aid: dust-tt:dust-tt-analytics-api
+  name: Dust Analytics API
+  description: Workspace analytics
   humanURL: https://docs.dust.tt/reference
   baseURL: https://dust.tt/api/v1
   tags:
-  - Workspace
+  - Analytics
   properties:
   - type: OpenAPI
-    url: openapi/dust-tt-workspace-api-openapi.yml
+    url: openapi/dust-tt-analytics-api-openapi.yml
   - type: Documentation
     url: https://docs.dust.tt/reference
   - type: JSONSchema

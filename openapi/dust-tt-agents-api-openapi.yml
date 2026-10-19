@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Agents API
+  title: DUST API Documentation Agents API
   version: 1.0.2
-  description: Manage Dust agent configurations — list, retrieve, update, archive, search, and export agents as YAML.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/assistant/agent_configurations:
     get:
-      summary: List Agents
+      summary: List agents
       description: Get the agent configurations for the workspace identified by {wId}.
       tags:
       - Agents
@@ -46,11 +43,14 @@ paths:
 
           - favorites: Retrieves all agents marked as favorites by the user (only available to authenticated users)
 
+          - all_unrestricted: Retrieves every active agent of the workspace, including unpublished agents the caller does not edit and agents requesting spaces the caller cannot access. Requires an admin key.
+
           '
         schema:
           type: string
           enum:
           - all
+          - all_unrestricted
           - list
           - workspace
           - published
@@ -84,17 +84,17 @@ paths:
           description: Bad Request. Missing or invalid parameters.
         '401':
           description: Unauthorized. Invalid or missing authentication token, or attempting to access restricted views without authentication.
+        '403':
+          description: Forbidden. The all_unrestricted view requires a workspace admin.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantAgentConfigurations
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/{sId}/export/yaml:
     get:
-      summary: Export Agent Configuration as YAML
+      summary: Export agent configuration as YAML
       description: Download the agent configuration identified by {sId} as a YAML file.
       tags:
       - Agents
@@ -131,15 +131,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Agent configuration not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantAgentConfigurationsBySIdExportYaml
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/{sId}:
     get:
-      summary: Get Agent Configuration
+      summary: Get agent configuration
       description: Retrieve the agent configuration identified by {sId} in the workspace identified by {wId}.
       tags:
       - Agents
@@ -182,16 +180,16 @@ paths:
           description: Bad Request. Invalid or missing parameters.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. Only admins can access unpublished agents.
         '404':
           description: Agent configuration not found.
-        '405':
-          description: Method not supported. Only GET or PATCH is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantAgentConfigurationsBySId
       x-operation-id-source: derived
     patch:
-      summary: Update Agent Configuration
+      summary: Update agent configuration
       description: Update the agent configuration identified by {sId} in the workspace identified by {wId}.
       tags:
       - Agents
@@ -217,6 +215,7 @@ paths:
               properties:
                 userFavorite:
                   type: boolean
+                  description: Favorites the agent for the calling user. Requires a user; rejected with 400 when authenticated with a workspace API key.
                 agent:
                   type: object
                   properties:
@@ -262,15 +261,12 @@ paths:
                         - protected
                 editors:
                   type: array
+                  description: Emails of the workspace members to set as editors of the agent. Omitting this field keeps the current editors; providing it replaces the whole list.
                   items:
-                    type: object
-                    properties:
-                      user_id:
-                        type: string
-                      email:
-                        type: string
-                      full_name:
-                        type: string
+                    type: string
+                    format: email
+                  example:
+                  - alice@example.com
                 skills:
                   type: array
                   description: Replaces the skills enabled on the agent configuration.
@@ -286,6 +282,7 @@ paths:
                         type: string
                 toolset:
                   type: array
+                  description: Replaces the full set of tools on the agent. Any tool not present in this array is removed, so send the complete desired toolset. Each entry resolves an MCP server by name (see configuration.mcp_server_name). Entries that cannot be resolved are not applied and are returned in the skippedActions field of the response rather than causing the whole request to fail.
                   items:
                     type: object
                     properties:
@@ -299,6 +296,10 @@ paths:
                         - MCP
                       configuration:
                         type: object
+                        properties:
+                          mcp_server_name:
+                            type: string
+                            description: Name of the MCP server to attach. Both built-in (internal) tools and remote MCP servers are supported. A remote MCP server must first be shared to a space (global or a regular space the caller can access); it is matched by its display name, which must be unambiguous within the workspace.
       security:
       - BearerAuth: []
       responses:
@@ -313,6 +314,7 @@ paths:
                     $ref: '#/components/schemas/AgentConfiguration'
                   skippedActions:
                     type: array
+                    description: Toolset entries that could not be applied (e.g. the referenced MCP server was not found, is not shared to an accessible space, or the name was ambiguous). The request still succeeds; inspect this list to confirm every intended tool was attached.
                     items:
                       type: object
                       properties:
@@ -321,20 +323,20 @@ paths:
                         reason:
                           type: string
         '400':
-          description: Bad Request. Invalid or missing parameters.
+          description: Bad Request. Invalid or missing parameters, or userFavorite sent with a workspace API key.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. Only admins can update agents.
         '404':
           description: Agent configuration not found.
-        '405':
-          description: Method not supported. Only GET or PATCH is expected.
         '500':
           description: Internal Server Error.
       operationId: patchApiV1WByWIdAssistantAgentConfigurationsBySId
       x-operation-id-source: derived
     delete:
-      summary: Archive Agent Configuration
-      description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and triggers/editor-group memberships associated with it are disabled.
+      summary: Archive agent configuration
+      description: Archive the agent configuration identified by {sId} in the workspace identified by {wId}. The agent is soft-archived and its triggers are disabled.
       tags:
       - Agents
       parameters:
@@ -363,22 +365,20 @@ paths:
                   success:
                     type: boolean
         '400':
-          description: Bad Request. Invalid or missing parameters.
+          description: Bad Request. Invalid parameters or the agent is already archived.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
         '403':
           description: Forbidden. The caller is not allowed to archive this agent.
         '404':
           description: Agent configuration not found.
-        '405':
-          description: Method not supported. Only GET, PATCH or DELETE is expected.
         '500':
           description: Internal Server Error.
       operationId: deleteApiV1WByWIdAssistantAgentConfigurationsBySId
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/import:
     post:
-      summary: Import Agent Configuration
+      summary: Import agent configuration
       description: Create a new agent configuration from a JSON body matching the agent config schema.
       tags:
       - Agents
@@ -409,6 +409,7 @@ paths:
                   - handle
                   - description
                   - scope
+                  - avatar_url
                   - max_steps_per_run
                   - visualization_enabled
                   properties:
@@ -454,15 +455,12 @@ paths:
                         - protected
                 editors:
                   type: array
+                  description: Emails of the workspace members to set as editors of the agent.
                   items:
-                    type: object
-                    properties:
-                      user_id:
-                        type: string
-                      email:
-                        type: string
-                      full_name:
-                        type: string
+                    type: string
+                    format: email
+                  example:
+                  - alice@example.com
                 toolset:
                   type: array
                   items:
@@ -503,16 +501,14 @@ paths:
           description: Bad Request. Invalid request body.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
-        '405':
-          description: Method not supported. Only POST is expected.
         '500':
           description: Internal Server Error.
       operationId: postApiV1WByWIdAssistantAgentConfigurationsImport
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/agent_configurations/search:
     get:
-      summary: Search Agents by Name
-      description: Search for agent configurations by name in the workspace identified by {wId}.
+      summary: Search agents by name
+      description: Search for agent configurations by name in the workspace identified by {wId}. Returns the global agents and the published agents the caller can access whose name contains the query, case-insensitively.
       tags:
       - Agents
       parameters:
@@ -548,8 +544,6 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantAgentConfigurationsSearch
@@ -562,6 +556,12 @@ components:
         id:
           type: integer
           example: 12345
+        agentModelId:
+          type:
+          - integer
+          - 'null'
+          description: Stable identifier of the agent across versions; null for global agents
+          example: 6789
         sId:
           type: string
           description: Unique string identifier for the agent configuration
@@ -628,6 +628,35 @@ components:
         actions:
           type: array
           example: []
+        skills:
+          type: array
+          description: Skills attached to the agent. Returned by the agent GET endpoints (list and single-agent) whatever the requested variant. Empty both for an agent with no skill and for an agent whose details were redacted for the caller (canRead false).
+          items:
+            $ref: '#/components/schemas/AgentSkill'
+        tags:
+          type: array
+          description: Tags attached to the agent
+          items:
+            type: object
+            properties:
+              sId:
+                type: string
+                example: 3f9d1c7a5b
+              name:
+                type: string
+                example: Support
+              kind:
+                type: string
+                enum:
+                - standard
+                - protected
+        requestedSpaceIds:
+          type: array
+          description: Identifiers of the spaces the agent needs access to
+          items:
+            type: string
+          example:
+          - vlt_a1b2c3d4e5
         maxStepsPerRun:
           type: integer
           example: 10
@@ -637,6 +666,26 @@ components:
           - 'null'
           description: ID of the template used for this configuration
           example: b4e2f1a9c7
+        ignoreCreditSpendThresholdAlert:
+          type: boolean
+          description: Whether the agent keeps running past the workspace credit spend threshold alert
+          example: false
+        canViewContent:
+          type: boolean
+          description: Whether the caller can view the agent's private fields (instructions, skills, tools); they are redacted when false
+          example: false
+    AgentSkill:
+      type: object
+      description: A skill attached to an agent configuration.
+      properties:
+        sId:
+          type: string
+          description: Unique string identifier for the skill
+          example: skill_abc123
+        name:
+          type: string
+          description: Name of the skill
+          example: Customer Support
   securitySchemes:
     BearerAuth:
       type: http

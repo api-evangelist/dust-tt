@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Skills API
+  title: DUST API Documentation Skills API
   version: 1.0.2
-  description: List and import skill bundles into a Dust workspace.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -18,9 +15,52 @@ tags:
 - name: Skills
   description: Skills
 paths:
+  /api/v1/w/{wId}/skills/{skillId}:
+    delete:
+      summary: Archive a skill
+      description: Soft-archives a custom skill in the workspace.
+      tags:
+      - Skills
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: path
+        name: skillId
+        required: true
+        description: Unique string identifier for the custom skill
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Skill archived successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                properties:
+                  success:
+                    type: boolean
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '403':
+          description: Forbidden. The caller is not allowed to archive skills.
+        '404':
+          description: Skill not found.
+        '500':
+          description: Internal Server Error.
+      operationId: deleteApiV1WByWIdSkillsBySkillId
+      x-operation-id-source: derived
   /api/v1/w/{wId}/skills:
     get:
-      summary: List Skills
+      summary: List skills
       description: Retrieves the custom skills in the workspace. Active skills are returned by default.
       tags:
       - Skills
@@ -43,6 +83,26 @@ paths:
           - active
           - archived
           - suggested
+      - in: query
+        name: availability
+        required: false
+        description: Filter skills by availability. Repeatable to match several values. Unpublished (editors) skills are only returned when bypassEditorVisibility is set.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - editors
+            - workspace_users
+            - users_and_agents
+        style: form
+        explode: true
+      - in: query
+        name: bypassEditorVisibility
+        required: false
+        description: When true, also return unpublished (editors) skills. Requires an admin API key.
+        schema:
+          type: boolean
       responses:
         '200':
           description: Skills available in the workspace.
@@ -61,12 +121,10 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported.
       operationId: getApiV1WByWIdSkills
       x-operation-id-source: derived
     post:
-      summary: Import Skills from Uploaded Files
+      summary: Import skills from uploaded files
       description: Imports skills from uploaded files or ZIP archives into the workspace.
       tags:
       - Skills
@@ -93,7 +151,7 @@ paths:
                   items:
                     type: string
                     format: binary
-                  description: Skill files or ZIP archives to import.
+                  description: Skill files or ZIP archives to import. Skill names must be at most 256 characters.
                 names:
                   type: array
                   items:
@@ -105,7 +163,20 @@ paths:
                   - error
                   - skip
                   - override
-                  description: Conflict handling strategy. Defaults to error.
+                  description: Strategy applied when a skill with the same name already exists in the workspace. error rejects the whole import, skip skips the skill and reports it in skipped, override updates the existing skill. Defaults to error.
+                editors:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                  description: Optional editor email addresses to add to imported or updated skills. Editors must be active workspace members. Existing skills keep their current editors.
+                availability:
+                  type: string
+                  enum:
+                  - editors
+                  - workspace_users
+                  - users_and_agents
+                  description: Optional availability to apply to imported or updated skills. editors is unpublished, workspace_users is published, and users_and_agents is discoverable. New skills default to editors and existing skills keep their current availability when omitted.
       responses:
         '200':
           description: Skills import result.
@@ -137,14 +208,25 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported.
       operationId: postApiV1WByWIdSkills
       x-operation-id-source: derived
 components:
   schemas:
+    SkillSourceMetadata:
+      type: object
+      properties:
+        repoUrl:
+          type: string
+          description: URL of the source repository, when applicable
+          example: https://github.com/dust-tt/skills
+        filePath:
+          type: string
+          description: Path to the source skill file
+          example: support/SKILL.md
     MCPServerView:
       type: object
+      required:
+      - isRestrictedToSkills
       properties:
         id:
           type: integer
@@ -275,6 +357,10 @@ components:
           - personal_actions
           description: OAuth use case for the MCP server view
           example: platform_actions
+        isRestrictedToSkills:
+          type: boolean
+          description: Whether the MCP server view can only be used through skills
+          example: false
         editedByUser:
           type:
           - object
@@ -331,6 +417,7 @@ components:
           example: active
         name:
           type: string
+          maxLength: 256
           description: Name of the skill
           example: Customer Support
         agentFacingDescription:
@@ -380,6 +467,13 @@ components:
           items:
             type: string
           description: Space identifiers the skill needs access to
+        manuallyRequestedSpaceIds:
+          type: array
+          items:
+            type: string
+          description: 'Subset of requestedSpaceIds that was selected by hand rather than derived from the skill''s tools, knowledge or nested skills
+
+            '
         fileAttachments:
           type: array
           items:
@@ -391,20 +485,23 @@ components:
               fileName:
                 type: string
                 description: Name of the attached file
+        canRead:
+          type: boolean
+          description: Whether the authenticated actor can read the skill's instructions, tools and files. False when they were redacted for a workspace admin who is not a member of every space the skill requires.
         canWrite:
           type: boolean
           description: Whether the authenticated actor can edit the skill
-        isExtendable:
-          type: boolean
-          description: Whether this skill can be extended by another skill
         isDefault:
           type: boolean
-          description: Whether this skill is enabled by default
-        extendedSkillId:
-          type:
-          - string
-          - 'null'
-          description: Identifier of the extended skill, when applicable
+          deprecated: true
+          description: Whether this skill is enabled by default. Deprecated, use availability instead.
+        availability:
+          type: string
+          enum:
+          - editors
+          - workspace_users
+          - users_and_agents
+          description: Who the skill is available to (users_and_agents makes it discoverable by agents)
         instructions:
           type:
           - string
@@ -419,17 +516,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MCPServerView'
-    SkillSourceMetadata:
-      type: object
-      properties:
-        repoUrl:
-          type: string
-          description: URL of the source repository, when applicable
-          example: https://github.com/dust-tt/skills
-        filePath:
-          type: string
-          description: Path to the source skill file
-          example: support/SKILL.md
   securitySchemes:
     BearerAuth:
       type: http

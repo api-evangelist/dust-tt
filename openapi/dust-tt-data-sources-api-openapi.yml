@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Data Sources Datasources API
+  title: DUST API Documentation Datasources API
   version: 1.0.2
-  description: Upsert, search, and manage documents, tables, and folders inside Dust data sources and data source views, organized into workspace spaces.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/check_upsert_queue:
     get:
-      summary: Check the Upsert Queue Status for a Data Source
+      summary: Check the upsert queue status for a data source
       description: Returns the number of running document upsert workflows for this data source. This endpoint is only accessible with system API keys (e.g., from connectors).
       tags:
       - Data Sources
@@ -64,15 +61,13 @@ paths:
           description: Forbidden. Only system keys can access this endpoint.
         '404':
           description: Data source not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdCheckUpsertQueue
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}:
     get:
-      summary: Retrieve a Document from a Data Source
+      summary: Retrieve a document from a data source
       description: Retrieve a document from a data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -119,14 +114,12 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Data source or document not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
       x-operation-id-source: derived
     post:
-      summary: Upsert a Document in a Data Source
+      summary: Upsert a document in a data source
       description: Upsert a document in a data source in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -215,8 +208,6 @@ paths:
           description: Forbidden. The data source is managed.
         '404':
           description: Data source or document not found.
-        '405':
-          description: Method not supported.
         '429':
           description: Rate limit exceeded.
         '500':
@@ -224,7 +215,7 @@ paths:
       operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
       x-operation-id-source: derived
     delete:
-      summary: Delete a Document from a Data Source
+      summary: Delete a document from a data source
       description: Delete a document from a data source in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -274,15 +265,13 @@ paths:
           description: Forbidden. The data source is managed.
         '404':
           description: Data source or document not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentId
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents/{documentId}/parents:
     post:
-      summary: Update the Parents of a Document
+      summary: Update the parents of a document
       description: Update the parents of a document in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -337,15 +326,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Data source or workspace not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocumentsByDocumentIdParents
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/documents:
     get:
-      summary: Get Documents
+      summary: Get documents
       description: Get documents in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -403,13 +390,11 @@ paths:
                     type: integer
         '404':
           description: The data source was not found
-        '405':
-          description: Method not supported
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdDocuments
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/search:
     get:
-      summary: Search the Data Source
+      summary: Search the data source
       description: Search the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -537,13 +522,11 @@ paths:
                           description: Score of the document
         '400':
           description: Invalid request error
-        '405':
-          description: Method not supported error
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdSearch
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}:
     get:
-      summary: Get a Table
+      summary: Get a table
       description: Get a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -583,12 +566,10 @@ paths:
                 $ref: '#/components/schemas/Table'
         '404':
           description: The table was not found
-        '405':
-          description: Method not supported
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
       x-operation-id-source: derived
     delete:
-      summary: Delete a Table
+      summary: Delete a table
       description: Delete a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -624,13 +605,11 @@ paths:
           description: The table was deleted
         '404':
           description: The table was not found
-        '405':
-          description: Method not supported
       operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTId
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows/{rId}:
     get:
-      summary: Get a Row
+      summary: Get a row
       description: Get a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -676,12 +655,10 @@ paths:
                 $ref: '#/components/schemas/Datasource'
         '404':
           description: The row was not found
-        '405':
-          description: Method not supported
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
       x-operation-id-source: derived
     delete:
-      summary: Delete a Row
+      summary: Delete a row
       description: Delete a row in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -723,13 +700,13 @@ paths:
           description: The row was deleted
         '404':
           description: The row was not found
-        '405':
-          description: Method not supported
+        '429':
+          description: Too many pending table updates are queued for this table. Retry later.
       operationId: deleteApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRowsByRId
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables/{tId}/rows:
     get:
-      summary: List Rows
+      summary: List rows
       description: List rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -779,12 +756,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Datasource'
-        '405':
-          description: Method not supported
+        '400':
+          description: Bad Request. Missing or invalid parameters.
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '404':
+          description: Table, data source or workspace not found.
+        '500':
+          description: Internal Server Error.
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
       x-operation-id-source: derived
     post:
-      summary: Upsert Rows
+      summary: Upsert rows
       description: Upsert rows in the table identified by {tId} in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -861,15 +844,15 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Data source or workspace not found.
-        '405':
-          description: Method not supported.
+        '429':
+          description: Too many pending table updates are queued for this table. Retry later.
         '500':
           description: Internal Server Error.
       operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTablesByTIdRows
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources/{dsId}/tables:
     get:
-      summary: Get Tables
+      summary: Get tables
       description: Get tables in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -900,15 +883,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Table'
+                type: object
+                properties:
+                  tables:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Table'
         '400':
           description: Invalid request
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
       x-operation-id-source: derived
     post:
-      summary: Upsert a Table
+      summary: Upsert a table
       description: Upsert a table in the data source identified by {dsId} in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -969,16 +955,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Table'
+                type: object
+                properties:
+                  table:
+                    $ref: '#/components/schemas/Table'
         '400':
           description: Invalid request
-        '405':
-          description: Method not supported
       operationId: postApiV1WByWIdSpacesBySpaceIdDataSourcesByDsIdTables
       x-operation-id-source: derived
   /api/v1/w/{wId}/spaces/{spaceId}/data_sources:
     get:
-      summary: Get Data Sources
+      summary: Get data sources
       description: Get data sources in the workspace identified by {wId}.
       tags:
       - Data Sources
@@ -1011,124 +998,10 @@ paths:
                       $ref: '#/components/schemas/Datasource'
         '404':
           description: The workspace was not found
-        '405':
-          description: Method not supported
       operationId: getApiV1WByWIdSpacesBySpaceIdDataSources
       x-operation-id-source: derived
 components:
   schemas:
-    Datasource:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the datasource
-          example: 12345
-        createdAt:
-          type: integer
-          description: Timestamp of when the datasource was created
-          example: 1625097600
-        name:
-          type: string
-          description: Name of the datasource
-          example: Customer Knowledge Base
-        description:
-          type: string
-          description: Description of the datasource
-          example: Contains all customer-related information and FAQs
-        dustAPIProjectId:
-          type: string
-          description: ID of the associated Dust API project
-          example: 5e9d8c7b6a
-        connectorId:
-          type: string
-          description: ID of the connector used for this datasource
-          example: 1f3e5d7c9b
-        connectorProvider:
-          type: string
-          description: Provider of the connector (e.g., 'webcrawler')
-          example: webcrawler
-        assistantDefaultSelected:
-          type: boolean
-          description: Whether this datasource is selected by default for agents
-          example: true
-    Table:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the table
-          example: Roi data
-          deprecated: true
-        title:
-          type: string
-          description: Title of the table
-          example: ROI Data
-        table_id:
-          type: string
-          description: Unique identifier for the table
-          example: 1234f4567c
-        description:
-          type: string
-          description: Description of the table
-          example: roi data for Q1
-        mime_type:
-          type: string
-          description: MIME type of the table
-          example: text/csv
-        schema:
-          type: array
-          description: Array of column definitions
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the column
-                example: roi
-              value_type:
-                type: string
-                description: Data type of the column
-                enum:
-                - text
-                - int
-                - float
-                - bool
-                - date
-                example: int
-              possible_values:
-                type:
-                - array
-                - 'null'
-                description: Array of possible values for the column (null if unrestricted)
-                items:
-                  type: string
-                example:
-                - '1'
-                - '2'
-                - '3'
-        timestamp:
-          type: number
-          description: Unix timestamp of table creation/modification
-          example: 1732810375150
-        tags:
-          type: array
-          description: Array of tags associated with the table
-          items:
-            type: string
-        parent_id:
-          type: string
-          description: ID of the table parent
-          items:
-            type: string
-          example: 1234f4567c
-        parents:
-          type: array
-          description: Array of parent table IDs
-          items:
-            type: string
-          example:
-          - 1234f4567c
     Section:
       type: object
       description: A section of a document that can contain nested sections
@@ -1232,6 +1105,118 @@ components:
           - number
           - 'null'
           example: 150
+    Table:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the table
+          example: Roi data
+          deprecated: true
+        title:
+          type: string
+          description: Title of the table
+          example: ROI Data
+        table_id:
+          type: string
+          description: Unique identifier for the table
+          example: 1234f4567c
+        description:
+          type: string
+          description: Description of the table
+          example: roi data for Q1
+        mime_type:
+          type: string
+          description: MIME type of the table
+          example: text/csv
+        schema:
+          type: array
+          description: Array of column definitions
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the column
+                example: roi
+              value_type:
+                type: string
+                description: Data type of the column
+                enum:
+                - text
+                - int
+                - float
+                - bool
+                - date
+                example: int
+              possible_values:
+                type:
+                - array
+                - 'null'
+                description: Array of possible values for the column (null if unrestricted)
+                items:
+                  type: string
+                example:
+                - '1'
+                - '2'
+                - '3'
+        timestamp:
+          type: number
+          description: Unix timestamp of table creation/modification
+          example: 1732810375150
+        tags:
+          type: array
+          description: Array of tags associated with the table
+          items:
+            type: string
+        parent_id:
+          type: string
+          description: ID of the table parent
+          items:
+            type: string
+          example: 1234f4567c
+        parents:
+          type: array
+          description: Array of parent table IDs
+          items:
+            type: string
+          example:
+          - 1234f4567c
+    Datasource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the datasource
+          example: 12345
+        createdAt:
+          type: integer
+          description: Timestamp of when the datasource was created
+          example: 1625097600
+        name:
+          type: string
+          description: Name of the datasource
+          example: Customer Knowledge Base
+        description:
+          type: string
+          description: Description of the datasource
+          example: Contains all customer-related information and FAQs
+        dustAPIProjectId:
+          type: string
+          description: ID of the associated Dust API project
+          example: 5e9d8c7b6a
+        connectorId:
+          type: string
+          description: ID of the connector used for this datasource
+          example: 1f3e5d7c9b
+        connectorProvider:
+          type: string
+          description: Provider of the connector (e.g., 'webcrawler')
+          example: webcrawler
+        assistantDefaultSelected:
+          type: boolean
+          description: Whether this datasource is selected by default for agents
+          example: true
   securitySchemes:
     BearerAuth:
       type: http

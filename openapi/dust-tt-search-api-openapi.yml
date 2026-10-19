@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Search API
+  title: DUST API Documentation Search API
   version: 1.0.2
-  description: Search nodes (documents, tables, conversations) across a workspace with optional streaming.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/search:
     get:
-      summary: Search for Nodes in the Workspace (streaming)
+      summary: Search for nodes in the workspace (streaming)
       description: Search for nodes in the workspace with SSE streaming
       tags:
       - Search
@@ -96,13 +93,10 @@ paths:
           description: Bad request
         '401':
           description: Unauthorized
-        '405':
-          description: Method not allowed
       operationId: getApiV1WByWIdSearch
       x-operation-id-source: derived
     post:
-      summary: Search for Nodes in the Workspace
-      description: Search for nodes in the workspace
+      summary: Search for nodes in the workspace
       tags:
       - Search
       parameters:
@@ -154,13 +148,11 @@ paths:
           description: Unauthorized
         '404':
           description: Space not found
-        '405':
-          description: Method not allowed
       operationId: postApiV1WByWIdSearch
       x-operation-id-source: derived
   /api/v1/w/{wId}/search/tools/upload:
     post:
-      summary: Upload a Tool File
+      summary: Upload a tool file
       description: Download and upload a file from a tool (MCP server) to Dust
       tags:
       - Search
@@ -205,8 +197,6 @@ paths:
           description: Bad request
         '401':
           description: Unauthorized
-        '405':
-          description: Method not allowed
         '500':
           description: Internal server error
       operationId: postApiV1WByWIdSearchToolsUpload

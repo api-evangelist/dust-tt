@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Data Sources Spaces API
+  title: DUST API Documentation Spaces API
   version: 1.0.2
-  description: Upsert, search, and manage documents, tables, and folders inside Dust data sources and data source views, organized into workspace spaces.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/spaces:
     get:
-      summary: List Available Spaces
+      summary: List available spaces
       description: Retrieves a list of accessible spaces for the authenticated workspace.
       tags:
       - Spaces
@@ -31,6 +28,12 @@ paths:
         name: wId
         required: true
         description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: query
+        name: kinds
+        required: false
+        description: Comma-separated list of space kinds to filter on, among `system`, `global`, `regular` and `project`. Defaults to `system,global,regular` — projects must be requested explicitly.
         schema:
           type: string
       responses:
@@ -51,8 +54,6 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdSpaces
@@ -81,6 +82,9 @@ components:
           items:
             type: string
           description: List of group IDs that have access to the space
+        isRestricted:
+          type: boolean
+          description: Whether the space is restricted to specific groups
   securitySchemes:
     BearerAuth:
       type: http

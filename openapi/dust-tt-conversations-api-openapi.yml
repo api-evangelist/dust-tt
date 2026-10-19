@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Conversations API
+  title: DUST API Documentation Conversations API
   version: 1.0.2
-  description: Create and drive multi-turn conversations with Dust agents — post messages, stream events, manage content fragments, gather feedback, and resolve mentions.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -22,7 +19,7 @@ paths:
     post:
       tags:
       - Conversations
-      summary: Cancel Message Generation in a Conversation
+      summary: Cancel message generation in a conversation
       parameters:
       - name: wId
         in: path
@@ -65,13 +62,68 @@ paths:
                     description: Indicates if the cancellation was successful
         '400':
           description: Invalid request (invalid query parameters or request body)
-        '405':
-          description: Method not supported
       operationId: postApiV1WByWIdAssistantConversationsByCIdCancel
+      x-operation-id-source: derived
+  /api/v1/w/{wId}/assistant/conversations/{cId}/consumption:
+    get:
+      summary: Get conversation consumption
+      description: 'Get the same credit breakdown as the conversation consumption view for a conversation
+
+        the caller can read. Returns stable billed credits for terminal agent messages, including
+
+        superseded message versions and accessible recursively spawned run-agent conversations.
+
+        In-progress messages are excluded until they reach a terminal state.
+
+
+        Details use each billed message''s newest complete stored attribution. They are null when
+
+        no messages have positive billed credits or any billed message lacks complete attribution.
+
+        Agent work and tool attributions partition the bill. Models and agents are alternative
+
+        groupings of that bill, not additional charges. This endpoint does not return token counts
+
+        or a cached-versus-uncached input breakdown.'
+      tags:
+      - Conversations
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: ID of the workspace
+        schema:
+          type: string
+      - in: path
+        name: cId
+        required: true
+        description: ID of the conversation
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Conversation consumption retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationConsumption'
+        '400':
+          description: Invalid request parameters.
+        '401':
+          description: Invalid or missing authentication credentials.
+        '403':
+          description: The workspace plan does not allow API access.
+        '404':
+          description: Workspace or conversation not found, deleted, or not accessible to the caller.
+        '500':
+          description: Internal server error.
+      operationId: getApiV1WByWIdAssistantConversationsByCIdConsumption
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/content_fragments:
     post:
-      summary: Create a Content Fragment
+      summary: Create a content fragment
       description: Create a new content fragment in the workspace identified by {wId}.
       tags:
       - Conversations
@@ -113,8 +165,10 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/events:
     get:
-      summary: Get the Events for a Conversation
-      description: Get the events for a conversation in the workspace identified by {wId}.
+      summary: Get the events for a conversation
+      description: 'Stream conversation events for the workspace identified by {wId} using Server-Sent Events (SSE).
+
+        The stream starts with a `:connect` comment. Event frames carry JSON with `eventId` and `data` fields. A plain-text `data: done` frame ends the current connection; clients may reconnect with `lastEventId`.'
       tags:
       - Conversations
       parameters:
@@ -133,22 +187,34 @@ paths:
       - in: query
         name: lastEventId
         required: false
-        description: ID of the last event
+        description: Redis stream ID of the last received conversation event. Omit or pass an empty value to start from the available history.
         schema:
           type: string
       security:
       - BearerAuth: []
       responses:
         '200':
-          description: Events for the conversation, view the "Events" page from this documentation for more information.
+          description: SSE event stream with a `:connect` comment followed by conversation frames. Each conversation frame contains JSON with `eventId` and `data` fields. The `data` field is the conversation event. View the "Events" page from this documentation for more information.
+          content:
+            text/event-stream:
+              schema:
+                type: object
+                required:
+                - eventId
+                - data
+                properties:
+                  eventId:
+                    type: string
+                    description: Redis stream ID used as the resume cursor.
+                  data:
+                    type: object
+                    description: Conversation event discriminated by its type field.
         '400':
           description: Bad Request. Missing or invalid parameters.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Conversation not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantConversationsByCIdEvents
@@ -157,12 +223,14 @@ paths:
     get:
       tags:
       - Conversations
-      summary: Download a Conversation-Scoped File by Path
-      description: 'Download a file from a conversation''s file system by its scoped path. The path must
+      summary: Download a conversation-scoped file by path
+      description: 'Download a file from a conversation''s file system by its scoped path. Pass the
 
-        be conversation-scoped, i.e. start with `conversation/` (as surfaced by agent file
+        canonical `filePath` surfaced in a message action''s `generatedFiles` (the legacy
 
-        system tools). The file content is streamed directly from the conversation mount.'
+        `conversation/foo.pdf` form is also accepted). The file content is streamed
+
+        directly from the conversation mount.'
       parameters:
       - name: wId
         in: path
@@ -179,11 +247,13 @@ paths:
       - name: rel
         in: path
         required: true
-        description: 'Conversation-scoped file path, e.g. `conversation/foo.pdf` or
+        description: 'Conversation-scoped file path: the canonical `filePath` returned in a message
 
-          `conversation/subdir/foo.pdf`. The `conversation/` prefix is required; any other
+          action''s `generatedFiles`, or the legacy `conversation/foo.pdf` form. Paths
 
-          scope prefix is rejected. Path traversal segments (`..`) are rejected.
+          scoped to another conversation or to a different scope are rejected. Path
+
+          traversal segments (`..`) are rejected.
 
           '
         schema:
@@ -204,13 +274,11 @@ paths:
           description: Resolved path is outside the conversation scope.
         '404':
           description: Conversation or file not found.
-        '405':
-          description: Method not supported.
       operationId: getApiV1WByWIdAssistantConversationsByCIdFilesByRel
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}:
     get:
-      summary: Get a Conversation
+      summary: Get a conversation
       description: Get a conversation in the workspace identified by {wId}. Supports optional pagination of message content via limit and lastValue query parameters.
       tags:
       - Conversations
@@ -240,7 +308,7 @@ paths:
         required: false
         description: Cursor value (message rank) from a previous response to fetch the next page of messages.
         schema:
-          type: string
+          type: integer
       responses:
         '200':
           description: Conversation retrieved successfully.
@@ -254,15 +322,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Conversation not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantConversationsByCId
       x-operation-id-source: derived
     patch:
-      summary: Update Conversation Read Status
-      description: Mark a conversation as read or unread in the workspace identified by {wId}.
+      summary: Update a conversation
+      description: Update a conversation's title or mark it as read or unread in the workspace identified by {wId}.
       tags:
       - Conversations
       security:
@@ -285,13 +351,23 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                read:
-                  type: boolean
+              oneOf:
+              - type: object
+                required:
+                - read
+                properties:
+                  read:
+                    type: boolean
+              - type: object
+                required:
+                - title
+                properties:
+                  title:
+                    type: string
+                    maxLength: 512
       responses:
         '200':
-          description: Conversation marked as read successfully.
+          description: Conversation updated successfully.
           content:
             application/json:
               schema:
@@ -305,15 +381,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Conversation not found.
-        '405':
-          description: Method not supported. Only GET or PATCH is expected.
         '500':
           description: Internal Server Error.
       operationId: patchApiV1WByWIdAssistantConversationsByCId
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/answer-question:
     post:
-      summary: Answer a User Question in a Conversation Message
+      summary: Answer a user question in a conversation message
       description: Submits an answer to a question asked by an agent in a specific message
       tags:
       - Conversations
@@ -378,8 +452,6 @@ paths:
           description: User not authorized to answer this question
         '404':
           description: Conversation, message, or action not found
-        '405':
-          description: Method not allowed
         '500':
           description: Internal server error
       security:
@@ -390,7 +462,7 @@ paths:
     post:
       tags:
       - Conversations
-      summary: Edit an Existing Message in a Conversation
+      summary: Edit an existing message in a conversation
       parameters:
       - name: wId
         in: path
@@ -452,14 +524,14 @@ paths:
                     description: Optional array of agent messages generated in response
         '400':
           description: Invalid request (message not found or not a user message)
-        '405':
-          description: Method not supported
       operationId: postApiV1WByWIdAssistantConversationsByCIdMessagesByMIdEdit
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/events:
     get:
-      summary: Get Events for a Message
-      description: Get events for a message in the workspace identified by {wId}.
+      summary: Get events for a message
+      description: 'Stream events for a message in the workspace identified by {wId} using Server-Sent Events (SSE).
+
+        The stream starts with a `:connect` comment. Message frames carry JSON with `eventId` and `data` fields. A plain-text `data: done` frame ends the current connection; clients may reconnect with `lastEventId`.'
       tags:
       - Conversations
       parameters:
@@ -483,32 +555,29 @@ paths:
           type: string
       - in: query
         name: lastEventId
-        description: ID of the last event received
+        required: false
+        description: Redis stream ID of the last received message event. Omit or pass an empty value to start from the available history.
         schema:
           type: string
       security:
       - BearerAuth: []
       responses:
         '200':
-          description: The events
+          description: SSE event stream with a `:connect` comment followed by message frames. The JSON `data` field in each message frame contains the event, discriminated by `type`.
           content:
-            application/json:
+            text/event-stream:
               schema:
                 type: object
+                required:
+                - eventId
+                - data
                 properties:
-                  events:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: ID of the event
-                        type:
-                          type: string
-                          description: Type of the event
-                        data:
-                          $ref: '#/components/schemas/Message'
+                  eventId:
+                    type: string
+                    description: Redis stream ID used as the resume cursor.
+                  data:
+                    type: object
+                    description: Agent message event discriminated by its type field.
         '400':
           description: Bad Request
         '401':
@@ -521,7 +590,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages/{mId}/validate-action:
     post:
-      summary: Validate an Action in a Conversation Message
+      summary: Validate an action in a conversation message
       description: Approves or rejects an action taken in a specific message in a conversation
       tags:
       - Conversations
@@ -574,8 +643,6 @@ paths:
           description: Invalid request body
         '404':
           description: Conversation, message, or workspace not found
-        '405':
-          description: Method not allowed
         '500':
           description: Internal server error
       security:
@@ -584,7 +651,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations/{cId}/messages:
     post:
-      summary: Create a Message
+      summary: Create a message
       description: Create a message in the workspace identified by {wId} in the conversation identified by {cId}.
       tags:
       - Conversations
@@ -630,7 +697,7 @@ paths:
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/conversations:
     post:
-      summary: Create a New Conversation
+      summary: Create a new conversation
       description: Create a new conversation in the workspace identified by {wId}.
       tags:
       - Conversations
@@ -671,6 +738,11 @@ paths:
                   type: boolean
                   description: Whether to wait for the agent to generate the initial message. If true the query will wait for the agent's answer. If false (default), the API will return a conversation ID directly and you will need to use streaming events to get the messages.
                   example: true
+                depth:
+                  type: integer
+                  minimum: 0
+                  description: The depth of the conversation in a chain of sub-agent conversations (optional, defaults to 0)
+                  example: 0
                 spaceId:
                   type: string
                   description: The sId of the space (project) in which to create the conversation (optional). If not provided, the conversation is created outside projects
@@ -696,7 +768,7 @@ paths:
     post:
       tags:
       - Conversations
-      summary: Create a File Upload URL
+      summary: Create a file upload URL
       parameters:
       - name: wId
         in: path
@@ -761,6 +833,114 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ConversationConsumptionDetails:
+      type: object
+      description: Attribution reconciled to the bill through model input rows. Agent work plus tool attributed credits partition the bill; models and agents are alternative groupings, not additional charges.
+      required:
+      - agentWorkCredits
+      - tools
+      - models
+      - agents
+      properties:
+        agentWorkCredits:
+          type: number
+          description: Credits attributed to agent work rather than visible tools.
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationConsumptionToolDetails'
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationConsumptionModelDetails'
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationConsumptionAgentDetails'
+    ConversationConsumptionModelDetails:
+      type: object
+      required:
+      - providerId
+      - modelId
+      - displayName
+      - attributedCredits
+      properties:
+        providerId:
+          type: string
+        modelId:
+          type: string
+          description: Provider model identifier, not an internal database identifier.
+        displayName:
+          type: string
+        attributedCredits:
+          type: number
+          description: Reconciled credits grouped by model, including tool attribution linked to its runs. Overlaps agent work and tool totals.
+    ConversationConsumptionAgentDetails:
+      type: object
+      required:
+      - agentId
+      - name
+      - pictureUrl
+      - billedCredits
+      - agentWorkCredits
+      - tools
+      - models
+      properties:
+        agentId:
+          type: string
+          description: String identifier of the agent.
+        name:
+          type: string
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+        billedCredits:
+          type: number
+          description: Stable billed credits grouped under this agent. Hidden helpers are folded into their parent agent.
+        agentWorkCredits:
+          type: number
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationConsumptionToolDetails'
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationConsumptionModelDetails'
+    ConversationConsumptionToolDetails:
+      type: object
+      required:
+      - label
+      - internalMCPServerName
+      - toolName
+      - callCount
+      - attributedCredits
+      - directCredits
+      - pending
+      properties:
+        label:
+          type: string
+          description: Display label of the tool.
+        internalMCPServerName:
+          type:
+          - string
+          - 'null'
+          description: Internal MCP server name, or null for an external server.
+        toolName:
+          type: string
+        callCount:
+          type: integer
+          description: Number of attributed calls grouped under this tool.
+        attributedCredits:
+          type: number
+          description: Share of billed credits attributed to the tool, including model work and direct charges.
+        directCredits:
+          type: number
+          description: Direct tool charges already included in attributedCredits, not an additional charge.
+        pending:
+          type: boolean
+          description: Whether any grouped tool attribution is pending.
     Context:
       type: object
       required:
@@ -787,6 +967,10 @@ components:
           type: string
           description: URL of the user's profile picture
           example: https://example.com/profiles/johndoe123.jpg
+        selectedSpaceIds:
+          type: array
+          items:
+            type: string
         agenticMessageData:
           type: object
           properties:
@@ -800,12 +984,127 @@ components:
               type: string
               description: ID of the origin message
               example: 2b8e4f6a0c
+    Mention:
+      type: object
+      properties:
+        configurationId:
+          type: string
+          description: ID of the mentioned agent configuration
+          example: 7f3a9c2b1e
+    ContentFragment:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: The title of the content fragment
+          example: My content fragment
+        content:
+          type: string
+          description: The content of the content fragment (optional if `fileId` is set)
+          example: This is my content fragment extracted text
+        contentType:
+          type: string
+          description: The content type of the content fragment (optional if `fileId` is set)
+          example: text/plain
+        url:
+          type: string
+          description: The URL of the content fragment
+          example: https://example.com/content
+        fileId:
+          type: string
+          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
+          example: fil_123456
+        path:
+          type:
+          - string
+          - 'null'
+          description: Path of this file inside the sandbox conversation mount.
+          example: conversation/report.csv
+        processedPath:
+          type:
+          - string
+          - 'null'
+          description: Path of the plain-text sibling of this file inside the sandbox conversation mount (e.g. an audio transcript), when it has one.
+          example: conversation/voice.processed.txt
+        skipFileProcessing:
+          type: boolean
+          description: Whether upload-time file processing was skipped.
+        nodeId:
+          type: string
+          description: The id of the content node (optional if `content` and `contentType` are set)
+          example: node_123456
+        nodeDataSourceViewId:
+          type: string
+          description: The id of the data source view (optional if `content` and `contentType` are set)
+          example: dsv_123456
+        context:
+          $ref: '#/components/schemas/Context'
+    AgentSkill:
+      type: object
+      description: A skill attached to an agent configuration.
+      properties:
+        sId:
+          type: string
+          description: Unique string identifier for the skill
+          example: skill_abc123
+        name:
+          type: string
+          description: Name of the skill
+          example: Customer Support
+    ModelSelection:
+      type: object
+      description: 'Optional per-message model and reasoning-effort override applied to the
+
+        mentioned agent(s). When omitted, each agent runs its configured model.
+
+        A provider/model pair that is not authorized for the workspace is
+
+        rejected with a 400 (`model_disabled`), it does not fall back to the
+
+        agent''s configured model. A malformed object, or an unknown reasoning
+
+        effort, also results in a 400.
+
+        '
+      required:
+      - providerId
+      - modelId
+      properties:
+        providerId:
+          type: string
+          description: The model provider id (e.g. "anthropic", "openai", "google_ai_studio").
+          example: anthropic
+        modelId:
+          type: string
+          description: The model id to run (e.g. "claude-sonnet-4-20250514").
+          example: claude-sonnet-4-20250514
+        reasoningEffort:
+          type: string
+          enum:
+          - none
+          - minimal
+          - low
+          - medium
+          - high
+          - xhigh
+          - maximal
+          - light
+          description: Optional reasoning effort. Honored only if the resolved model supports it. `light` is a deprecated alias of `low`.
+          example: medium
     AgentConfiguration:
       type: object
       properties:
         id:
           type: integer
           example: 12345
+        agentModelId:
+          type:
+          - integer
+          - 'null'
+          description: Stable identifier of the agent across versions; null for global agents
+          example: 6789
         sId:
           type: string
           description: Unique string identifier for the agent configuration
@@ -872,6 +1171,35 @@ components:
         actions:
           type: array
           example: []
+        skills:
+          type: array
+          description: Skills attached to the agent. Returned by the agent GET endpoints (list and single-agent) whatever the requested variant. Empty both for an agent with no skill and for an agent whose details were redacted for the caller (canRead false).
+          items:
+            $ref: '#/components/schemas/AgentSkill'
+        tags:
+          type: array
+          description: Tags attached to the agent
+          items:
+            type: object
+            properties:
+              sId:
+                type: string
+                example: 3f9d1c7a5b
+              name:
+                type: string
+                example: Support
+              kind:
+                type: string
+                enum:
+                - standard
+                - protected
+        requestedSpaceIds:
+          type: array
+          description: Identifiers of the spaces the agent needs access to
+          items:
+            type: string
+          example:
+          - vlt_a1b2c3d4e5
         maxStepsPerRun:
           type: integer
           example: 10
@@ -881,61 +1209,30 @@ components:
           - 'null'
           description: ID of the template used for this configuration
           example: b4e2f1a9c7
-    Workspace:
+        ignoreCreditSpendThresholdAlert:
+          type: boolean
+          description: Whether the agent keeps running past the workspace credit spend threshold alert
+          example: false
+        canViewContent:
+          type: boolean
+          description: Whether the caller can view the agent's private fields (instructions, skills, tools); they are redacted when false
+          example: false
+    ConversationConsumption:
       type: object
       required:
-      - regionalModelsOnly
+      - billedCredits
+      - details
       properties:
-        id:
-          type: integer
-          example: 67890
-        sId:
-          type: string
-          description: Unique string identifier for the workspace
-          example: dQFf9l5FQY
-        name:
-          type: string
-          description: Name of the workspace
-          example: My Awesome Workspace
-        role:
-          type: string
-          description: User's role in the workspace
-          example: admin
-        segmentation:
+        billedCredits:
+          type: number
+          description: Stable billed Dust credits for terminal agent messages in the conversation and its accessible run-agent descendants, including superseded message versions.
+        details:
           type:
-          - string
+          - object
           - 'null'
-          description: Segmentation information for the workspace
-          example: enterprise
-        flags:
-          type: array
-          items:
-            type: string
-            description: Feature flags enabled for the workspace
-          example:
-          - advanced_analytics
-          - beta_features
-        ssoEnforced:
-          type: boolean
-          example: true
-        regionalModelsOnly:
-          type: boolean
-          description: When true, only models whose regionalAvailability includes the workspace's region are usable.
-          example: false
-        whiteListedProviders:
-          type: array
-          items:
-            type: string
-            description: List of allowed authentication providers
-          example:
-          - google
-          - github
-        defaultEmbeddingProvider:
-          type:
-          - string
-          - 'null'
-          description: Default provider for embeddings in the workspace
-          example: openai
+          allOf:
+          - $ref: '#/components/schemas/ConversationConsumptionDetails'
+          description: Null when no messages have positive billed credits or any billed message lacks complete attribution.
     Conversation:
       type: object
       properties:
@@ -1015,7 +1312,41 @@ components:
                       example: completed
                     actions:
                       type: array
-                      example: []
+                      items:
+                        type: object
+                        properties:
+                          generatedFiles:
+                            type: array
+                            description: 'Files generated by this action. Path-backed files have `fileId: null`
+
+                              and can be downloaded through the conversation files endpoint using
+
+                              `filePath`.
+
+                              '
+                            items:
+                              type: object
+                              properties:
+                                fileId:
+                                  type:
+                                  - string
+                                  - 'null'
+                                  description: Dust file id for DB-backed files, or null for path-backed files.
+                                filePath:
+                                  type: string
+                                  description: Canonical scoped path for path-backed files, as surfaced by agent file system tools.
+                                title:
+                                  type: string
+                                contentType:
+                                  type: string
+                                snippet:
+                                  type:
+                                  - string
+                                  - 'null'
+                                hidden:
+                                  type: boolean
+                                isInProjectContext:
+                                  type: boolean
                     chainOfThought:
                       type:
                       - string
@@ -1042,74 +1373,6 @@ components:
                       example: null
                     configuration:
                       $ref: '#/components/schemas/AgentConfiguration'
-    Mention:
-      type: object
-      properties:
-        configurationId:
-          type: string
-          description: ID of the mentioned agent configuration
-          example: 7f3a9c2b1e
-    ContentFragment:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          description: The title of the content fragment
-          example: My content fragment
-        content:
-          type: string
-          description: The content of the content fragment (optional if `fileId` is set)
-          example: This is my content fragment extracted text
-        contentType:
-          type: string
-          description: The content type of the content fragment (optional if `fileId` is set)
-          example: text/plain
-        url:
-          type: string
-          description: The URL of the content fragment
-          example: https://example.com/content
-        fileId:
-          type: string
-          description: The id of the previously uploaded file (optional if `content` and `contentType` are set)
-          example: fil_123456
-        path:
-          type:
-          - string
-          - 'null'
-          description: Path of this file inside the sandbox conversation mount.
-          example: conversation/report.csv
-        skipFileProcessing:
-          type: boolean
-          description: Whether upload-time file processing was skipped.
-        nodeId:
-          type: string
-          description: The id of the content node (optional if `content` and `contentType` are set)
-          example: node_123456
-        nodeDataSourceViewId:
-          type: string
-          description: The id of the data source view (optional if `content` and `contentType` are set)
-          example: dsv_123456
-        context:
-          $ref: '#/components/schemas/Context'
-    Message:
-      type: object
-      required:
-      - content
-      - mentions
-      properties:
-        content:
-          type: string
-          description: The content of the message. Should not be empty.
-          example: This is my message
-        mentions:
-          type: array
-          description: Empty array is accepted but won't trigger any agent.
-          items:
-            $ref: '#/components/schemas/Mention'
-        context:
-          $ref: '#/components/schemas/Context'
     User:
       type: object
       properties:
@@ -1151,6 +1414,100 @@ components:
           type: string
           description: URL of the user's profile image
           example: https://example.com/profile/johndoe.jpg
+        pronouns:
+          type:
+          - string
+          - 'null'
+          description: User's pronouns, as entered by the user
+          example: they/them
+    Workspace:
+      type: object
+      required:
+      - regionalModelsOnly
+      properties:
+        id:
+          type: integer
+          example: 67890
+        sId:
+          type: string
+          description: Unique string identifier for the workspace
+          example: dQFf9l5FQY
+        name:
+          type: string
+          description: Name of the workspace
+          example: My Awesome Workspace
+        role:
+          type: string
+          enum:
+          - admin
+          - manager
+          - user
+          - none
+          description: User's role in the workspace
+          example: admin
+        segmentation:
+          type:
+          - string
+          - 'null'
+          description: Segmentation information for the workspace
+          example: enterprise
+        flags:
+          type: array
+          items:
+            type: string
+            description: Feature flags enabled for the workspace
+          example:
+          - advanced_analytics
+          - beta_features
+        ssoEnforced:
+          type: boolean
+          example: true
+        regionalModelsOnly:
+          type: boolean
+          description: When true, only models whose regionalAvailability includes the workspace's region are usable.
+          example: false
+        whiteListedProviders:
+          type: array
+          items:
+            type: string
+            description: Whitelisted model lab (maker) IDs
+          example:
+          - openai
+          - zai
+        defaultEmbeddingProvider:
+          type:
+          - string
+          - 'null'
+          description: Default provider for embeddings in the workspace
+          example: openai
+        locale:
+          type: string
+          enum:
+          - en-US
+          - en-GB
+          - fr-FR
+          - de-DE
+          description: Default language of the product UI for the workspace members
+          example: en-US
+    Message:
+      type: object
+      required:
+      - content
+      - mentions
+      properties:
+        content:
+          type: string
+          description: The content of the message. Should not be empty.
+          example: This is my message
+        mentions:
+          type: array
+          description: Empty array is accepted but won't trigger any agent.
+          items:
+            $ref: '#/components/schemas/Mention'
+        context:
+          $ref: '#/components/schemas/Context'
+        modelSelection:
+          $ref: '#/components/schemas/ModelSelection'
   securitySchemes:
     BearerAuth:
       type: http

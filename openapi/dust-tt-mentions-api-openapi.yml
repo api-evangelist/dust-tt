@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust Conversations Mentions API
+  title: DUST API Documentation Mentions API
   version: 1.0.2
-  description: Create and drive multi-turn conversations with Dust agents — post messages, stream events, manage content fragments, gather feedback, and resolve mentions.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/assistant/conversations/{cId}/mentions/suggestions:
     get:
-      summary: Get Mention Suggestions for a Conversation
+      summary: Get mention suggestions for a conversation
       description: Get suggestions for mentions (agents and users) based on a query string, scoped to a specific conversation.
       tags:
       - Mentions
@@ -80,15 +77,13 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Conversation not found.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantConversationsByCIdMentionsSuggestions
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/mentions/parse:
     post:
-      summary: Parse Mentions in Markdown Text
+      summary: Parse mentions in markdown text
       description: 'Parses pasted text containing @ mentions and converts them to the proper mention format.
 
         Matches @agentName or @userName patterns against available agents and users.'
@@ -131,15 +126,13 @@ paths:
           description: Bad Request. Missing or invalid request body.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
-        '405':
-          description: Method not supported. Only POST is expected.
         '500':
           description: Internal Server Error.
       operationId: postApiV1WByWIdAssistantMentionsParse
       x-operation-id-source: derived
   /api/v1/w/{wId}/assistant/mentions/suggestions:
     get:
-      summary: Get Mention Suggestions
+      summary: Get mention suggestions
       description: Get suggestions for mentions (agents and users) based on a query string.
       tags:
       - Mentions
@@ -191,8 +184,6 @@ paths:
           description: Bad Request. Missing or invalid parameters.
         '401':
           description: Unauthorized. Invalid or missing authentication token.
-        '405':
-          description: Method not supported. Only GET is expected.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdAssistantMentionsSuggestions

@@ -1,0 +1,277 @@
+openapi: 3.2.0
+info:
+  title: DUST API Documentation Analytics API
+  version: 1.0.2
+  description: The OpenAPI specification for the Dust.tt API
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://dust.tt
+  description: Dust.tt API (us-central1)
+- url: https://eu.dust.tt
+  description: Dust.tt API (europe-west1)
+tags:
+- name: Analytics
+  description: Workspace analytics
+paths:
+  /api/v1/w/{wId}/analytics/consumption/export:
+    post:
+      summary: Export consumption analytics
+      description: 'Export per-call consumption analytics for the workspace identified by {wId}.
+
+        Each row represents one unit of billed credit consumption (an LLM call or a tool call).
+
+        The export can be filtered by various dimensions (agents, users, API keys, groups, models, tools, skills, sources, tags).
+
+        The export is limited to a maximum of 30 days per request and times out after 10 seconds: reduce the time range
+
+        or apply filters to reduce the number of rows if you encounter a timeout.
+
+        Results are streamed, if an error occurs, an error message is appended and the stream is closed.
+
+
+        An admin API key can export the whole workspace. Any other API key must filter on `groups`, and
+
+        must be allowed to read the analytics of every group listed. The rows then cover the messages of
+
+        the users who were members of those groups when the message was sent, and the `userGroupIds`
+
+        and `userGroupNames` columns only list the requested groups.'
+      tags:
+      - Analytics
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - startDate
+              - endDate
+              properties:
+                startDate:
+                  type: string
+                  format: date-time
+                  description: Start of the time range (inclusive), ISO 8601 datetime
+                  example: '2026-01-01T00:00:00Z'
+                endDate:
+                  type: string
+                  format: date-time
+                  description: End of the time range (exclusive), ISO 8601 datetime. Must be after startDate, at most 30 days apart.
+                  example: '2026-01-15T00:00:00Z'
+                format:
+                  type: string
+                  enum:
+                  - csv
+                  - ndjson
+                  description: Output format (defaults to csv)
+                filter:
+                  type: object
+                  description: 'Optional dimension filters. Each key maps to an array of string identifiers to include.
+
+                    Each value must be at most 256 characters. The total number of values across all dimensions must not exceed 500.
+
+                    '
+                  properties:
+                    agents:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Agent sIds to filter on
+                    users:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: User IDs to filter on
+                    api_keys:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: API key names to filter on
+                    groups:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: 'Group IDs to filter on. Required, with at least one non-empty value, unless the
+
+                        API key has admin scope.
+
+                        '
+                    models:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Model IDs to filter on
+                    tools:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Tool server names to filter on
+                    skills:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Skill IDs to filter on
+                    sources:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Context origins to filter on (e.g. "web", "slack", "api")
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 256
+                      description: Agent tag IDs to filter on
+      responses:
+        '200':
+          description: The consumption data in CSV or NDJSON format
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/x-ndjson:
+              schema:
+                type: string
+                description: Newline-delimited JSON, one row object per line
+        '400':
+          description: Invalid request body (missing fields, invalid dates, range exceeds 30 days)
+        '403':
+          description: 'The API key has no admin scope and the export is not restricted to groups whose
+
+            analytics it can read.
+
+            '
+        '429':
+          description: Rate limit exceeded (60 requests per minute per workspace)
+        '500':
+          description: Internal Server Error
+      operationId: postApiV1WByWIdAnalyticsConsumptionExport
+      x-operation-id-source: derived
+  /api/v1/w/{wId}/analytics/export:
+    get:
+      summary: Export workspace analytics
+      description: Export analytics data for the workspace identified by {wId} in CSV or JSON format.
+      tags:
+      - Analytics
+      security:
+      - BearerAuth: []
+      parameters:
+      - in: path
+        name: wId
+        required: true
+        description: Unique string identifier for the workspace
+        schema:
+          type: string
+      - in: query
+        name: table
+        required: true
+        description: 'The analytics table to export:
+
+          - "usage_metrics": Messages, conversations, and active users over time.
+
+          - "active_users": Daily, weekly, and monthly active user counts.
+
+          - "source": Message volume by context origin (web, slack, etc.).
+
+          - "agents": Top agents by message count, including credits.
+
+          - "users": Top users by message count, including credits, last login date and membership status (active, revoked, unregistered).
+
+          - "skills": Skill metadata catalog.
+
+          - "skill_usage": Skill executions and unique users over time.
+
+          - "tool_usage": Tool executions and unique users over time.
+
+          - "messages": Detailed message-level logs, including comma-separated lists of tools (as "server__tool") and skills used per message, and the cost in credits of each message. The time range must not exceed 90 days.
+
+          - "feedback": Detailed message-level feedback (thumbs, content, conversation URL).
+
+          '
+        schema:
+          type: string
+          enum:
+          - usage_metrics
+          - active_users
+          - source
+          - agents
+          - users
+          - skills
+          - skill_usage
+          - tool_usage
+          - messages
+          - feedback
+      - in: query
+        name: startDate
+        required: true
+        description: Start date in YYYY-MM-DD format
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: endDate
+        required: true
+        description: End date in YYYY-MM-DD format
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: timezone
+        required: false
+        description: IANA timezone name (defaults to UTC)
+        schema:
+          type: string
+      - in: query
+        name: format
+        required: false
+        description: Output format (defaults to csv)
+        schema:
+          type: string
+          enum:
+          - csv
+          - json
+      responses:
+        '200':
+          description: The analytics data in CSV or JSON format
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request query parameters
+        '403':
+          description: Requires an API key with admin scope
+        '429':
+          description: Rate limit exceeded (60 requests per minute per workspace)
+      operationId: getApiV1WByWIdAnalyticsExport
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Your DUST API key is a Bearer token.

@@ -1,14 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Dust MCP Tools API
+  title: DUST API Documentation Tools API
   version: 1.0.2
-  description: Register client-side Model Context Protocol servers, stream tool requests over SSE, return results, and list MCP server views available in a space.
-  contact:
-    name: Dust Support
-    url: https://docs.dust.tt
+  description: The OpenAPI specification for the Dust.tt API
   license:
     name: MIT
-    url: https://github.com/dust-tt/dust/blob/main/LICENSE
+    url: https://opensource.org/licenses/MIT
 servers:
 - url: https://dust.tt
   description: Dust.tt API (us-central1)
@@ -20,7 +17,7 @@ tags:
 paths:
   /api/v1/w/{wId}/spaces/{spaceId}/mcp_server_views:
     get:
-      summary: List Available MCP Server Views
+      summary: List available MCP server views
       description: Retrieves a list of enabled MCP server views (aka tools) for a specific space of the authenticated workspace.
       tags:
       - Tools
@@ -57,8 +54,6 @@ paths:
           description: Unauthorized. Invalid or missing authentication token.
         '404':
           description: Workspace not found.
-        '405':
-          description: Method not supported.
         '500':
           description: Internal Server Error.
       operationId: getApiV1WByWIdSpacesBySpaceIdMcpServerViews
@@ -67,6 +62,8 @@ components:
   schemas:
     MCPServerView:
       type: object
+      required:
+      - isRestrictedToSkills
       properties:
         id:
           type: integer
@@ -197,6 +194,10 @@ components:
           - personal_actions
           description: OAuth use case for the MCP server view
           example: platform_actions
+        isRestrictedToSkills:
+          type: boolean
+          description: Whether the MCP server view can only be used through skills
+          example: false
         editedByUser:
           type:
           - object
