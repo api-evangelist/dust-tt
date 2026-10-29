@@ -1,4 +1,4 @@
-# Dust (dust-tt)
+# Dust
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -77,318 +77,210 @@ The Dust core platform is open source under the MIT license at github.com/dust-t
 available on a per-seat Pro plan (29 EUR / user / month) and a custom Enterprise tier (100+ seats) with SSO,
 SCIM, dedicated environments, EU residency, and SOC 2 Type II / GDPR / HIPAA-ready compliance.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dust-tt/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dust-tt/refs/heads/main/apis.yml)
+**Areas:** Agents · Artificial Intelligence · Custom Workflows · Data Sources · Dust · Enterprise AI · Knowledge Management · LLM · MCP · Multi-Model · RAG
+
+## Dust on APIs.io
+
+Everything profiled for Dust is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dust-tt/](https://apis.io/providers/dust-tt/)** — or go straight to one of the APIs or properties below.
+
+### APIs (14)
 
-## Scope
+- [Dust Agents API](https://apis.io/apis/dust-tt/dust-tt-agents-api/) — Agent configurations
+- [Dust Apps API](https://apis.io/apis/dust-tt/dust-tt-apps-api/) — Dust apps
+- [Dust Conversations API](https://apis.io/apis/dust-tt/dust-tt-conversations-api/) — Conversations
+- [Dust DatasourceViews API](https://apis.io/apis/dust-tt/dust-tt-datasourceviews-api/) — Data source views
+- [Dust Feedbacks API](https://apis.io/apis/dust-tt/dust-tt-feedbacks-api/) — Message feedbacks
+- [Dust MCP API](https://apis.io/apis/dust-tt/dust-tt-mcp-api/) — MCP servers
+- [Dust Mentions API](https://apis.io/apis/dust-tt/dust-tt-mentions-api/) — Mentions
+- [Dust Search API](https://apis.io/apis/dust-tt/dust-tt-search-api/) — Search
+- [Dust Skills API](https://apis.io/apis/dust-tt/dust-tt-skills-api/) — Skills
+- [Dust Spaces API](https://apis.io/apis/dust-tt/dust-tt-spaces-api/) — Spaces
+- [Dust Tools API](https://apis.io/apis/dust-tt/dust-tt-tools-api/) — Tools
+- [Dust Triggers API](https://apis.io/apis/dust-tt/dust-tt-triggers-api/) — Triggers
+- [Dust Workspace API](https://apis.io/apis/dust-tt/dust-tt-workspace-api/) — Workspace
+- [Dust Data Sources API](https://apis.io/apis/dust-tt/dust-tt-data-sources-api/) — Data sources
 
-- **Access:** 3rd-Party
+### Published properties
 
-## Tags
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Agents
-- AI
-- Artificial Intelligence
-- Custom Workflows
-- Data Sources
-- Dust
-- Enterprise AI
-- Knowledge Management
-- LLM
-- MCP
-- Multi-Model
-- RAG
+#### Arazzo workflows (12)
 
-## Timestamps
+Multi-step workflows that chain operations into a business task.
 
-- **Created:** 2026-05-24
-- **Modified:** 2026-05-24
+- [Dust Approve a Pending Agent Tool Action](https://apis.io/arazzos/dust-tt/dust-tt-approve-agent-action-workflow/)
+- [Dust Attach a File and Ask an Agent](https://apis.io/arazzos/dust-tt/dust-tt-attach-file-and-ask-workflow/)
+- [Dust Converse with an Agent](https://apis.io/arazzos/dust-tt/dust-tt-converse-with-agent-workflow/)
+- [Dust Create a Table and Upsert Rows](https://apis.io/arazzos/dust-tt/dust-tt-create-table-and-upsert-rows-workflow/)
+- [Dust Discover Spaces and Data Sources](https://apis.io/arazzos/dust-tt/dust-tt-discover-spaces-and-data-sources-workflow/)
+- [Dust Find Agent and Start a Conversation](https://apis.io/arazzos/dust-tt/dust-tt-find-agent-and-start-conversation-workflow/)
+- [Dust Import an Agent and Start a Conversation](https://apis.io/arazzos/dust-tt/dust-tt-import-agent-and-converse-workflow/)
+- [Dust Message an Agent and Submit Feedback](https://apis.io/arazzos/dust-tt/dust-tt-message-and-submit-feedback-workflow/)
+- [Dust Post Follow-up Message and Poll](https://apis.io/arazzos/dust-tt/dust-tt-post-message-and-poll-workflow/)
+- [Dust Run an App and Poll for Completion](https://apis.io/arazzos/dust-tt/dust-tt-run-app-and-poll-workflow/)
+- [Dust Suggest a Mention and Start a Conversation](https://apis.io/arazzos/dust-tt/dust-tt-suggest-mention-and-converse-workflow/)
+- [Dust Upsert a Document and Search the Data Source](https://apis.io/arazzos/dust-tt/dust-tt-upsert-document-and-search-workflow/)
 
-## APIs
+#### MCP servers (1)
 
-### Dust Agents API
+Model Context Protocol servers that expose the API to agents.
 
-Create, list, retrieve, update, archive, search, import, and export Dust agent configurations. An agent in Dust is
-a named, versioned configuration of an LLM (OpenAI, Anthropic, Google, Mistral) plus instructions, tools, and
-data-source bindings that can be invoked from conversations, Slack, the Chrome extension, or programmatically.
+- [dust-tt](https://apis.io/servers/dust-tt/dust-tt/)
 
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Agents
-- AI
-- Artificial Intelligence
-- Dust
+- [Dust Tt Agentic Access](https://apis.io/agentic-access/dust-tt/dust-tt-agentic-access/)
 
-#### Properties
+#### JSON Schema (5)
 
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-agents-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-agents-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-agents-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/dust-agent-configuration-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/dust-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+The data models the API reads and writes.
 
-### Dust Conversations API
+- [Dust Agent Configuration](https://apis.io/schemas/dust-tt/dust-agent-configuration/)
+- [Dust Conversation](https://apis.io/schemas/dust-tt/dust-conversation/)
+- [Dust Data Source](https://apis.io/schemas/dust-tt/dust-datasource/)
+- [Dust Document](https://apis.io/schemas/dust-tt/dust-document/)
+- [Dust Skill](https://apis.io/schemas/dust-tt/dust-skill/)
 
-Drive multi-turn conversations with Dust agents. Create conversations, post user messages, stream agent events
-over SSE, attach content fragments (file/page/snippet attachments), retrieve and download conversation-scoped
-files, submit and delete message feedback, and resolve @mention suggestions for agent routing.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Dust Context](https://apis.io/jsonld/dust-tt/dust-context/)
 
-- AI
-- Artificial Intelligence
-- Conversations
-- Dust
-- Messages
+#### Collections (32)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-conversations-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-conversations-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-conversations-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/dust-conversation-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Dust Agents API](https://apis.io/collections/dust-tt/open-dust-agents-api/)
+- [Dust Apps API](https://apis.io/collections/dust-tt/open-dust-apps-api/)
+- [Dust Conversations API](https://apis.io/collections/dust-tt/open-dust-conversations-api/)
+- [Dust Data Sources API](https://apis.io/collections/dust-tt/open-dust-datasources-api/)
+- [Dust MCP API](https://apis.io/collections/dust-tt/open-dust-mcp-api/)
+- [Dust Search API](https://apis.io/collections/dust-tt/open-dust-search-api/)
+- [Dust Skills API](https://apis.io/collections/dust-tt/open-dust-skills-api/)
+- [Dust Triggers API](https://apis.io/collections/dust-tt/open-dust-triggers-api/)
+- [Dust Agents API](https://apis.io/collections/dust-tt/open-dust-tt-agents-api/)
+- [Dust Agents Apps API](https://apis.io/collections/dust-tt/open-dust-tt-apps-api/)
+- [Dust Agents Conversations API](https://apis.io/collections/dust-tt/open-dust-tt-conversations-api/)
+- [Dust Agents Datasources API](https://apis.io/collections/dust-tt/open-dust-tt-datasources-api/)
+- [Dust Agents DatasourceViews API](https://apis.io/collections/dust-tt/open-dust-tt-datasourceviews-api/)
+- [Dust Agents Feedbacks API](https://apis.io/collections/dust-tt/open-dust-tt-feedbacks-api/)
+- [Dust Agents MCP API](https://apis.io/collections/dust-tt/open-dust-tt-mcp-api/)
+- [Dust Agents Mentions API](https://apis.io/collections/dust-tt/open-dust-tt-mentions-api/)
+- [Dust Agents Search API](https://apis.io/collections/dust-tt/open-dust-tt-search-api/)
+- [Dust Agents Skills API](https://apis.io/collections/dust-tt/open-dust-tt-skills-api/)
+- [Dust Agents Spaces API](https://apis.io/collections/dust-tt/open-dust-tt-spaces-api/)
+- [Dust Agents Tools API](https://apis.io/collections/dust-tt/open-dust-tt-tools-api/)
+- [Dust Agents Triggers API](https://apis.io/collections/dust-tt/open-dust-tt-triggers-api/)
+- [Dust Agents Workspace API](https://apis.io/collections/dust-tt/open-dust-tt-workspace-api/)
+- [Dust Workspace API](https://apis.io/collections/dust-tt/open-dust-workspace-api/)
+- [Dust Agents API](https://apis.io/collections/dust-tt/postman-dust-agents-api/)
+- [Dust Apps API](https://apis.io/collections/dust-tt/postman-dust-apps-api/)
+- …and 7 more published on APIs.io
 
-### Dust Data Sources API
+#### Governance rules (1)
 
-Manage Dust data sources, data source views, spaces, documents, tables, and folders. Upsert documents and table
-rows programmatically, search semantically, manage hierarchies and parents, and check the asynchronous upsert
-queue. Data sources are the retrieval layer behind every Dust agent.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
+- [Dust — jsonschema rules](https://apis.io/rules/dust-tt/dust-tt-jsonschema-spectral-rules/)
 
-#### Tags
+#### Security (2)
 
-- AI
-- Artificial Intelligence
-- Data Sources
-- Dust
-- RAG
-- Search
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Dust Tt Authentication](https://apis.io/security/dust-tt/dust-tt-authentication/)
+- [Dust Tt Domain Security](https://apis.io/security/dust-tt/dust-tt-domain-security/)
 
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-datasources-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-datasources-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-datasources-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/dust-datasource-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/dust-document-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### Plans and pricing (1)
 
-### Dust MCP API
+Published plans, tiers and prices.
 
-Register a client-side Model Context Protocol server with a Dust workspace, stream MCP tool-call requests over
-SSE, return tool execution results back to Dust agents, and keep the server's heartbeat alive. Also lists the
-MCP server views available in a space.
+- [Dust Plans Pricing](https://apis.io/plans/dust-tt/dust-plans-pricing/)
 
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- AI
-- Artificial Intelligence
-- Dust
-- MCP
-- Tools
+- [Dust Rate Limits](https://apis.io/rate-limits/dust-tt/dust-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-mcp-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-mcp-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-mcp-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Dust Apps API
+- [Dust Finops](https://apis.io/finops/dust-tt/dust-finops/)
 
-List Dust Apps in a space and create or retrieve App runs. Dust Apps are chained-block LLM/code pipelines
-defined in the Dust Builder and executable as parameterized "functions" from agents, code, or webhooks.
+## Where to find this API
 
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- AI
-- Artificial Intelligence
-- Apps
-- Dust
-
-#### Properties
-
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-apps-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-apps-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-apps-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Dust Search API
-
-Search nodes (documents, tables, folders, conversations) across an entire Dust workspace. Streaming SSE
-variant for incremental result delivery, plus a tool-file upload endpoint backing search-related tool calls.
-
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
-
-#### Tags
-
-- AI
-- Artificial Intelligence
-- Dust
-- Search
-
-#### Properties
-
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-search-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Dust Skills API
-
-List the skill bundles installed in a Dust workspace and import new skills from uploaded files. Skills are
-reusable instruction + tool packs that agents can attach to.
-
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
-
-#### Tags
-
-- AI
-- Artificial Intelligence
-- Dust
-- Skills
-
-#### Properties
-
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-skills-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-skills-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-skills-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/dust-skill-schema.json) — [JSON Schema](https://json-schema.org/specification)
-
-### Dust Triggers API
-
-Receive an external webhook on a registered Dust webhook source and fan it out to trigger agent workflows
-(e.g. run an agent when a GitHub issue opens or a Notion page changes).
-
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
-
-#### Tags
-
-- AI
-- Artificial Intelligence
-- Dust
-- Triggers
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-triggers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-triggers-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-triggers-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Dust Workspace API
-
-Export workspace analytics and pull aggregated workspace usage data for chargeback, capacity planning, and
-FinOps reporting against Dust seat and programmatic-API consumption.
-
-- **Human URL:** [https://docs.dust.tt/reference](https://docs.dust.tt/reference)
-- **Base URL:** `https://dust.tt/api/v1`
-
-#### Tags
-
-- Administration
-- AI
-- Analytics
-- Artificial Intelligence
-- Dust
-- FinOps
-
-#### Properties
-
-- [Documentation](https://docs.dust.tt/reference)
-- [OpenAPI](openapi/dust-workspace-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dust-workspace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dust-workspace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://dust.tt)
+- [Website](https://www.dust.tt/)
 - [Documentation](https://docs.dust.tt)
-- [API Reference](https://docs.dust.tt/reference)
-- [Getting Started](https://docs.dust.tt/docs/intro)
-- [Getting Started](https://docs.dust.tt/docs/programmatic-usage)
+- [Getting started](https://docs.dust.tt/docs/intro)
+- [API reference](https://docs.dust.tt/reference)
 - [Pricing](https://dust.tt/pricing)
-- [GitHub Organization](https://github.com/dust-tt)
-- [Source Code](https://github.com/dust-tt/dust)
-- [License](https://github.com/dust-tt/dust/blob/main/LICENSE)
 - [Changelog](https://docs.dust.tt/changelog)
-- [Sign Up](https://dust.tt/sign-up)
-- [Contact Sales](https://dust.tt/home/contact)
-- [Security](https://dust.tt/home/security)
-- [Trust Center](https://trust.dust.tt)
-- [Terms of Service](https://dust.tt/terms)
-- [Privacy Policy](https://dust.tt/website-privacy)
-- [Compliance](https://dust.tt/home/security)
-- [SDK](https://github.com/dust-tt/dust-sdk-js)
-- [SDK](https://docs.dust.tt/reference/javascript-sdk)
-- [C L I](https://docs.dust.tt/reference/cli)
-- [Tools](https://github.com/dust-tt/dust-labs)
-- [Tools](https://github.com/dust-tt/dust-github-action)
-- [Tools](https://github.com/dust-tt/dust-n8n-node)
-- [Tools](https://github.com/dust-tt/raycast-extension)
-- [Tools](https://github.com/dust-tt/browse)
-- [Tools](https://github.com/dust-tt/srchd)
-- [Browser Extension](https://dust.tt/home/chrome-extension)
-- [Postman](https://app.getpostman.com/run-collection/34241185-c7e0fdbe-b2c5-47d5-a923-8244d45cd95e) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [OpenAPI](https://dust.tt/swagger.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Academy Mode](https://dust.tt/academy)
 - [Blog](https://blog.dust.tt)
-- [Forum](https://dust-community.tightknit.community/join)
-- [Status Page](https://status.dust.tt)
-- [Integrations](https://dust.tt/integrations)
-- [Integrations](https://docs.dust.tt/docs/slack)
-- [Integrations](https://docs.dust.tt/docs/notion-mcp)
-- [Integrations](https://docs.dust.tt/docs/github-connection)
-- [Integrations](https://docs.dust.tt/docs/google-drive-connection)
-- [Integrations](https://docs.dust.tt/docs/confluence-connection)
-- [Integrations](https://docs.dust.tt/docs/salesforce)
-- [Integrations](https://docs.dust.tt/docs/hubspot)
-- [Integrations](https://docs.dust.tt/docs/zendesk)
-- [Integrations](https://docs.dust.tt/docs/jira)
-- [Integrations](https://docs.dust.tt/docs/bigquery)
-- [Solutions](https://dust.tt/home/solutions/sales)
-- [Solutions](https://dust.tt/home/solutions/customer-support)
-- [Solutions](https://dust.tt/home/solutions/marketing)
-- [Solutions](https://dust.tt/home/solutions/engineering)
-- [Solutions](https://dust.tt/home/solutions/data-analytics)
-- [Solutions](https://dust.tt/home/solutions/knowledge)
-- [Solutions](https://dust.tt/home/solutions/it)
-- [Solutions](https://dust.tt/home/solutions/legal)
-- [Solutions](https://dust.tt/home/solutions/recruiting-people)
-- [Industry](https://dust.tt/home/industry/b2b-saas)
-- [Industry](https://dust.tt/home/industry/financial-services)
-- [Industry](https://dust.tt/home/industry/consulting)
-- [Industry](https://dust.tt/home/industry/insurance)
-- [Industry](https://dust.tt/home/industry/marketplace)
-- [Industry](https://dust.tt/home/industry/retail-ecommerce)
-- [LinkedIn](https://www.linkedin.com/company/dust-tt)
-- [Twitter](https://twitter.com/dust4ai)
-- [Plans](plans/dust-plans-pricing.yml)
-- [Rate Limits](rate-limits/dust-rate-limits.yml)
-- [Fin Ops](finops/dust-finops.yml)
+- [Security](https://dust.tt/home/security)
+- [Compliance](https://dust.tt/home/security)
+- [Trust centre](https://trust.dust.tt)
+- [Terms of service](https://dust.tt/terms)
+- [Privacy policy](https://dust.tt/website-privacy)
+- [GitHub](https://github.com/dust-tt)
+- [Status](https://status.dust.tt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 64.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 60.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 76.2 |
+| Access clarity | 61.8 |
+
+**Agent readiness 36.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dust-tt/](https://apis.io/providers/dust-tt/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dust: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dust-tt/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
